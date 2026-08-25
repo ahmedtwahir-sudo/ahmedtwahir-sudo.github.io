@@ -1,7 +1,35 @@
 [
   {
     "id": "hp-440-g10",
-    "name": "HP 440 G10",
+    "name": "HP 440 G10-Test1",
+    "price": 60500,
+    "condition": "USED",
+    "status": "available",
+    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
+    "images": [
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
+    ]
+  }
+  {
+    "id": "hp-440-g10",
+    "name": "HP 440 G10-Test2",
+    "price": 60500,
+    "condition": "USED",
+    "status": "sold",
+    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
+    "images": [
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
+    ]
+  }
+  {
+    "id": "hp-440-g10",
+    "name": "HP 440 G10-Test3",
     "price": 60500,
     "condition": "USED",
     "status": "available",
