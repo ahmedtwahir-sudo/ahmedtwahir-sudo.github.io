@@ -1,45 +1,41 @@
 [
   {
-    "id": "hp-440-g10",
-    "name": "HP 440 G10-Test1",
-    "price": 60500,
+    "name": "HP 440 G10",
     "condition": "USED",
+    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
+    "price": "KSh 60,500",
     "status": "available",
-    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
     "images": [
-      "images/products/hp440-1.jpg",
-      "images/products/hp440-2.jpg",
-      "images/products/hp440-3.jpg",
-      "images/products/hp440-4.jpg"
+      "images/hp440-1.jpg",
+      "images/hp440-2.jpg",
+      "images/hp440-3.jpg",
+      "images/hp440-4.jpg"
     ]
-  }
+  },
   {
-    "id": "hp-440-g10",
-    "name": "HP 440 G10-Test2",
-    "price": 60500,
+    "name": "Dell Latitude 5420",
     "condition": "USED",
-    "status": "sold",
-    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
-    "images": [
-      "images/products/hp440-1.jpg",
-      "images/products/hp440-2.jpg",
-      "images/products/hp440-3.jpg",
-      "images/products/hp440-4.jpg"
-    ]
-  }
-  {
-    "id": "hp-440-g10",
-    "name": "HP 440 G10-Test3",
-    "price": 60500,
-    "condition": "USED",
+    "description": "Core i5, 11th Gen, 16GB RAM / 512GB SSD. Comes with charger.",
+    "price": "KSh 48,500",
     "status": "available",
-    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
     "images": [
-      "images/products/hp440-1.jpg",
-      "images/products/hp440-2.jpg",
-      "images/products/hp440-3.jpg",
-      "images/products/hp440-4.jpg"
+      "images/hp440-1.jpg",
+      "images/hp440-2.jpg",
+      "images/hp440-3.jpg",
+      "images/hp440-4.jpg"
+    ]
+  },
+  {
+    "name": "Lenovo ThinkPad T14",
+    "condition": "USED",
+    "description": "Core i5, 10th Gen, 16GB RAM / 512GB SSD. Good working condition.",
+    "price": "KSh 45,000",
+    "status": "available",
+    "images": [
+      "images/hp440-1.jpg",
+      "images/hp440-2.jpg",
+      "images/hp440-3.jpg",
+      "images/hp440-4.jpg"
     ]
   }
 ]
-
