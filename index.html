@@ -9,220 +9,214 @@
 <style>
   :root{
     --ink:#171512;
+    --ink-2:#1F1C18;
     --paper:#F1E9D8;
     --rust:#C1440E;
     --signal:#F2B705;
     --wire:#3AAFA9;
   }
   *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
     margin:0;
-    min-height:100vh;
     background:var(--ink);
-    background-image:
-      radial-gradient(circle at 1px 1px, rgba(241,233,216,0.05) 1px, transparent 0);
+    background-image:radial-gradient(circle at 1px 1px, rgba(241,233,216,0.05) 1px, transparent 0);
     background-size:22px 22px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:40px 16px;
+    color:var(--paper);
     font-family:'IBM Plex Mono', monospace;
   }
-  .string{
-    width:2px;
-    height:36px;
-    background:repeating-linear-gradient(var(--paper) 0 4px, transparent 4px 8px);
-    margin:0 auto;
+  a{color:inherit;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(23,21,18,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(241,233,216,0.12);
   }
-  .hole{
-    width:14px;height:14px;
-    border-radius:50%;
-    border:2px solid var(--paper);
-    margin:0 auto -1px;
-    background:var(--ink);
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px;
+    flex-wrap:wrap; gap:12px;
   }
+  .logo{
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:20px; letter-spacing:0.5px;
+    text-decoration:none;
+  }
+  nav ul{
+    list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;
+  }
+  nav a{
+    text-decoration:none; font-size:12.5px; letter-spacing:1px; text-transform:uppercase;
+    color:rgba(241,233,216,0.75);
+    padding-bottom:3px; border-bottom:2px solid transparent;
+  }
+  nav a:hover{ color:var(--paper); border-bottom-color:var(--signal); }
+
+  /* Hero / ticket */
+  .hero{ padding:64px 20px 40px; text-align:center; }
+  .hole{ width:14px;height:14px; border-radius:50%; border:2px solid var(--paper); margin:0 auto -1px; background:var(--ink); }
+  .string{ width:2px; height:30px; background:repeating-linear-gradient(var(--paper) 0 4px, transparent 4px 8px); margin:0 auto; }
   .tag{
-    max-width:420px;
-    width:100%;
-    background:var(--paper);
-    color:var(--ink);
-    border-radius:6px;
-    padding:32px 28px 26px;
-    position:relative;
+    max-width:420px; margin:0 auto; text-align:left;
+    background:var(--paper); color:var(--ink); border-radius:6px;
+    padding:28px 26px 22px;
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
   }
-  .tag::before, .tag::after{
-    content:"";
-    position:absolute;
-    left:0; right:0;
-    height:0;
-    border-top:2px dashed rgba(23,21,18,0.25);
-  }
-  .row-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    font-family:'Rajdhani',sans-serif;
-  }
-  .brand{
-    font-size:30px;
-    font-weight:700;
-    letter-spacing:0.5px;
-  }
-  .ticket-no{
-    font-size:12px;
-    color:rgba(23,21,18,0.6);
-  }
-  .location{
-    margin-top:2px;
-    font-size:11px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    color:var(--wire);
-    font-weight:500;
-  }
-  .divider{
-    border:none;
-    border-top:1px dashed rgba(23,21,18,0.3);
-    margin:18px 0;
-  }
+  .row-top{ display:flex; justify-content:space-between; align-items:baseline; font-family:'Rajdhani',sans-serif; }
+  .brand{ font-size:28px; font-weight:700; }
+  .ticket-no{ font-size:12px; color:rgba(23,21,18,0.6); }
+  .location{ margin-top:2px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--wire); font-weight:500; }
+  .divider{ border:none; border-top:1px dashed rgba(23,21,18,0.3); margin:16px 0; }
   .stamp{
-    display:inline-block;
-    border:3px solid var(--rust);
-    color:var(--rust);
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    font-size:15px;
-    letter-spacing:2px;
-    padding:6px 14px;
-    transform:rotate(-6deg);
-    border-radius:4px;
-    margin:6px 0 20px;
-    animation:stamp-in 0.5s cubic-bezier(.2,1.6,.4,1) 0.15s both;
+    display:inline-block; border:3px solid var(--rust); color:var(--rust);
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:14px; letter-spacing:2px;
+    padding:5px 12px; transform:rotate(-6deg); border-radius:4px; margin:4px 0 16px;
   }
-  @keyframes stamp-in{
-    from{opacity:0; transform:rotate(-6deg) scale(1.8);}
-    to{opacity:1; transform:rotate(-6deg) scale(1);}
+  .lede{ font-size:13.5px; line-height:1.6; color:rgba(23,21,18,0.85); margin:0; }
+
+  /* Section shell */
+  section{ padding:64px 0; border-top:1px dashed rgba(241,233,216,0.15); }
+  .eyebrow{ font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--wire); margin:0 0 8px; }
+  h2{ font-family:'Rajdhani',sans-serif; font-size:30px; font-weight:700; margin:0 0 18px; }
+  p.body-text{ font-size:14px; line-height:1.75; color:rgba(241,233,216,0.8); max-width:640px; }
+
+  /* Cards grid */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:24px; }
+  .card{
+    background:var(--ink-2); border:1px solid rgba(241,233,216,0.12); border-radius:6px;
+    padding:20px; position:relative;
   }
-  .lede{
-    font-size:14px;
-    line-height:1.6;
-    color:rgba(23,21,18,0.85);
-    margin:0 0 20px;
+  .card .tag-corner{
+    position:absolute; top:-1px; right:14px; background:var(--rust); color:var(--paper);
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:10px; letter-spacing:1px;
+    padding:3px 8px; border-radius:0 0 4px 4px;
   }
-  .items{
-    list-style:none;
-    margin:0;
-    padding:0;
-    font-size:13.5px;
+  .card h3{ font-family:'Rajdhani',sans-serif; font-size:17px; margin:6px 0 8px; }
+  .card p{ font-size:12.5px; line-height:1.6; color:rgba(241,233,216,0.7); margin:0; }
+
+  /* Contact */
+  .contact-links{ display:flex; gap:14px; flex-wrap:wrap; margin-top:20px; }
+  .btn{
+    display:inline-block; background:var(--signal); color:var(--ink); text-decoration:none;
+    font-family:'Rajdhani',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px;
+    padding:11px 18px; border-radius:4px;
   }
-  .items li{
-    display:flex;
-    gap:12px;
-    padding:10px 0;
-    border-bottom:1px dashed rgba(23,21,18,0.18);
+  .btn.alt{ background:transparent; border:1px solid rgba(241,233,216,0.4); color:var(--paper); }
+
+  /* Footer */
+  footer{
+    border-top:1px solid rgba(241,233,216,0.12);
+    padding:28px 20px; text-align:center;
+    font-size:11px; color:rgba(241,233,216,0.5);
   }
-  .items li:last-child{border-bottom:none;}
-  .num{
-    color:var(--wire);
-    font-weight:500;
-  }
-  .item-title{
-    font-family:'Rajdhani',sans-serif;
-    font-weight:600;
-    font-size:15px;
-    display:block;
-  }
-  .item-desc{
-    color:rgba(23,21,18,0.65);
-    font-size:12.5px;
-  }
-  .footer{
-    margin-top:22px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:11px;
-    color:rgba(23,21,18,0.55);
-  }
-  .cta{
-    display:inline-block;
-    background:var(--ink);
-    color:var(--signal);
-    text-decoration:none;
-    font-family:'Rajdhani',sans-serif;
-    font-weight:600;
-    font-size:13px;
-    letter-spacing:1px;
-    padding:10px 16px;
-    border-radius:4px;
-  }
-  .barcode{
-    height:26px;
-    margin-top:16px;
-    background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 11px);
-    opacity:0.85;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .stamp{animation:none;}
-  }
+  footer .foot-links{ margin-top:10px; display:flex; gap:16px; justify-content:center; }
+  footer a{ text-decoration:none; color:rgba(241,233,216,0.6); }
+  footer a:hover{ color:var(--signal); }
 </style>
 </head>
 <body>
 
-  <div>
-    <div class="hole"></div>
-    <div class="string"></div>
-    <div class="tag">
-      <div class="row-top">
-        <span class="brand">SHIKADEAL</span>
-        <span class="ticket-no">NO. 001</span>
-      </div>
-      <div class="location">Tech Hustle · Kilifi, Kenya</div>
-
-      <hr class="divider">
-
-      <span class="stamp">COMING SOON</span>
-
-      <p class="lede">Whether it's Phones or laptops, real deals on gear, and 3D prints made to order. Everything under one roof, out of Kilifi.</p>
-
-      <ul class="items">
-        <li>
-          <span class="num">01</span>
-          <span>
-            <span class="item-title">Repairs &amp; Resale</span>
-            <span class="item-desc">Diagnosed, fixed, and sold with proof of ownership.</span>
-          </span>
-        </li>
-        <li>
-          <span class="num">02</span>
-          <span>
-            <span class="item-title">Deals &amp; Buying Guides</span>
-            <span class="item-desc">What to buy, what to skip, and where the real deal is.</span>
-          </span>
-        </li>
-        <li>
-          <span class="num">03</span>
-          <span>
-            <span class="item-title">Prints on Demand</span>
-            <span class="item-desc">Bambu A1 with AMS — custom parts, made locally.</span>
-          </span>
-        </li>
+<header>
+  <div class="nav-inner">
+    <a class="logo" href="#top">SHIKADEAL</a>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#deals">Deals</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#guides">Guides</a></li>
+        <li><a href="#prints">3D Prints</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-
-      <div class="footer">
-        <span id="opened"></span>
-        <a class="cta" href="https://www.tiktok.com/@shikadeal.com">FOLLOW ALONG</a>
-      </div>
-
-      <div class="barcode"></div>
-    </div>
+    </nav>
   </div>
+</header>
+
+<div id="top" class="hero">
+  <div class="hole"></div>
+  <div class="string"></div>
+  <div class="tag">
+    <div class="row-top">
+      <span class="brand">SHIKADEAL</span>
+      <span class="ticket-no">NO. 001</span>
+    </div>
+    <div class="location">Tech Hustle · Kilifi, Kenya</div>
+    <hr class="divider">
+    <span class="stamp">COMING SOON</span>
+    <p class="lede">Whether it's phones or laptops, real deals on tech, and 3D prints made to order. Everything under one roof, out of Kilifi.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="about">
+    <p class="eyebrow">Ticket 01 — About</p>
+    <h2>Built on repair benches, not boardrooms</h2>
+    <p class="body-text">ShikaDeal runs out of Kilifi — repairing and reselling electronics, breaking down what's actually worth buying, and 3D printing custom parts on demand. No corporate polish, just someone who opens the device up and tells you the truth about it.</p>
+  </section>
+
+  <section id="deals">
+    <p class="eyebrow">Ticket 02 — Deals</p>
+    <h2>Deals, checked before they're posted</h2>
+    <p class="body-text">Every listing gets tested and priced honestly before it goes up. First batch of deals is being prepped now.</p>
+    <div class="grid">
+      <div class="card"><span class="tag-corner">SOON</span><h3>Phones</h3><p>Tested, unlocked, sold with proof of ownership.</p></div>
+      <div class="card"><span class="tag-corner">SOON</span><h3>Laptops</h3><p>Screens, batteries, keyboards — sourced and checked.</p></div>
+      <div class="card"><span class="tag-corner">SOON</span><h3>Accessories</h3><p>Chargers, cases, and the small stuff worth trusting.</p></div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <p class="eyebrow">Ticket 03 — Blog</p>
+    <h2>What's actually wrong with your device</h2>
+    <p class="body-text">Repair breakdowns, teardown notes, and the real cost of fixing vs. replacing. First posts landing soon.</p>
+    <div class="grid">
+      <div class="card"><h3>HP Laptop Repair Series</h3><p>A running series on common HP faults and fixes.</p></div>
+      <div class="card"><h3>Buy vs. Repair</h3><p>How to tell when a device is actually done for.</p></div>
+    </div>
+  </section>
+
+  <section id="guides">
+    <p class="eyebrow">Ticket 04 — Guides</p>
+    <h2>Guides that save you from a bad deal</h2>
+    <p class="body-text">Paid, practical guides — starting with Proof of Ownership - a must have guide for everyone (Buyers, Sellers and Owners). If it's of value you need this guide.</p>
+    <div class="grid">
+      <div class="card"><span class="tag-corner">PDF</span><h3>Proof of Ownership Guide</h3><p>How to protect your purchases or inventory the easy way</p></div>
+    </div>
+  </section>
+
+  <section id="prints">
+    <p class="eyebrow">Ticket 05 — 3D Prints</p>
+    <h2>Printed locally, made to fit</h2>
+    <p class="body-text">Running on a Bambu 3D Printer — custom brackets, replacement clips or a fancy phone stand you can't find in a shop, printed to order.</p>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">Ticket 06 — Contact</p>
+    <h2>Get in touch</h2>
+    <p class="body-text">Fastest way to reach ShikaDeal right now is WhatsApp or TikTok. Site-based contact is coming once the shop is fully live.</p>
+    <div class="contact-links">
+      <a class="btn" href="https://wa.me/254795761999" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn alt" href="https://www.tiktok.com/@shikadeal.com" target="_blank" rel="noopener">TikTok</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div id="opened"></div>
+  <div class="foot-links">
+    <a href="https://wa.me/254795761999" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.tiktok.com/@shikadeal.com" target="_blank" rel="noopener">TikTok</a>
+  </div>
+</footer>
 
 <script>
   const opened = document.getElementById('opened');
   const today = new Date();
-  opened.textContent = 'Opened ' + today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  opened.textContent = '© ' + today.getFullYear() + ' ShikaDeal — Kilifi, Kenya';
 </script>
 </body>
 </html>
