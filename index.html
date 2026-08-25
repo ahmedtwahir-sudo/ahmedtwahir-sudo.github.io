@@ -251,20 +251,6 @@
     position:relative;
   }
 
-  .card .tag-corner{
-    position:absolute;
-    top:-1px;
-    right:14px;
-    background:var(--rust);
-    color:var(--paper);
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    font-size:10px;
-    letter-spacing:1px;
-    padding:3px 8px;
-    border-radius:0 0 4px 4px;
-  }
-
   .card h3{
     font-family:'Rajdhani',sans-serif;
     font-size:17px;
@@ -286,6 +272,53 @@
     margin-top:10px;
     margin-bottom:12px;
     display:block;
+  }
+
+  .condition{
+    font-size:10px !important;
+    color:var(--wire) !important;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin:0 0 7px !important;
+  }
+
+
+  /* =========================
+     STATUS BADGES
+  ========================= */
+
+  .tag-corner{
+    position:absolute;
+    top:-1px;
+    right:14px;
+    color:var(--paper);
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:10px;
+    letter-spacing:1px;
+    padding:3px 8px;
+    border-radius:0 0 4px 4px;
+  }
+
+  .product-card[data-status="available"] .status-badge{
+    background:var(--wire);
+  }
+
+  .product-card[data-status="reserved"] .status-badge{
+    background:var(--signal);
+    color:var(--ink);
+  }
+
+  .product-card[data-status="sold"]{
+    opacity:0.62;
+  }
+
+  .product-card[data-status="sold"] .status-badge{
+    background:var(--rust);
+  }
+
+  .product-card[data-status="sold"] .product-gallery img{
+    filter:grayscale(25%);
   }
 
 
@@ -383,6 +416,18 @@
     color:var(--paper);
   }
 
+  .sold-btn{
+    background:rgba(241,233,216,0.12);
+    color:rgba(241,233,216,0.55);
+    cursor:default;
+  }
+
+  .reserved-btn{
+    background:var(--signal);
+    color:var(--ink);
+    cursor:default;
+  }
+
 
   /* =========================
      LIGHTBOX
@@ -425,7 +470,10 @@
     -webkit-user-drag:none;
   }
 
-  /* Close button */
+
+  /* =========================
+     LIGHTBOX CLOSE
+  ========================= */
 
   .lightbox-close{
     position:absolute;
@@ -449,7 +497,9 @@
   }
 
 
-  /* Previous / next */
+  /* =========================
+     LIGHTBOX ARROWS
+  ========================= */
 
   .lightbox-arrow{
     position:absolute;
@@ -482,7 +532,9 @@
   }
 
 
-  /* Image counter */
+  /* =========================
+     LIGHTBOX COUNTER
+  ========================= */
 
   .lightbox-counter{
     position:absolute;
@@ -699,35 +751,82 @@
   <div class="grid">
 
 
-    <!-- HP 440 G10 -->
-    <div class="card">
+    <!-- =========================
+         WHEN AN ITEM IS SOLD
+         
+         CHANGE ONLY:
+         data-status="available"
+         
+         TO:
+         data-status="reserved"
+         
+         OR:
+         data-status="sold"
+    ========================= -->
 
-      <span class="tag-corner">USED</span>
+    <div
+      class="card product-card"
+      data-status="available">
+
+      <span class="tag-corner status-badge">
+        AVAILABLE
+      </span>
+
+
+      <!-- PRODUCT IMAGES -->
 
       <div class="product-gallery">
 
-        <img src="images/hp440-1.jpg" alt="HP 440 G10 front">
-        <img src="images/hp440-2.jpg" alt="HP 440 G10 keyboard">
-        <img src="images/hp440-3.jpg" alt="HP 440 G10 side">
-        <img src="images/hp440-4.jpg" alt="HP 440 G10 back">
+        <img
+          src="images/hp440-1.jpg"
+          alt="HP 440 G10 front">
+
+        <img
+          src="images/hp440-2.jpg"
+          alt="HP 440 G10 keyboard">
+
+        <img
+          src="images/hp440-3.jpg"
+          alt="HP 440 G10 side">
+
+        <img
+          src="images/hp440-4.jpg"
+          alt="HP 440 G10 back">
 
       </div>
 
+
+      <!-- IMAGE DOTS -->
+
       <div class="gallery-dots">
+
         <span class="active"></span>
         <span></span>
         <span></span>
         <span></span>
+
       </div>
 
+
+      <!-- PRODUCT INFO -->
+
       <h3>HP 440 G10</h3>
+
+      <p class="condition">
+        USED
+      </p>
 
       <p>
         Core i5 - 13th Gen, 32GB RAM / 1TB SSD.
         Comes with charger.
       </p>
 
-      <span class="price">KSh 60,500</span>
+      <span class="price">
+        KSh 60,500
+      </span>
+
+
+      <!-- WHATSAPP -->
 
       <a
         class="btn whatsapp-btn"
@@ -742,10 +841,15 @@
     </div>
 
 
-    <!-- PHONES -->
+    <!-- =========================
+         PHONES
+    ========================= -->
+
     <div class="card">
 
-      <span class="tag-corner">SOON</span>
+      <span class="tag-corner" style="background:var(--rust);">
+        SOON
+      </span>
 
       <h3>Phones</h3>
 
@@ -756,10 +860,15 @@
     </div>
 
 
-    <!-- LAPTOPS -->
+    <!-- =========================
+         LAPTOPS
+    ========================= -->
+
     <div class="card">
 
-      <span class="tag-corner">SOON</span>
+      <span class="tag-corner" style="background:var(--rust);">
+        SOON
+      </span>
 
       <h3>Laptops</h3>
 
@@ -770,10 +879,15 @@
     </div>
 
 
-    <!-- ACCESSORIES -->
+    <!-- =========================
+         ACCESSORIES
+    ========================= -->
+
     <div class="card">
 
-      <span class="tag-corner">SOON</span>
+      <span class="tag-corner" style="background:var(--rust);">
+        SOON
+      </span>
 
       <h3>Accessories</h3>
 
@@ -851,7 +965,11 @@
 
     <div class="card">
 
-      <span class="tag-corner">PDF</span>
+      <span
+        class="tag-corner"
+        style="background:var(--rust);">
+        PDF
+      </span>
 
       <h3>Proof of Ownership Guide</h3>
 
@@ -959,7 +1077,9 @@
      LIGHTBOX
 ========================= -->
 
-<div class="lightbox" id="lightbox">
+<div
+  class="lightbox"
+  id="lightbox">
 
   <div class="lightbox-content">
 
@@ -970,6 +1090,7 @@
       ×
     </button>
 
+
     <button
       class="lightbox-arrow lightbox-prev"
       id="lightbox-prev"
@@ -977,10 +1098,12 @@
       ‹
     </button>
 
+
     <img
       id="lightbox-img"
       src=""
       alt="">
+
 
     <button
       class="lightbox-arrow lightbox-next"
@@ -988,6 +1111,7 @@
       aria-label="Next image">
       ›
     </button>
+
 
     <div
       class="lightbox-counter"
@@ -1011,18 +1135,21 @@
      FOOTER YEAR
   ========================= */
 
-  const opened = document.getElementById('opened');
+  const opened =
+    document.getElementById('opened');
 
-  const today = new Date();
+  const today =
+    new Date();
 
   opened.textContent =
-    '© ' + today.getFullYear() +
+    '© ' +
+    today.getFullYear() +
     ' ShikaDeal — Kilifi, Kenya';
 
 
 
   /* =========================
-     LIGHTBOX VARIABLES
+     LIGHTBOX
   ========================= */
 
   const lightbox =
@@ -1050,10 +1177,6 @@
 
 
 
-  /* =========================
-     SHOW LIGHTBOX IMAGE
-  ========================= */
-
   function showLightboxImage(index){
 
     if(!currentImages.length){
@@ -1065,9 +1188,11 @@
     const image =
       currentImages[currentImageIndex];
 
-    lightboxImg.src = image.src;
+    lightboxImg.src =
+      image.src;
 
-    lightboxImg.alt = image.alt;
+    lightboxImg.alt =
+      image.alt;
 
     lightboxCounter.textContent =
       (currentImageIndex + 1) +
@@ -1075,20 +1200,21 @@
       currentImages.length;
 
 
-    /*
-      Hide arrows if there is only
-      one image.
-    */
-
     if(currentImages.length <= 1){
 
-      lightboxPrev.style.display = 'none';
-      lightboxNext.style.display = 'none';
+      lightboxPrev.style.display =
+        'none';
+
+      lightboxNext.style.display =
+        'none';
 
     }else{
 
-      lightboxPrev.style.display = 'flex';
-      lightboxNext.style.display = 'flex';
+      lightboxPrev.style.display =
+        'flex';
+
+      lightboxNext.style.display =
+        'flex';
 
     }
 
@@ -1112,37 +1238,24 @@
 
       images.forEach((img,index) => {
 
-        img.addEventListener('click', event => {
+        img.addEventListener(
+          'click',
+          event => {
 
-          /*
-            Stop the normal gallery
-            interaction.
-          */
+            event.stopPropagation();
 
-          event.stopPropagation();
+            currentImages =
+              images;
 
+            currentImageIndex =
+              index;
 
-          /*
-            Remember which product
-            gallery we're looking at.
-          */
+            lightbox.classList.add('open');
 
-          currentImages = images;
+            showLightboxImage(index);
 
-
-          /*
-            Open on the image that
-            was clicked.
-          */
-
-          currentImageIndex = index;
-
-
-          lightbox.classList.add('open');
-
-          showLightboxImage(index);
-
-        });
+          }
+        );
 
       });
 
@@ -1154,23 +1267,33 @@
      NEXT IMAGE
   ========================= */
 
-  lightboxNext.addEventListener('click', event => {
+  lightboxNext.addEventListener(
+    'click',
+    event => {
 
-    event.stopPropagation();
+      event.stopPropagation();
 
-    if(!currentImages.length){
-      return;
+      if(!currentImages.length){
+        return;
+      }
+
+      currentImageIndex++;
+
+      if(
+        currentImageIndex >=
+        currentImages.length
+      ){
+
+        currentImageIndex = 0;
+
+      }
+
+      showLightboxImage(
+        currentImageIndex
+      );
+
     }
-
-    currentImageIndex++;
-
-    if(currentImageIndex >= currentImages.length){
-      currentImageIndex = 0;
-    }
-
-    showLightboxImage(currentImageIndex);
-
-  });
+  );
 
 
 
@@ -1178,24 +1301,31 @@
      PREVIOUS IMAGE
   ========================= */
 
-  lightboxPrev.addEventListener('click', event => {
+  lightboxPrev.addEventListener(
+    'click',
+    event => {
 
-    event.stopPropagation();
+      event.stopPropagation();
 
-    if(!currentImages.length){
-      return;
+      if(!currentImages.length){
+        return;
+      }
+
+      currentImageIndex--;
+
+      if(currentImageIndex < 0){
+
+        currentImageIndex =
+          currentImages.length - 1;
+
+      }
+
+      showLightboxImage(
+        currentImageIndex
+      );
+
     }
-
-    currentImageIndex--;
-
-    if(currentImageIndex < 0){
-      currentImageIndex =
-        currentImages.length - 1;
-    }
-
-    showLightboxImage(currentImageIndex);
-
-  });
+  );
 
 
 
@@ -1222,11 +1352,6 @@
   );
 
 
-  /*
-    Clicking the dark background
-    closes the lightbox.
-  */
-
   lightbox.addEventListener(
     'click',
     event => {
@@ -1240,11 +1365,6 @@
     }
   );
 
-
-  /*
-    Also close if clicking the
-    empty content area.
-  */
 
   document
     .querySelector('.lightbox-content')
@@ -1275,9 +1395,16 @@
     'keydown',
     event => {
 
-      if(!lightbox.classList.contains('open')){
+      if(
+        !lightbox.classList.contains(
+          'open'
+        )
+      ){
+
         return;
+
       }
+
 
       if(event.key === 'Escape'){
 
@@ -1285,11 +1412,13 @@
 
       }
 
+
       if(event.key === 'ArrowRight'){
 
         lightboxNext.click();
 
       }
+
 
       if(event.key === 'ArrowLeft'){
 
@@ -1303,7 +1432,7 @@
 
 
   /* =========================
-     TOUCH / SWIPE CONTROLS
+     TOUCH / SWIPE
   ========================= */
 
   let touchStartX = 0;
@@ -1343,18 +1472,14 @@
       touchEndX - touchStartX;
 
 
-    /*
-      Ignore tiny movements.
-    */
+    if(
+      Math.abs(swipeDistance) < 50
+    ){
 
-    if(Math.abs(swipeDistance) < 50){
       return;
+
     }
 
-
-    /*
-      Swipe left = next image.
-    */
 
     if(swipeDistance < 0){
 
@@ -1362,10 +1487,6 @@
 
     }
 
-
-    /*
-      Swipe right = previous image.
-    */
 
     if(swipeDistance > 0){
 
@@ -1378,8 +1499,7 @@
 
 
   /* =========================
-     THUMBNAIL GALLERY
-     SCROLL + DOTS
+     SMALL GALLERY DOTS
   ========================= */
 
   document
@@ -1406,11 +1526,14 @@
 
         let index =
           Math.round(
-            scrollLeft / galleryWidth
+            scrollLeft /
+            galleryWidth
           );
 
 
-        if(index >= images.length){
+        if(
+          index >= images.length
+        ){
 
           index =
             images.length - 1;
@@ -1418,14 +1541,16 @@
         }
 
 
-        dots.forEach((dot,i) => {
+        dots.forEach(
+          (dot,i) => {
 
-          dot.classList.toggle(
-            'active',
-            i === index
-          );
+            dot.classList.toggle(
+              'active',
+              i === index
+            );
 
-        });
+          }
+        );
 
       }
 
@@ -1437,31 +1562,28 @@
       );
 
 
-      /*
-        Clicking a dot moves
-        the small gallery.
-      */
+      dots.forEach(
+        (dot,index) => {
 
-      dots.forEach((dot,index) => {
+          dot.addEventListener(
+            'click',
+            () => {
 
-        dot.addEventListener(
-          'click',
-          () => {
+              gallery.scrollTo({
 
-            gallery.scrollTo({
+                left:
+                  index *
+                  gallery.clientWidth,
 
-              left:
-                index *
-                gallery.clientWidth,
+                behavior:'smooth'
 
-              behavior:'smooth'
+              });
 
-            });
+            }
+          );
 
-          }
-        );
-
-      });
+        }
+      );
 
 
       updateDots();
@@ -1493,6 +1615,122 @@
         `https://wa.me/254795761999?text=${
           encodeURIComponent(message)
         }`;
+
+    });
+
+
+
+  /* =========================
+     PRODUCT STATUS
+  ========================= */
+
+  document
+    .querySelectorAll('.product-card')
+    .forEach(card => {
+
+      const status =
+        card.dataset.status;
+
+      const badge =
+        card.querySelector('.status-badge');
+
+      const whatsapp =
+        card.querySelector('.whatsapp-btn');
+
+
+      if(!badge){
+        return;
+      }
+
+
+      /* AVAILABLE */
+
+      if(status === 'available'){
+
+        badge.textContent =
+          'AVAILABLE';
+
+        return;
+
+      }
+
+
+      /* RESERVED */
+
+      if(status === 'reserved'){
+
+        badge.textContent =
+          'RESERVED';
+
+
+        if(whatsapp){
+
+          whatsapp.textContent =
+            'Reserved';
+
+          whatsapp.classList.add(
+            'reserved-btn'
+          );
+
+          whatsapp.removeAttribute(
+            'href'
+          );
+
+          whatsapp.removeAttribute(
+            'target'
+          );
+
+          whatsapp.removeAttribute(
+            'rel'
+          );
+
+          whatsapp.classList.remove(
+            'whatsapp-btn'
+          );
+
+        }
+
+        return;
+
+      }
+
+
+      /* SOLD */
+
+      if(status === 'sold'){
+
+        badge.textContent =
+          'SOLD';
+
+
+        if(whatsapp){
+
+          whatsapp.textContent =
+            'Sold';
+
+          whatsapp.classList.add(
+            'sold-btn'
+          );
+
+          whatsapp.removeAttribute(
+            'href'
+          );
+
+          whatsapp.removeAttribute(
+            'target'
+          );
+
+          whatsapp.removeAttribute(
+            'rel'
+          );
+
+          whatsapp.classList.remove(
+            'whatsapp-btn'
+          );
+
+        }
+
+      }
 
     });
 
