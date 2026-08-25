@@ -170,7 +170,14 @@
 
       <div class="card"><span class="tag-corner">CONDITION: USED</span><img src="images/hp440.jpg" alt="HP 440 G10"><h3>HP 440 G10</h3><p>Core i5- 13th Gen 32Gb Ram/ 1TB SSD. Comes with charger.</p><span class="price">KSh 60,500</span> 
       <!-- WhatsApp Button Added Below -->
-      <a class="btn" href="https://wa.me/254795761999?text=Hi%2C%20I%27m%20interested%20in%20the%20HP%20440%20G10.%20Is%20it%20still%20available%3F" target="_blank" rel="noopener">WhatsApp</a></div>   
+      <a class="btn whatsapp-btn"
+       href="#"
+       data-product="HP 440 G10 - Ksh 60,500"
+       target="_blank"
+       rel="noopener">
+       WhatsApp
+      </a>
+   
       <div class="card"><span class="tag-corner">SOON</span><h3>Phones</h3><p>Tested, unlocked, sold with proof of ownership.</p></div>
       <div class="card"><span class="tag-corner">SOON</span><h3>Laptops</h3><p>Screens, batteries, keyboards — sourced and checked.</p></div>
       <div class="card"><span class="tag-corner">SOON</span><h3>Accessories</h3><p>Chargers, cases, and the small stuff worth trusting.</p></div>
@@ -222,11 +229,36 @@
   </div>
 </footer>
 <div class="lightbox" id="lightbox"> <img id="lightbox-img" src="" alt=""> </div>
-<script>
+
+  <script>
   const opened = document.getElementById('opened');
   const today = new Date();
-  document.querySelectorAll('.card img').forEach(img => { img.addEventListener('click', () => { document.getElementById('lightbox-img').src = img.src; document.getElementById('lightbox').classList.add('open'); }); }); document.getElementById('lightbox').addEventListener('click', () => { document.getElementById('lightbox').classList.remove('open'); });
+
+  // Lightbox
+  document.querySelectorAll('.card img').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+
+  document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('open');
+  });
+
+  // Footer copyright
   opened.textContent = '© ' + today.getFullYear() + ' ShikaDeal — Kilifi, Kenya';
+
+  // WhatsApp product messages
+  document.querySelectorAll('.whatsapp-btn').forEach(button => {
+    const product = button.dataset.product;
+
+    const message = `Hi, I'm interested in the ${product}. Is it still available?`;
+
+    button.href =
+      `https://wa.me/254795761999?text=${encodeURIComponent(message)}`;
+  });
 </script>
+
 </body>
 </html>
