@@ -1,1925 +1,2862 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ShikaDeal — Tech Hustle, Kilifi</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
-
-  :root{
-    --ink:#171512;
-    --ink-2:#1F1C18;
-    --paper:#F1E9D8;
-    --rust:#C1440E;
-    --signal:#F2B705;
-    --wire:#3AAFA9;
-  }
-
-  *{
-    box-sizing:border-box;
-  }
-
-  html{
-    scroll-behavior:smooth;
-  }
-
-  body{
-    margin:0;
-    background:var(--ink);
-    background-image:radial-gradient(
-      circle at 1px 1px,
-      rgba(241,233,216,0.05) 1px,
-      transparent 0
-    );
-    background-size:22px 22px;
-    color:var(--paper);
-    font-family:'IBM Plex Mono',monospace;
-  }
-
-  a{
-    color:inherit;
-  }
-
-  .wrap{
-    max-width:920px;
-    margin:0 auto;
-    padding:0 20px;
-  }
-
-
-  /* =========================
-     HEADER
-  ========================= */
-
-  header{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:rgba(23,21,18,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(241,233,216,0.12);
-  }
-
-  .nav-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px 20px;
-    flex-wrap:wrap;
-    gap:12px;
-  }
-
-  .logo{
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    font-size:20px;
-    letter-spacing:0.5px;
-    text-decoration:none;
-  }
-
-  nav ul{
-    list-style:none;
-    display:flex;
-    gap:22px;
-    margin:0;
-    padding:0;
-    flex-wrap:wrap;
-  }
-
-  nav a{
-    text-decoration:none;
-    font-size:12.5px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    color:rgba(241,233,216,0.75);
-    padding-bottom:3px;
-    border-bottom:2px solid transparent;
-  }
-
-  nav a:hover{
-    color:var(--paper);
-    border-bottom-color:var(--signal);
-  }
-
-
-  /* =========================
-     HERO
-  ========================= */
-
-  .hero{
-    padding:64px 20px 40px;
-    text-align:center;
-  }
-
-  .hole{
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    border:2px solid var(--paper);
-    margin:0 auto -1px;
-    background:var(--ink);
-  }
-
-  .string{
-    width:2px;
-    height:30px;
-    background:repeating-linear-gradient(
-      var(--paper) 0 4px,
-      transparent 4px 8px
-    );
-    margin:0 auto;
-  }
-
-  .tag{
-    max-width:420px;
-    margin:0 auto;
-    text-align:left;
-    background:var(--paper);
-    color:var(--ink);
-    border-radius:6px;
-    padding:28px 26px 22px;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
-  }
-
-  .row-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    font-family:'Rajdhani',sans-serif;
-  }
-
-  .brand{
-    font-size:28px;
-    font-weight:700;
-  }
-
-  .ticket-no{
-    font-size:12px;
-    color:rgba(23,21,18,0.6);
-  }
-
-  .location{
-    margin-top:2px;
-    font-size:11px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    color:var(--wire);
-    font-weight:500;
-  }
-
-  .divider{
-    border:none;
-    border-top:1px dashed rgba(23,21,18,0.3);
-    margin:16px 0;
-  }
-
-  .stamp{
-    display:inline-block;
-    border:3px solid var(--rust);
-    color:var(--rust);
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:2px;
-    padding:5px 12px;
-    transform:rotate(-6deg);
-    border-radius:4px;
-    margin:4px 0 16px;
-  }
-
-  .lede{
-    font-size:13.5px;
-    line-height:1.6;
-    color:rgba(23,21,18,0.85);
-    margin:0;
-  }
-
-
-  /* =========================
-     SECTIONS
-  ========================= */
-
-  section{
-    padding:64px 0;
-    border-top:1px dashed rgba(241,233,216,0.15);
-  }
-
-  .eyebrow{
-    font-size:11px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:var(--wire);
-    margin:0 0 8px;
-  }
-
-  h2{
-    font-family:'Rajdhani',sans-serif;
-    font-size:30px;
-    font-weight:700;
-    margin:0 0 18px;
-  }
-
-  p.body-text{
-    font-size:14px;
-    line-height:1.75;
-    color:rgba(241,233,216,0.8);
-    max-width:640px;
-  }
-
-
-  /* =========================
-     CARDS
-  ========================= */
-
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-    margin-top:24px;
-  }
-
-  .card{
-    background:var(--ink-2);
-    border:1px solid rgba(241,233,216,0.12);
-    border-radius:6px;
-    padding:20px;
-    position:relative;
-  }
-
-  .card h3{
-    font-family:'Rajdhani',sans-serif;
-    font-size:17px;
-    margin:6px 0 8px;
-  }
-
-  .card p{
-    font-size:12.5px;
-    line-height:1.6;
-    color:rgba(241,233,216,0.7);
-    margin:0;
-  }
-
-  .card .price{
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    color:var(--signal);
-    font-size:15px;
-    margin-top:10px;
-    margin-bottom:12px;
-    display:block;
-  }
-
-  .condition{
-    font-size:10px !important;
-    color:var(--wire) !important;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    margin:0 0 7px !important;
-  }
-
-
-  /* =========================
-     STATUS BADGES
-  ========================= */
-
-  .tag-corner{
-    position:absolute;
-    top:-1px;
-    right:14px;
-    color:var(--paper);
-    font-family:'Rajdhani',sans-serif;
-    font-weight:700;
-    font-size:10px;
-    letter-spacing:1px;
-    padding:3px 8px;
-    border-radius:0 0 4px 4px;
-  }
-
-  .product-card[data-status="available"] .status-badge{
-    background:var(--wire);
-  }
-
-  .product-card[data-status="reserved"] .status-badge{
-    background:var(--signal);
-    color:var(--ink);
-  }
-
-  .product-card[data-status="sold"]{
-    opacity:0.62;
-  }
-
-  .product-card[data-status="sold"] .status-badge{
-    background:var(--rust);
-  }
-
-  .product-card[data-status="sold"] .product-gallery img{
-    filter:grayscale(25%);
-  }
-
-
-/* =========================
-   PRODUCT GALLERY
-========================= */
-
-.product-gallery {
-  position: relative;
-  width: 100%;
-  height: 120px;
-
-  display: flex;
-  gap: 8px;
-
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-
-  margin: 0 0 7px 0;
-  border-radius: 4px;
-}
-
-.product-gallery::-webkit-scrollbar {
-  display: none;
-}
-
-.product-gallery img {
-  flex: 0 0 160px;
-  width: 160px;
-  min-width: 160px;
-  height: 120px;
-  aspect-ratio:4/3;
-
-  object-fit: cover;
-  border-radius: 4px;
-
-  scroll-snap-align: start;
-
-  cursor: zoom-in;
-  display: block;
-  margin: 0;
-}
-
-
-
-
-  /* =========================
-     GALLERY DOTS
-  ========================= */
-
-  .gallery-dots{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:6px;
-    margin:6px 0 12px;
-  }
-
-  .gallery-dots span{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:rgba(241,233,216,0.25);
-    transition:background 0.2s ease, transform 0.2s ease;
-    cursor:pointer;
-  }
-
-  .gallery-dots span.active{
-    background:var(--signal);
-    transform:scale(1.25);
-  }
-
-
-  /* =========================
-     BUTTONS
-  ========================= */
-
-  .contact-links{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-    margin-top:20px;
-  }
-
-  .btn{
-    display:inline-block;
-    background:var(--signal);
-    color:var(--ink);
-    text-decoration:none;
-    font-family:'Rajdhani',sans-serif;
-    font-weight:600;
-    font-size:13px;
-    letter-spacing:1px;
-    padding:11px 18px;
-    border-radius:4px;
-  }
-
-  .btn:hover{
-    opacity:0.9;
-  }
-
-  .btn.alt{
-    background:transparent;
-    border:1px solid rgba(241,233,216,0.4);
-    color:var(--paper);
-  }
-
-  .sold-btn{
-    background:rgba(241,233,216,0.12);
-    color:rgba(241,233,216,0.55);
-    cursor:default;
-  }
-
-  .reserved-btn{
-    background:var(--signal);
-    color:var(--ink);
-    cursor:default;
-  }
-
-
-  /* =========================
-     LIGHTBOX
-  ========================= */
-
-  .lightbox{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:50;
-    background:rgba(10,9,8,0.96);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-  }
-
-  .lightbox.open{
-    display:flex;
-  }
-
-  .lightbox-content{
-    position:relative;
-    width:100%;
-    max-width:1100px;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .lightbox img{
-    max-width:90%;
-    max-height:88vh;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    border-radius:6px;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.8);
-    user-select:none;
-    -webkit-user-drag:none;
-  }
-
-  .lightbox-close{
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:50%;
-    background:rgba(241,233,216,0.12);
-    color:var(--paper);
-    font-size:25px;
-    line-height:42px;
-    text-align:center;
-    cursor:pointer;
-    z-index:3;
-  }
-
-  .lightbox-close:hover{
-    background:rgba(241,233,216,0.25);
-  }
-
-  .lightbox-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:48px;
-    height:48px;
-    border:none;
-    border-radius:50%;
-    background:rgba(241,233,216,0.12);
-    color:var(--paper);
-    font-size:28px;
-    cursor:pointer;
-    z-index:3;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .lightbox-arrow:hover{
-    background:rgba(241,233,216,0.25);
-  }
-
-  .lightbox-prev{
-    left:10px;
-  }
-
-  .lightbox-next{
-    right:10px;
-  }
-
-  .lightbox-counter{
-    position:absolute;
-    bottom:18px;
-    left:50%;
-    transform:translateX(-50%);
-    background:rgba(0,0,0,0.55);
-    color:var(--paper);
-    padding:6px 12px;
-    border-radius:20px;
-    font-size:12px;
-    z-index:3;
-  }
-
-
-  /* =========================
-     FOOTER
-  ========================= */
-
-  footer{
-    border-top:1px solid rgba(241,233,216,0.12);
-    padding:28px 20px;
-    text-align:center;
-    font-size:11px;
-    color:rgba(241,233,216,0.5);
-  }
-
-  footer .foot-links{
-    margin-top:10px;
-    display:flex;
-    gap:16px;
-    justify-content:center;
-  }
-
-  footer a{
-    text-decoration:none;
-    color:rgba(241,233,216,0.6);
-  }
-
-  footer a:hover{
-    color:var(--signal);
-  }
-
-
-  /* =========================
-     MOBILE
-  ========================= */
-
-  @media(max-width:600px){
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>ShikaDeal — Tech Hustle, Kilifi</title>
+
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+
+  <!-- =========================
+       CSS
+  ========================== -->
+
+  <style>
+
+    :root {
+      --ink: #171512;
+      --ink-2: #1F1C18;
+      --paper: #F1E9D8;
+      --rust: #C1440E;
+      --signal: #F2B705;
+      --wire: #3AAFA9;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+      margin: 0;
+
+      background: var(--ink);
+
+      background-image:
+        radial-gradient(
+          circle at 1px 1px,
+          rgba(241, 233, 216, 0.05) 1px,
+          transparent 0
+        );
+
+      background-size: 22px 22px;
+
+      color: var(--paper);
+
+      font-family:
+        'IBM Plex Mono',
+        monospace;
+    }
+
+
+    a {
+      color: inherit;
+    }
+
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+      background: rgba(23, 21, 18, 0.92);
+
+      backdrop-filter: blur(6px);
+
+      border-bottom:
+        1px solid rgba(241, 233, 216, 0.12);
+    }
+
+
+    .nav-inner {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 16px 20px;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+
+    .logo {
+      font-family: 'Rajdhani', sans-serif;
+
+      font-weight: 700;
+
+      font-size: 20px;
+
+      letter-spacing: 0.5px;
+
+      text-decoration: none;
+    }
+
+
+    nav ul {
+      list-style: none;
+
+      display: flex;
+
+      gap: 22px;
+
+      margin: 0;
+
+      padding: 0;
+
+      flex-wrap: wrap;
+    }
+
+
+    nav a {
+      text-decoration: none;
+
+      font-size: 12.5px;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(241, 233, 216, 0.75);
+
+      padding-bottom: 3px;
+
+      border-bottom:
+        2px solid transparent;
+    }
+
+
+    nav a:hover {
+      color: var(--paper);
+
+      border-bottom-color:
+        var(--signal);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      padding: 64px 20px 40px;
+
+      text-align: center;
+    }
+
+
+    .hole {
+      width: 14px;
+      height: 14px;
+
+      border-radius: 50%;
+
+      border:
+        2px solid var(--paper);
+
+      margin: 0 auto -1px;
+
+      background: var(--ink);
+    }
+
+
+    .string {
+      width: 2px;
+      height: 30px;
+
+      background:
+        repeating-linear-gradient(
+          var(--paper) 0 4px,
+          transparent 4px 8px
+        );
+
+      margin: 0 auto;
+    }
+
+
+    .tag {
+      max-width: 420px;
+
+      margin: 0 auto;
+
+      text-align: left;
+
+      background: var(--paper);
+
+      color: var(--ink);
+
+      border-radius: 6px;
+
+      padding: 28px 26px 22px;
+
+      box-shadow:
+        0 30px 60px -20px
+        rgba(0, 0, 0, 0.6);
+    }
+
+
+    .row-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: baseline;
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+    }
+
+
+    .brand {
+      font-size: 28px;
+
+      font-weight: 700;
+    }
+
+
+    .ticket-no {
+      font-size: 12px;
+
+      color:
+        rgba(23, 21, 18, 0.6);
+    }
+
+
+    .location {
+      margin-top: 2px;
+
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      color: var(--wire);
+
+      font-weight: 500;
+    }
+
+
+    .divider {
+      border: none;
+
+      border-top:
+        1px dashed
+        rgba(23, 21, 18, 0.3);
+
+      margin: 16px 0;
+    }
+
+
+    .stamp {
+      display: inline-block;
+
+      border:
+        3px solid var(--rust);
+
+      color: var(--rust);
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-weight: 700;
+
+      font-size: 14px;
+
+      letter-spacing: 2px;
+
+      padding: 5px 12px;
+
+      transform: rotate(-6deg);
+
+      border-radius: 4px;
+
+      margin: 4px 0 16px;
+    }
+
+
+    .lede {
+      font-size: 13.5px;
+
+      line-height: 1.6;
+
+      color:
+        rgba(23, 21, 18, 0.85);
+
+      margin: 0;
+    }
+
+
+    /* =========================================================
+       SECTIONS
+    ========================================================= */
+
+    section {
+      padding: 64px 0;
+
+      border-top:
+        1px dashed
+        rgba(241, 233, 216, 0.15);
+    }
+
+
+    .eyebrow {
+      font-size: 11px;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      color: var(--wire);
+
+      margin: 0 0 8px;
+    }
+
+
+    h2 {
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-size: 30px;
+
+      font-weight: 700;
+
+      margin: 0 0 18px;
+    }
+
+
+    p.body-text {
+      font-size: 14px;
+
+      line-height: 1.75;
+
+      color:
+        rgba(241, 233, 216, 0.8);
+
+      max-width: 640px;
+    }
+
+
+    /* =========================================================
+       CARD GRID
+    ========================================================= */
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(220px, 1fr)
+        );
+
+      gap: 16px;
+
+      margin-top: 24px;
+    }
+
+
+    .card {
+      background: var(--ink-2);
+
+      border:
+        1px solid
+        rgba(241, 233, 216, 0.12);
+
+      border-radius: 6px;
+
+      padding: 20px;
+
+      position: relative;
+
+      min-width: 0;
+    }
+
+
+    .card h3 {
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-size: 17px;
+
+      margin: 6px 0 8px;
+    }
+
+
+    .card p {
+      font-size: 12.5px;
+
+      line-height: 1.6;
+
+      color:
+        rgba(241, 233, 216, 0.7);
+
+      margin: 0;
+    }
+
+
+    .card .price {
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-weight: 700;
+
+      color: var(--signal);
+
+      font-size: 15px;
+
+      margin-top: 10px;
+
+      margin-bottom: 12px;
+
+      display: block;
+    }
+
+
+    .condition {
+      font-size: 10px !important;
+
+      color: var(--wire) !important;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1.5px;
+
+      margin: 0 0 7px !important;
+    }
+
+
+    /* =========================================================
+       STATUS BADGES
+    ========================================================= */
+
+    .tag-corner {
+      position: absolute;
+
+      top: -1px;
+
+      right: 14px;
+
+      color: var(--paper);
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-weight: 700;
+
+      font-size: 10px;
+
+      letter-spacing: 1px;
+
+      padding: 3px 8px;
+
+      border-radius:
+        0 0 4px 4px;
+
+      z-index: 2;
+    }
+
+
+    .product-card[data-status="available"]
+    .status-badge {
+      background: var(--wire);
+    }
+
+
+    .product-card[data-status="reserved"]
+    .status-badge {
+      background: var(--signal);
+
+      color: var(--ink);
+    }
+
+
+    .product-card[data-status="sold"] {
+      opacity: 0.62;
+    }
+
+
+    .product-card[data-status="sold"]
+    .status-badge {
+      background: var(--rust);
+    }
+
+
+    .product-card[data-status="sold"]
+    .product-gallery img {
+      filter: grayscale(25%);
+    }
+
+
+    /* =========================================================
+       PRODUCT GALLERY
+
+       IMPORTANT:
+       Each image is fixed at 160px wide.
+       The gallery scrolls horizontally.
+    ========================================================= */
 
     .product-gallery {
-    height: 140px;
+      position: relative;
+
+      width: 100%;
+
+      height: 120px;
+
+      display: flex;
+
+      flex-direction: row;
+
+      flex-wrap: nowrap;
+
+      gap: 8px;
+
+      overflow-x: auto;
+
+      overflow-y: hidden;
+
+      scroll-snap-type: x mandatory;
+
+      -webkit-overflow-scrolling: touch;
+
+      scrollbar-width: none;
+
+      margin: 0 0 7px;
+
+      border-radius: 4px;
+
+      min-width: 0;
     }
+
+
+    .product-gallery::-webkit-scrollbar {
+      display: none;
+    }
+
 
     .product-gallery img {
-      height: 140px;
+      flex: 0 0 160px;
+
+      width: 160px;
+
+      min-width: 160px;
+
+      max-width: 160px;
+
+      height: 120px;
+
+      min-height: 120px;
+
+      max-height: 120px;
+
+      object-fit: cover;
+
+      border-radius: 4px;
+
+      scroll-snap-align: start;
+
+      cursor: zoom-in;
+
+      display: block;
+
+      margin: 0;
     }
 
-    .nav-inner{
-      justify-content:center;
+
+    /* =========================================================
+       GALLERY DOTS
+    ========================================================= */
+
+    .gallery-dots {
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 6px;
+
+      margin: 6px 0 12px;
     }
 
-    nav ul{
-      justify-content:center;
-      gap:14px;
+
+    .gallery-dots span {
+      width: 6px;
+
+      height: 6px;
+
+      flex: 0 0 6px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(241, 233, 216, 0.25);
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+      cursor: pointer;
     }
 
-    .hero{
-      padding-top:40px;
+
+    .gallery-dots span.active {
+      background: var(--signal);
+
+      transform: scale(1.25);
     }
 
-    section{
-      padding:48px 0;
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .contact-links {
+      display: flex;
+
+      gap: 14px;
+
+      flex-wrap: wrap;
+
+      margin-top: 20px;
     }
 
-    h2{
-      font-size:27px;
+
+    .btn {
+      display: inline-block;
+
+      background: var(--signal);
+
+      color: var(--ink);
+
+      text-decoration: none;
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-weight: 600;
+
+      font-size: 13px;
+
+      letter-spacing: 1px;
+
+      padding: 11px 18px;
+
+      border-radius: 4px;
     }
 
-    .card{
-      padding:16px;
+
+    .btn:hover {
+      opacity: 0.9;
     }
 
-    .lightbox{
-      padding:10px;
+
+    .btn.alt {
+      background: transparent;
+
+      border:
+        1px solid
+        rgba(241, 233, 216, 0.4);
+
+      color: var(--paper);
     }
 
-    .lightbox img{
-      max-width:96%;
-      max-height:82vh;
+
+    .sold-btn {
+      background:
+        rgba(241, 233, 216, 0.12);
+
+      color:
+        rgba(241, 233, 216, 0.55);
+
+      cursor: default;
     }
 
-    .lightbox-arrow{
-      width:40px;
-      height:40px;
-      font-size:23px;
+
+    .reserved-btn {
+      background: var(--signal);
+
+      color: var(--ink);
+
+      cursor: default;
     }
 
-    .lightbox-prev{
-      left:5px;
+
+    /* =========================================================
+       LIGHTBOX
+    ========================================================= */
+
+    .lightbox {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 50;
+
+      background:
+        rgba(10, 9, 8, 0.96);
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
     }
 
-    .lightbox-next{
-      right:5px;
+
+    .lightbox.open {
+      display: flex;
     }
 
-    .lightbox-close{
-      top:5px;
-      right:5px;
+
+    .lightbox-content {
+      position: relative;
+
+      width: 100%;
+
+      max-width: 1100px;
+
+      height: 100%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
     }
 
-  }
 
-</style>
+    .lightbox img {
+      max-width: 90%;
+
+      max-height: 88vh;
+
+      width: auto;
+
+      height: auto;
+
+      object-fit: contain;
+
+      border-radius: 6px;
+
+      box-shadow:
+        0 30px 60px -20px
+        rgba(0, 0, 0, 0.8);
+
+      user-select: none;
+
+      -webkit-user-drag: none;
+    }
+
+
+    /* =========================================================
+       LIGHTBOX CLOSE
+    ========================================================= */
+
+    .lightbox-close {
+      position: absolute;
+
+      top: 10px;
+
+      right: 10px;
+
+      width: 42px;
+
+      height: 42px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background:
+        rgba(241, 233, 216, 0.12);
+
+      color: var(--paper);
+
+      font-size: 25px;
+
+      line-height: 42px;
+
+      text-align: center;
+
+      cursor: pointer;
+
+      z-index: 3;
+    }
+
+
+    .lightbox-close:hover {
+      background:
+        rgba(241, 233, 216, 0.25);
+    }
+
+
+    /* =========================================================
+       LIGHTBOX ARROWS
+    ========================================================= */
+
+    .lightbox-arrow {
+      position: absolute;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      width: 48px;
+
+      height: 48px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background:
+        rgba(241, 233, 216, 0.12);
+
+      color: var(--paper);
+
+      font-size: 28px;
+
+      cursor: pointer;
+
+      z-index: 3;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+
+    .lightbox-arrow:hover {
+      background:
+        rgba(241, 233, 216, 0.25);
+    }
+
+
+    .lightbox-prev {
+      left: 10px;
+    }
+
+
+    .lightbox-next {
+      right: 10px;
+    }
+
+
+    /* =========================================================
+       LIGHTBOX COUNTER
+    ========================================================= */
+
+    .lightbox-counter {
+      position: absolute;
+
+      bottom: 18px;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      background:
+        rgba(0, 0, 0, 0.55);
+
+      color: var(--paper);
+
+      padding: 6px 12px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+
+      z-index: 3;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      border-top:
+        1px solid
+        rgba(241, 233, 216, 0.12);
+
+      padding: 28px 20px;
+
+      text-align: center;
+
+      font-size: 11px;
+
+      color:
+        rgba(241, 233, 216, 0.5);
+    }
+
+
+    footer .foot-links {
+      margin-top: 10px;
+
+      display: flex;
+
+      gap: 16px;
+
+      justify-content: center;
+    }
+
+
+    footer a {
+      text-decoration: none;
+
+      color:
+        rgba(241, 233, 216, 0.6);
+    }
+
+
+    footer a:hover {
+      color: var(--signal);
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 600px) {
+
+      .nav-inner {
+        justify-content: center;
+      }
+
+
+      nav ul {
+        justify-content: center;
+
+        gap: 14px;
+      }
+
+
+      .hero {
+        padding-top: 40px;
+      }
+
+
+      section {
+        padding: 48px 0;
+      }
+
+
+      h2 {
+        font-size: 27px;
+      }
+
+
+      .card {
+        padding: 16px;
+      }
+
+
+      /*
+        Keep product images compact on mobile.
+        Do NOT make them full-card width.
+      */
+
+      .product-gallery {
+        height: 120px;
+
+        width: 100%;
+      }
+
+
+      .product-gallery img {
+        width: 160px;
+
+        min-width: 160px;
+
+        max-width: 160px;
+
+        height: 120px;
+
+        min-height: 120px;
+
+        max-height: 120px;
+      }
+
+
+      .lightbox {
+        padding: 10px;
+      }
+
+
+      .lightbox img {
+        max-width: 96%;
+
+        max-height: 82vh;
+      }
+
+
+      .lightbox-arrow {
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 23px;
+      }
+
+
+      .lightbox-prev {
+        left: 5px;
+      }
+
+
+      .lightbox-next {
+        right: 5px;
+      }
+
+
+      .lightbox-close {
+        top: 5px;
+
+        right: 5px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
 <body>
 
 
-<header>
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
 
-  <div class="nav-inner">
+  <header>
 
-    <a class="logo" href="#top">SHIKADEAL</a>
+    <div class="nav-inner">
 
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#deals">Deals</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#guides">Guides</a></li>
-        <li><a href="#prints">3D Prints</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-  </div>
-
-</header>
+      <a
+        class="logo"
+        href="#top">
+        SHIKADEAL
+      </a>
 
 
-<div id="top" class="hero">
+      <nav>
 
-  <div class="hole"></div>
+        <ul>
 
-  <div class="string"></div>
+          <li>
+            <a href="#about">
+              About
+            </a>
+          </li>
 
-  <div class="tag">
+          <li>
+            <a href="#deals">
+              Deals
+            </a>
+          </li>
 
-    <div class="row-top">
-      <span class="brand">SHIKADEAL</span>
-      <span class="ticket-no">NO. 001</span>
-    </div>
+          <li>
+            <a href="#blog">
+              Blog
+            </a>
+          </li>
 
-    <div class="location">
-      Tech Hustle · Kilifi, Kenya
-    </div>
+          <li>
+            <a href="#guides">
+              Guides
+            </a>
+          </li>
 
-    <hr class="divider">
+          <li>
+            <a href="#prints">
+              3D Prints
+            </a>
+          </li>
 
-    <span class="stamp">COMING SOON</span>
+          <li>
+            <a href="#contact">
+              Contact
+            </a>
+          </li>
 
-    <p class="lede">
-      Whether it's phones or laptops, real deals on tech,
-      and 3D prints made to order. Everything under one roof,
-      out of Kilifi.
-    </p>
+        </ul>
 
-  </div>
-
-</div>
-
-
-<div class="wrap">
-
-
-<section id="about">
-
-  <p class="eyebrow">Ticket 01 — About</p>
-
-  <h2>Built on repair benches, not boardrooms</h2>
-
-  <p class="body-text">
-    ShikaDeal runs out of Kilifi — repairing and reselling electronics,
-    breaking down what's actually worth buying, and 3D printing custom
-    parts on demand. No corporate polish, just someone who opens the
-    device up and tells you the truth about it.
-  </p>
-
-</section>
-
-
-<!-- =========================
-     DEALS
-========================= -->
-
-<section id="deals">
-
-  <p class="eyebrow">Ticket 02 — Deals</p>
-
-  <h2>Deals, checked before they're posted</h2>
-
-  <p class="body-text">
-    Every listing gets tested and priced honestly before it goes up.
-    First batch of deals is being prepped now.
-  </p>
-
-  <!-- Products are now generated from data/products.json -->
-
-  <div class="grid" id="product-grid"></div>
-
-</section>
-
-
-<section id="blog">
-
-  <p class="eyebrow">Ticket 03 — Blog</p>
-
-  <h2>What's actually wrong with your device</h2>
-
-  <p class="body-text">
-    Repair breakdowns, teardown notes, and the real cost of fixing
-    vs. replacing. First posts landing soon.
-  </p>
-
-  <div class="grid">
-
-    <div class="card">
-
-      <h3>HP Laptop Repair Series</h3>
-
-      <p>
-        A running series on common HP faults and fixes.
-      </p>
+      </nav>
 
     </div>
 
-    <div class="card">
-
-      <h3>Buy vs. Repair</h3>
-
-      <p>
-        How to tell when a device is actually done for.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
+  </header>
 
 
-<section id="guides">
 
-  <p class="eyebrow">Ticket 04 — Guides</p>
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
 
-  <h2>Guides that save you from a bad deal</h2>
+  <div
+    id="top"
+    class="hero">
 
-  <p class="body-text">
-    Paid, practical guides — starting with Proof of Ownership -
-    a must have guide for everyone (Buyers, Sellers and Owners).
-    If it's of value you need this guide.
-  </p>
+    <div class="hole"></div>
 
-  <div class="grid">
+    <div class="string"></div>
 
-    <div class="card">
 
-      <span
-        class="tag-corner"
-        style="background:var(--rust);">
-        PDF
+    <div class="tag">
+
+      <div class="row-top">
+
+        <span class="brand">
+          SHIKADEAL
+        </span>
+
+        <span class="ticket-no">
+          NO. 001
+        </span>
+
+      </div>
+
+
+      <div class="location">
+        Tech Hustle · Kilifi, Kenya
+      </div>
+
+
+      <hr class="divider">
+
+
+      <span class="stamp">
+        COMING SOON
       </span>
 
-      <h3>Proof of Ownership Guide</h3>
 
-      <p>
-        How to protect your purchases or inventory the easy way.
+      <p class="lede">
+
+        Whether it's phones or laptops,
+        real deals on tech, and 3D prints
+        made to order. Everything under
+        one roof, out of Kilifi.
+
       </p>
 
     </div>
 
   </div>
 
-</section>
 
 
-<section id="prints">
-
-  <p class="eyebrow">Ticket 05 — 3D Prints</p>
-
-  <h2>Printed locally, made to fit</h2>
-
-  <p class="body-text">
-    Running on a Bambu 3D Printer — custom brackets, replacement
-    clips or a fancy phone stand you can't find in a shop,
-    printed to order.
-  </p>
-
-</section>
+  <div class="wrap">
 
 
-<section id="contact">
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
 
-  <p class="eyebrow">Ticket 06 — Contact</p>
+    <section id="about">
 
-  <h2>Get in touch</h2>
+      <p class="eyebrow">
+        Ticket 01 — About
+      </p>
 
-  <p class="body-text">
-    Fastest way to reach ShikaDeal right now is WhatsApp or TikTok.
-    Site-based contact is coming once the shop is fully live.
-  </p>
 
-  <div class="contact-links">
+      <h2>
+        Built on repair benches, not boardrooms
+      </h2>
 
-    <a
-      class="btn"
-      href="https://wa.me/254795761999"
-      target="_blank"
-      rel="noopener">
-      WhatsApp
-    </a>
 
-    <a
-      class="btn alt"
-      href="https://www.tiktok.com/@shikadeal.com"
-      target="_blank"
-      rel="noopener">
-      TikTok
-    </a>
+      <p class="body-text">
+
+        ShikaDeal runs out of Kilifi — repairing
+        and reselling electronics, breaking down
+        what's actually worth buying, and 3D
+        printing custom parts on demand. No
+        corporate polish, just someone who opens
+        the device up and tells you the truth
+        about it.
+
+      </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DEALS
+    ====================================================== -->
+
+    <section id="deals">
+
+      <p class="eyebrow">
+        Ticket 02 — Deals
+      </p>
+
+
+      <h2>
+        Deals, checked before they're posted
+      </h2>
+
+
+      <p class="body-text">
+
+        Every listing gets tested and priced
+        honestly before it goes up. First batch
+        of deals is being prepped now.
+
+      </p>
+
+
+      <!--
+        PRODUCTS ARE LOADED FROM:
+
+        data/products.json
+      -->
+
+      <div
+        class="grid"
+        id="product-grid">
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         BLOG
+    ====================================================== -->
+
+    <section id="blog">
+
+      <p class="eyebrow">
+        Ticket 03 — Blog
+      </p>
+
+
+      <h2>
+        What's actually wrong with your device
+      </h2>
+
+
+      <p class="body-text">
+
+        Repair breakdowns, teardown notes,
+        and the real cost of fixing vs. replacing.
+        First posts landing soon.
+
+      </p>
+
+
+      <div class="grid">
+
+
+        <div class="card">
+
+          <h3>
+            HP Laptop Repair Series
+          </h3>
+
+          <p>
+
+            A running series on common HP
+            faults and fixes.
+
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>
+            Buy vs. Repair
+          </h3>
+
+          <p>
+
+            How to tell when a device is
+            actually done for.
+
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         GUIDES
+    ====================================================== -->
+
+    <section id="guides">
+
+      <p class="eyebrow">
+        Ticket 04 — Guides
+      </p>
+
+
+      <h2>
+        Guides that save you from a bad deal
+      </h2>
+
+
+      <p class="body-text">
+
+        Paid, practical guides — starting with
+        Proof of Ownership - a must have guide
+        for everyone (Buyers, Sellers and Owners).
+        If it's of value you need this guide.
+
+      </p>
+
+
+      <div class="grid">
+
+        <div class="card">
+
+          <span
+            class="tag-corner"
+            style="background:var(--rust);">
+
+            PDF
+
+          </span>
+
+
+          <h3>
+            Proof of Ownership Guide
+          </h3>
+
+
+          <p>
+
+            How to protect your purchases
+            or inventory the easy way.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         3D PRINTS
+    ====================================================== -->
+
+    <section id="prints">
+
+      <p class="eyebrow">
+        Ticket 05 — 3D Prints
+      </p>
+
+
+      <h2>
+        Printed locally, made to fit
+      </h2>
+
+
+      <p class="body-text">
+
+        Running on a Bambu 3D Printer —
+        custom brackets, replacement clips
+        or a fancy phone stand you can't find
+        in a shop, printed to order.
+
+      </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+    <section id="contact">
+
+      <p class="eyebrow">
+        Ticket 06 — Contact
+      </p>
+
+
+      <h2>
+        Get in touch
+      </h2>
+
+
+      <p class="body-text">
+
+        Fastest way to reach ShikaDeal right
+        now is WhatsApp or TikTok. Site-based
+        contact is coming once the shop is
+        fully live.
+
+      </p>
+
+
+      <div class="contact-links">
+
+        <a
+          class="btn"
+          href="https://wa.me/254795761999"
+          target="_blank"
+          rel="noopener">
+
+          WhatsApp
+
+        </a>
+
+
+        <a
+          class="btn alt"
+          href="https://www.tiktok.com/@shikadeal.com"
+          target="_blank"
+          rel="noopener">
+
+          TikTok
+
+        </a>
+
+      </div>
+
+    </section>
+
 
   </div>
 
-</section>
 
 
-</div>
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <div id="opened"></div>
 
 
-<footer>
+    <div class="foot-links">
 
-  <div id="opened"></div>
+      <a
+        href="https://wa.me/254795761999"
+        target="_blank"
+        rel="noopener">
 
-  <div class="foot-links">
+        WhatsApp
 
-    <a
-      href="https://wa.me/254795761999"
-      target="_blank"
-      rel="noopener">
-      WhatsApp
-    </a>
-
-    <a
-      href="https://www.tiktok.com/@shikadeal.com"
-      target="_blank"
-      rel="noopener">
-      TikTok
-    </a>
-
-  </div>
-
-</footer>
+      </a>
 
 
-<div
-  class="lightbox"
-  id="lightbox">
+      <a
+        href="https://www.tiktok.com/@shikadeal.com"
+        target="_blank"
+        rel="noopener">
 
-  <div class="lightbox-content">
+        TikTok
 
-    <button
-      class="lightbox-close"
-      id="lightbox-close"
-      aria-label="Close">
-      ×
-    </button>
+      </a>
 
-    <button
-      class="lightbox-arrow lightbox-prev"
-      id="lightbox-prev"
-      aria-label="Previous image">
-      ‹
-    </button>
+    </div>
 
-    <img
-      id="lightbox-img"
-      src=""
-      alt="">
+  </footer>
 
-    <button
-      class="lightbox-arrow lightbox-next"
-      id="lightbox-next"
-      aria-label="Next image">
-      ›
-    </button>
 
-    <div
-      class="lightbox-counter"
-      id="lightbox-counter">
-      1 / 1
+
+  <!-- =======================================================
+       LIGHTBOX
+  ======================================================== -->
+
+  <div
+    class="lightbox"
+    id="lightbox">
+
+
+    <div class="lightbox-content">
+
+
+      <button
+        class="lightbox-close"
+        id="lightbox-close"
+        aria-label="Close">
+
+        ×
+
+      </button>
+
+
+      <button
+        class="lightbox-arrow lightbox-prev"
+        id="lightbox-prev"
+        aria-label="Previous image">
+
+        ‹
+
+      </button>
+
+
+      <img
+        id="lightbox-img"
+        src=""
+        alt="">
+
+
+      <button
+        class="lightbox-arrow lightbox-next"
+        id="lightbox-next"
+        aria-label="Next image">
+
+        ›
+
+      </button>
+
+
+      <div
+        class="lightbox-counter"
+        id="lightbox-counter">
+
+        1 / 1
+
+      </div>
+
+
     </div>
 
   </div>
 
-</div>
 
 
-<script>
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
 
-/* =========================================================
-   FOOTER YEAR
-========================================================= */
-
-const opened = document.getElementById('opened');
-
-const today = new Date();
-
-opened.textContent =
-  '© ' +
-  today.getFullYear() +
-  ' ShikaDeal — Kilifi, Kenya';
+  <script>
 
 
-/* =========================================================
-   LOAD PRODUCTS FROM JSON
-========================================================= */
+    /* =======================================================
+       FOOTER YEAR
+    ======================================================== */
 
-async function loadProducts(){
+    const opened =
+      document.getElementById('opened');
 
-  const productGrid =
-    document.getElementById('product-grid');
 
-  try{
+    const today =
+      new Date();
 
-    const response =
-      await fetch('data/products.json');
 
-    if(!response.ok){
-      throw new Error(
-        'Could not load products.json'
+    opened.textContent =
+      '© ' +
+      today.getFullYear() +
+      ' ShikaDeal — Kilifi, Kenya';
+
+
+
+    /* =======================================================
+       LIGHTBOX ELEMENTS
+    ======================================================== */
+
+    const lightbox =
+      document.getElementById('lightbox');
+
+
+    const lightboxImg =
+      document.getElementById('lightbox-img');
+
+
+    const lightboxClose =
+      document.getElementById('lightbox-close');
+
+
+    const lightboxPrev =
+      document.getElementById('lightbox-prev');
+
+
+    const lightboxNext =
+      document.getElementById('lightbox-next');
+
+
+    const lightboxCounter =
+      document.getElementById(
+        'lightbox-counter'
       );
-    }
 
-    const products =
-      await response.json();
 
+    let currentImages = [];
 
-    if(!Array.isArray(products)){
-      throw new Error(
-        'products.json must contain an array'
-      );
-    }
+    let currentImageIndex = 0;
 
 
-    productGrid.innerHTML = '';
 
+    /* =======================================================
+       LOAD PRODUCTS
+    ======================================================== */
 
-    products.forEach(product => {
+    async function loadProducts() {
 
-      const card =
-        createProductCard(product);
-
-      productGrid.appendChild(card);
-
-    });
-
-
-    initialiseProductFeatures();
-
-
-  }catch(error){
-
-    console.error(error);
-
-    productGrid.innerHTML = `
-      <div class="card">
-        <h3>Deals temporarily unavailable</h3>
-        <p>
-          We're having trouble loading the current listings.
-          Please check back shortly.
-        </p>
-      </div>
-    `;
-
-  }
-
-}
-
-
-/* =========================================================
-   CREATE PRODUCT CARD
-========================================================= */
-
-function createProductCard(product){
-
-  const card =
-    document.createElement('div');
-
-  card.className =
-    'card product-card';
-
-  card.dataset.status =
-    product.status || 'available';
-
-
-  /* STATUS */
-
-  const badge =
-    document.createElement('span');
-
-  badge.className =
-    'tag-corner status-badge';
-
-  badge.textContent =
-    getStatusLabel(product.status);
-
-  card.appendChild(badge);
-
-
-  /* GALLERY */
-
-  const gallery =
-    document.createElement('div');
-
-  gallery.className =
-    'product-gallery';
-
-
-  const images =
-    Array.isArray(product.images)
-      ? product.images
-      : [];
-
-
-  images.forEach((image,index) => {
-
-    const img =
-      document.createElement('img');
-
-    img.src =
-      image;
-
-    img.alt =
-      `${product.name} image ${index + 1}`;
-
-    img.loading =
-      index === 0
-        ? 'eager'
-        : 'lazy';
-
-    gallery.appendChild(img);
-
-  });
-
-
-  card.appendChild(gallery);
-
-
-  /* DOTS */
-
-  if(images.length > 0){
-
-    const dots =
-      document.createElement('div');
-
-    dots.className =
-      'gallery-dots';
-
-
-    images.forEach((image,index) => {
-
-      const dot =
-        document.createElement('span');
-
-      if(index === 0){
-
-        dot.classList.add('active');
-
-      }
-
-      dots.appendChild(dot);
-
-    });
-
-
-    card.appendChild(dots);
-
-  }
-
-
-  /* NAME */
-
-  const title =
-    document.createElement('h3');
-
-  title.textContent =
-    product.name;
-
-  card.appendChild(title);
-
-
-  /* CONDITION */
-
-  if(product.condition){
-
-    const condition =
-      document.createElement('p');
-
-    condition.className =
-      'condition';
-
-    condition.textContent =
-      product.condition;
-
-    card.appendChild(condition);
-
-  }
-
-
-  /* DESCRIPTION */
-
-  const description =
-    document.createElement('p');
-
-  description.textContent =
-    product.description || '';
-
-  card.appendChild(description);
-
-
-  /* PRICE */
-
-  const price =
-    document.createElement('span');
-
-  price.className =
-    'price';
-
-  price.textContent =
-    formatPrice(product.price);
-
-  card.appendChild(price);
-
-
-  /* WHATSAPP BUTTON */
-
-  const whatsapp =
-    document.createElement('a');
-
-  whatsapp.className =
-    'btn whatsapp-btn';
-
-  whatsapp.textContent =
-    'WhatsApp';
-
-  whatsapp.href =
-    '#';
-
-  whatsapp.dataset.product =
-    product.name;
-
-  whatsapp.dataset.price =
-    formatPrice(product.price);
-
-  whatsapp.target =
-    '_blank';
-
-  whatsapp.rel =
-    'noopener';
-
-  card.appendChild(whatsapp);
-
-
-  return card;
-
-}
-
-
-/* =========================================================
-   STATUS LABEL
-========================================================= */
-
-function getStatusLabel(status){
-
-  if(status === 'sold'){
-    return 'SOLD';
-  }
-
-  if(status === 'reserved'){
-    return 'RESERVED';
-  }
-
-  return 'AVAILABLE';
-
-}
-
-
-/* =========================================================
-   PRICE FORMAT
-========================================================= */
-
-function formatPrice(price){
-
-  if(
-    price === undefined ||
-    price === null ||
-    price === ''
-  ){
-
-    return '';
-
-  }
-
-
-  const number =
-    Number(price);
-
-
-  if(Number.isNaN(number)){
-
-    return price;
-
-  }
-
-
-  return 'KSh ' +
-    number.toLocaleString(
-      'en-KE'
-    );
-
-}
-
-
-/* =========================================================
-   INITIALISE PRODUCT FEATURES
-========================================================= */
-
-function initialiseProductFeatures(){
-
-  initialiseGalleries();
-
-  initialiseWhatsApp();
-
-  initialiseStatuses();
-
-}
-
-
-/* =========================================================
-   LIGHTBOX ELEMENTS
-========================================================= */
-
-const lightbox =
-  document.getElementById('lightbox');
-
-const lightboxImg =
-  document.getElementById('lightbox-img');
-
-const lightboxClose =
-  document.getElementById('lightbox-close');
-
-const lightboxPrev =
-  document.getElementById('lightbox-prev');
-
-const lightboxNext =
-  document.getElementById('lightbox-next');
-
-const lightboxCounter =
-  document.getElementById('lightbox-counter');
-
-
-let currentImages = [];
-
-let currentImageIndex = 0;
-
-
-/* =========================================================
-   SHOW LIGHTBOX IMAGE
-========================================================= */
-
-function showLightboxImage(index){
-
-  if(!currentImages.length){
-    return;
-  }
-
-
-  currentImageIndex =
-    index;
-
-
-  const image =
-    currentImages[
-      currentImageIndex
-    ];
-
-
-  lightboxImg.src =
-    image.src;
-
-  lightboxImg.alt =
-    image.alt;
-
-
-  lightboxCounter.textContent =
-    (currentImageIndex + 1) +
-    ' / ' +
-    currentImages.length;
-
-
-  if(currentImages.length <= 1){
-
-    lightboxPrev.style.display =
-      'none';
-
-    lightboxNext.style.display =
-      'none';
-
-  }else{
-
-    lightboxPrev.style.display =
-      'flex';
-
-    lightboxNext.style.display =
-      'flex';
-
-  }
-
-}
-
-
-/* =========================================================
-   INITIALISE GALLERIES
-========================================================= */
-
-function initialiseGalleries(){
-
-  document
-    .querySelectorAll('.product-gallery')
-    .forEach(gallery => {
-
-      const images =
-        Array.from(
-          gallery.querySelectorAll('img')
+      const productGrid =
+        document.getElementById(
+          'product-grid'
         );
 
 
-      images.forEach((img,index) => {
+      try {
 
-        img.addEventListener(
-          'click',
-          event => {
+        const response =
+          await fetch(
+            'data/products.json'
+          );
 
-            event.stopPropagation();
 
-            currentImages =
-              images;
+        if (!response.ok) {
 
-            currentImageIndex =
-              index;
+          throw new Error(
+            'Could not load products.json'
+          );
 
-            lightbox.classList.add(
-              'open'
+        }
+
+
+        const products =
+          await response.json();
+
+
+        if (!Array.isArray(products)) {
+
+          throw new Error(
+            'products.json must contain an array'
+          );
+
+        }
+
+
+        productGrid.innerHTML = '';
+
+
+        if (products.length === 0) {
+
+          productGrid.innerHTML = `
+            <div class="card">
+              <h3>No deals yet</h3>
+              <p>
+                New listings are being prepared.
+                Check back soon.
+              </p>
+            </div>
+          `;
+
+          return;
+
+        }
+
+
+        products.forEach(product => {
+
+          const card =
+            createProductCard(product);
+
+
+          productGrid.appendChild(card);
+
+        });
+
+
+        initialiseProductFeatures();
+
+
+      } catch (error) {
+
+        console.error(
+          'Product loading error:',
+          error
+        );
+
+
+        productGrid.innerHTML = `
+          <div class="card">
+            <h3>
+              Deals temporarily unavailable
+            </h3>
+
+            <p>
+              We're having trouble loading
+              the current listings. Please
+              check back shortly.
+            </p>
+          </div>
+        `;
+
+      }
+
+    }
+
+
+
+    /* =======================================================
+       CREATE PRODUCT CARD
+    ======================================================== */
+
+    function createProductCard(product) {
+
+      const card =
+        document.createElement('div');
+
+
+      card.className =
+        'card product-card';
+
+
+      card.dataset.status =
+        product.status || 'available';
+
+
+
+      /* -----------------------------
+         STATUS BADGE
+      ----------------------------- */
+
+      const badge =
+        document.createElement('span');
+
+
+      badge.className =
+        'tag-corner status-badge';
+
+
+      badge.textContent =
+        getStatusLabel(
+          product.status
+        );
+
+
+      card.appendChild(badge);
+
+
+
+      /* -----------------------------
+         GALLERY
+      ----------------------------- */
+
+      const gallery =
+        document.createElement('div');
+
+
+      gallery.className =
+        'product-gallery';
+
+
+      const images =
+        Array.isArray(product.images)
+          ? product.images
+          : [];
+
+
+      images.forEach(
+        (image, index) => {
+
+          const img =
+            document.createElement('img');
+
+
+          img.src =
+            image;
+
+
+          img.alt =
+            `${product.name} image ${index + 1}`;
+
+
+          img.loading =
+            index === 0
+              ? 'eager'
+              : 'lazy';
+
+
+          img.decoding =
+            'async';
+
+
+          gallery.appendChild(img);
+
+        }
+      );
+
+
+      card.appendChild(gallery);
+
+
+
+      /* -----------------------------
+         DOTS
+      ----------------------------- */
+
+      if (images.length > 1) {
+
+        const dots =
+          document.createElement('div');
+
+
+        dots.className =
+          'gallery-dots';
+
+
+        images.forEach(
+          (image, index) => {
+
+            const dot =
+              document.createElement('span');
+
+
+            if (index === 0) {
+
+              dot.classList.add(
+                'active'
+              );
+
+            }
+
+
+            dot.setAttribute(
+              'aria-label',
+              `Show image ${index + 1}`
             );
 
-            showLightboxImage(index);
+
+            dots.appendChild(dot);
 
           }
         );
 
-      });
+
+        card.appendChild(dots);
+
+      }
 
 
-      /* DOTS */
 
-      const dotsContainer =
-        gallery.nextElementSibling;
+      /* -----------------------------
+         PRODUCT NAME
+      ----------------------------- */
+
+      const title =
+        document.createElement('h3');
 
 
-      if(
-        !dotsContainer ||
-        !dotsContainer.classList.contains(
-          'gallery-dots'
-        )
-      ){
+      title.textContent =
+        product.name || 'Unnamed product';
+
+
+      card.appendChild(title);
+
+
+
+      /* -----------------------------
+         CONDITION
+      ----------------------------- */
+
+      if (product.condition) {
+
+        const condition =
+          document.createElement('p');
+
+
+        condition.className =
+          'condition';
+
+
+        condition.textContent =
+          product.condition;
+
+
+        card.appendChild(condition);
+
+      }
+
+
+
+      /* -----------------------------
+         DESCRIPTION
+      ----------------------------- */
+
+      const description =
+        document.createElement('p');
+
+
+      description.textContent =
+        product.description || '';
+
+
+      card.appendChild(description);
+
+
+
+      /* -----------------------------
+         PRICE
+      ----------------------------- */
+
+      const price =
+        document.createElement('span');
+
+
+      price.className =
+        'price';
+
+
+      price.textContent =
+        formatPrice(
+          product.price
+        );
+
+
+      card.appendChild(price);
+
+
+
+      /* -----------------------------
+         WHATSAPP
+      ----------------------------- */
+
+      const whatsapp =
+        document.createElement('a');
+
+
+      whatsapp.className =
+        'btn whatsapp-btn';
+
+
+      whatsapp.textContent =
+        'WhatsApp';
+
+
+      whatsapp.href =
+        '#';
+
+
+      whatsapp.dataset.product =
+        product.name || 'this item';
+
+
+      whatsapp.dataset.price =
+        formatPrice(
+          product.price
+        );
+
+
+      whatsapp.target =
+        '_blank';
+
+
+      whatsapp.rel =
+        'noopener';
+
+
+      card.appendChild(whatsapp);
+
+
+      return card;
+
+    }
+
+
+
+    /* =======================================================
+       STATUS LABEL
+    ======================================================== */
+
+    function getStatusLabel(status) {
+
+      if (status === 'sold') {
+
+        return 'SOLD';
+
+      }
+
+
+      if (status === 'reserved') {
+
+        return 'RESERVED';
+
+      }
+
+
+      return 'AVAILABLE';
+
+    }
+
+
+
+    /* =======================================================
+       FORMAT PRICE
+    ======================================================== */
+
+    function formatPrice(price) {
+
+      if (
+        price === undefined ||
+        price === null ||
+        price === ''
+      ) {
+
+        return '';
+
+      }
+
+
+      const number =
+        Number(price);
+
+
+      if (Number.isNaN(number)) {
+
+        return price;
+
+      }
+
+
+      return (
+        'KSh ' +
+        number.toLocaleString('en-KE')
+      );
+
+    }
+
+
+
+    /* =======================================================
+       INITIALISE EVERYTHING
+    ======================================================== */
+
+    function initialiseProductFeatures() {
+
+      initialiseGalleries();
+
+      initialiseWhatsApp();
+
+      initialiseStatuses();
+
+    }
+
+
+
+    /* =======================================================
+       SHOW LIGHTBOX IMAGE
+    ======================================================== */
+
+    function showLightboxImage(index) {
+
+      if (!currentImages.length) {
 
         return;
 
       }
 
 
-      const dots =
-        dotsContainer.querySelectorAll(
-          'span'
-        );
+      currentImageIndex =
+        index;
 
 
-      function updateDots(){
-
-        const scrollLeft =
-          gallery.scrollLeft;
-
-        const galleryWidth =
-          gallery.clientWidth;
+      const image =
+        currentImages[
+          currentImageIndex
+        ];
 
 
-        if(!galleryWidth){
-          return;
-        }
+      lightboxImg.src =
+        image.src;
 
 
-        let index =
-          Math.round(
-            scrollLeft /
-            galleryWidth
-          );
+      lightboxImg.alt =
+        image.alt;
 
 
-        if(
-          index >= images.length
-        ){
-
-          index =
-            images.length - 1;
-
-        }
+      lightboxCounter.textContent =
+        `${currentImageIndex + 1} / ${currentImages.length}`;
 
 
-        dots.forEach(
-          (dot,i) => {
+      if (currentImages.length <= 1) {
 
-            dot.classList.toggle(
-              'active',
-              i === index
-            );
+        lightboxPrev.style.display =
+          'none';
 
-          }
-        );
+
+        lightboxNext.style.display =
+          'none';
+
+      } else {
+
+        lightboxPrev.style.display =
+          'flex';
+
+
+        lightboxNext.style.display =
+          'flex';
 
       }
 
-
-      gallery.addEventListener(
-        'scroll',
-        updateDots,
-        {passive:true}
-      );
+    }
 
 
-      dots.forEach(
-        (dot,index) => {
 
-          dot.addEventListener(
-            'click',
-            () => {
+    /* =======================================================
+       INITIALISE GALLERIES
+    ======================================================== */
 
-              gallery.scrollTo({
+    function initialiseGalleries() {
 
-                left:
-                  index *
-                  gallery.clientWidth,
+      document
+        .querySelectorAll(
+          '.product-gallery'
+        )
+        .forEach(gallery => {
 
-                behavior:
-                  'smooth'
 
-              });
+          const images =
+            Array.from(
+              gallery.querySelectorAll('img')
+            );
+
+
+          if (!images.length) {
+
+            gallery.style.display =
+              'none';
+
+            return;
+
+          }
+
+
+
+          /* -----------------------------
+             IMAGE CLICK / LIGHTBOX
+          ----------------------------- */
+
+          images.forEach(
+            (img, index) => {
+
+              img.addEventListener(
+                'click',
+                event => {
+
+                  event.stopPropagation();
+
+
+                  currentImages =
+                    images;
+
+
+                  currentImageIndex =
+                    index;
+
+
+                  lightbox.classList.add(
+                    'open'
+                  );
+
+
+                  showLightboxImage(
+                    index
+                  );
+
+                }
+              );
 
             }
           );
 
+
+
+          /* -----------------------------
+             DOTS
+          ----------------------------- */
+
+          const dotsContainer =
+            gallery.nextElementSibling;
+
+
+          if (
+            !dotsContainer ||
+            !dotsContainer.classList.contains(
+              'gallery-dots'
+            )
+          ) {
+
+            return;
+
+          }
+
+
+          const dots =
+            Array.from(
+              dotsContainer.querySelectorAll(
+                'span'
+              )
+            );
+
+
+          if (!dots.length) {
+
+            return;
+
+          }
+
+
+
+          /* -----------------------------
+             DETERMINE CURRENT IMAGE
+          ----------------------------- */
+
+          function updateDots() {
+
+            if (!images.length) {
+
+              return;
+
+            }
+
+
+            const firstImage =
+              images[0];
+
+
+            const imageWidth =
+              firstImage.offsetWidth;
+
+
+            if (!imageWidth) {
+
+              return;
+
+            }
+
+
+            const gap =
+              parseFloat(
+                getComputedStyle(
+                  gallery
+                ).gap
+              ) || 0;
+
+
+            const step =
+              imageWidth + gap;
+
+
+            let index =
+              Math.round(
+                gallery.scrollLeft /
+                step
+              );
+
+
+            if (index < 0) {
+
+              index = 0;
+
+            }
+
+
+            if (
+              index >= images.length
+            ) {
+
+              index =
+                images.length - 1;
+
+            }
+
+
+            dots.forEach(
+              (dot, dotIndex) => {
+
+                dot.classList.toggle(
+                  'active',
+                  dotIndex === index
+                );
+
+              }
+            );
+
+          }
+
+
+
+          gallery.addEventListener(
+            'scroll',
+            updateDots,
+            {
+              passive: true
+            }
+          );
+
+
+
+          /* -----------------------------
+             DOT CLICK
+          ----------------------------- */
+
+          dots.forEach(
+            (dot, index) => {
+
+              dot.addEventListener(
+                'click',
+                event => {
+
+                  event.stopPropagation();
+
+
+                  const image =
+                    images[index];
+
+
+                  if (!image) {
+
+                    return;
+
+                  }
+
+
+                  gallery.scrollTo({
+
+                    left:
+                      image.offsetLeft,
+
+                    behavior:
+                      'smooth'
+
+                  });
+
+                }
+              );
+
+            }
+          );
+
+
+          updateDots();
+
+        });
+
+    }
+
+
+
+    /* =======================================================
+       LIGHTBOX NEXT
+    ======================================================== */
+
+    lightboxNext.addEventListener(
+      'click',
+      event => {
+
+        event.stopPropagation();
+
+
+        if (!currentImages.length) {
+
+          return;
+
         }
+
+
+        currentImageIndex++;
+
+
+        if (
+          currentImageIndex >=
+          currentImages.length
+        ) {
+
+          currentImageIndex = 0;
+
+        }
+
+
+        showLightboxImage(
+          currentImageIndex
+        );
+
+      }
+    );
+
+
+
+    /* =======================================================
+       LIGHTBOX PREVIOUS
+    ======================================================== */
+
+    lightboxPrev.addEventListener(
+      'click',
+      event => {
+
+        event.stopPropagation();
+
+
+        if (!currentImages.length) {
+
+          return;
+
+        }
+
+
+        currentImageIndex--;
+
+
+        if (currentImageIndex < 0) {
+
+          currentImageIndex =
+            currentImages.length - 1;
+
+        }
+
+
+        showLightboxImage(
+          currentImageIndex
+        );
+
+      }
+    );
+
+
+
+    /* =======================================================
+       CLOSE LIGHTBOX
+    ======================================================== */
+
+    function closeLightbox() {
+
+      lightbox.classList.remove(
+        'open'
       );
 
 
-      updateDots();
-
-    });
-
-}
-
-
-/* =========================================================
-   NEXT IMAGE
-========================================================= */
-
-lightboxNext.addEventListener(
-  'click',
-  event => {
-
-    event.stopPropagation();
-
-
-    if(!currentImages.length){
-      return;
-    }
-
-
-    currentImageIndex++;
-
-
-    if(
-      currentImageIndex >=
-      currentImages.length
-    ){
-
-      currentImageIndex = 0;
+      lightboxImg.src = '';
 
     }
 
 
-    showLightboxImage(
-      currentImageIndex
-    );
+    lightboxClose.addEventListener(
+      'click',
+      event => {
 
-  }
-);
-
-
-/* =========================================================
-   PREVIOUS IMAGE
-========================================================= */
-
-lightboxPrev.addEventListener(
-  'click',
-  event => {
-
-    event.stopPropagation();
-
-
-    if(!currentImages.length){
-      return;
-    }
-
-
-    currentImageIndex--;
-
-
-    if(currentImageIndex < 0){
-
-      currentImageIndex =
-        currentImages.length - 1;
-
-    }
-
-
-    showLightboxImage(
-      currentImageIndex
-    );
-
-  }
-);
-
-
-/* =========================================================
-   CLOSE LIGHTBOX
-========================================================= */
-
-function closeLightbox(){
-
-  lightbox.classList.remove(
-    'open'
-  );
-
-}
-
-
-lightboxClose.addEventListener(
-  'click',
-  event => {
-
-    event.stopPropagation();
-
-    closeLightbox();
-
-  }
-);
-
-
-lightbox.addEventListener(
-  'click',
-  event => {
-
-    if(event.target === lightbox){
-
-      closeLightbox();
-
-    }
-
-  }
-);
-
-
-document
-  .querySelector('.lightbox-content')
-  .addEventListener(
-    'click',
-    event => {
-
-      if(
-        event.target.classList.contains(
-          'lightbox-content'
-        )
-      ){
+        event.stopPropagation();
 
         closeLightbox();
 
       }
-
-    }
-  );
+    );
 
 
-/* =========================================================
-   KEYBOARD CONTROLS
-========================================================= */
+    lightbox.addEventListener(
+      'click',
+      event => {
 
-document.addEventListener(
-  'keydown',
-  event => {
+        if (
+          event.target === lightbox
+        ) {
 
-    if(
-      !lightbox.classList.contains(
-        'open'
+          closeLightbox();
+
+        }
+
+      }
+    );
+
+
+    document
+      .querySelector(
+        '.lightbox-content'
       )
-    ){
+      .addEventListener(
+        'click',
+        event => {
 
-      return;
+          if (
+            event.target.classList.contains(
+              'lightbox-content'
+            )
+          ) {
+
+            closeLightbox();
+
+          }
+
+        }
+      );
+
+
+
+    /* =======================================================
+       KEYBOARD CONTROLS
+    ======================================================== */
+
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if (
+          !lightbox.classList.contains(
+            'open'
+          )
+        ) {
+
+          return;
+
+        }
+
+
+        if (event.key === 'Escape') {
+
+          closeLightbox();
+
+        }
+
+
+        if (event.key === 'ArrowRight') {
+
+          lightboxNext.click();
+
+        }
+
+
+        if (event.key === 'ArrowLeft') {
+
+          lightboxPrev.click();
+
+        }
+
+      }
+    );
+
+
+
+    /* =======================================================
+       TOUCH / SWIPE LIGHTBOX
+    ======================================================== */
+
+    let touchStartX = 0;
+
+    let touchEndX = 0;
+
+
+    lightbox.addEventListener(
+      'touchstart',
+      event => {
+
+        touchStartX =
+          event.changedTouches[0].screenX;
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    lightbox.addEventListener(
+      'touchend',
+      event => {
+
+        touchEndX =
+          event.changedTouches[0].screenX;
+
+
+        handleSwipe();
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    function handleSwipe() {
+
+      const swipeDistance =
+        touchEndX -
+        touchStartX;
+
+
+      if (
+        Math.abs(swipeDistance) < 50
+      ) {
+
+        return;
+
+      }
+
+
+      if (swipeDistance < 0) {
+
+        lightboxNext.click();
+
+      }
+
+
+      if (swipeDistance > 0) {
+
+        lightboxPrev.click();
+
+      }
 
     }
 
 
-    if(event.key === 'Escape'){
 
-      closeLightbox();
+    /* =======================================================
+       WHATSAPP PRODUCT LINKS
+    ======================================================== */
 
-    }
+    function initialiseWhatsApp() {
 
-
-    if(event.key === 'ArrowRight'){
-
-      lightboxNext.click();
-
-    }
-
-
-    if(event.key === 'ArrowLeft'){
-
-      lightboxPrev.click();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   TOUCH / SWIPE
-========================================================= */
-
-let touchStartX = 0;
-
-let touchEndX = 0;
-
-
-lightbox.addEventListener(
-  'touchstart',
-  event => {
-
-    touchStartX =
-      event.changedTouches[0].screenX;
-
-  },
-  {passive:true}
-);
-
-
-lightbox.addEventListener(
-  'touchend',
-  event => {
-
-    touchEndX =
-      event.changedTouches[0].screenX;
-
-    handleSwipe();
-
-  },
-  {passive:true}
-);
-
-
-function handleSwipe(){
-
-  const swipeDistance =
-    touchEndX -
-    touchStartX;
-
-
-  if(
-    Math.abs(swipeDistance) < 50
-  ){
-
-    return;
-
-  }
-
-
-  if(swipeDistance < 0){
-
-    lightboxNext.click();
-
-  }
-
-
-  if(swipeDistance > 0){
-
-    lightboxPrev.click();
-
-  }
-
-}
-
-
-/* =========================================================
-   WHATSAPP PRODUCT LINKS
-========================================================= */
-
-function initialiseWhatsApp(){
-
-  document
-    .querySelectorAll('.whatsapp-btn')
-    .forEach(button => {
-
-      const product =
-        button.dataset.product;
-
-      const price =
-        button.dataset.price;
-
-
-      const message =
-        `Hi, I'm interested in the ${product} (${price}). Is it still available?`;
-
-
-      button.href =
-        `https://wa.me/254795761999?text=${
-          encodeURIComponent(message)
-        }`;
-
-    });
-
-}
-
-
-/* =========================================================
-   PRODUCT STATUS
-========================================================= */
-
-function initialiseStatuses(){
-
-  document
-    .querySelectorAll('.product-card')
-    .forEach(card => {
-
-      const status =
-        card.dataset.status;
-
-
-      const badge =
-        card.querySelector(
-          '.status-badge'
-        );
-
-
-      const whatsapp =
-        card.querySelector(
+      document
+        .querySelectorAll(
           '.whatsapp-btn'
-        );
+        )
+        .forEach(button => {
 
 
-      if(!badge){
-        return;
-      }
+          const product =
+            button.dataset.product;
 
 
-      /* AVAILABLE */
-
-      if(status === 'available'){
-
-        badge.textContent =
-          'AVAILABLE';
-
-        return;
-
-      }
+          const price =
+            button.dataset.price;
 
 
-      /* RESERVED */
-
-      if(status === 'reserved'){
-
-        badge.textContent =
-          'RESERVED';
+          const message =
+            `Hi, I'm interested in the ${product} (${price}). Is it still available?`;
 
 
-        if(whatsapp){
+          button.href =
+            `https://wa.me/254795761999?text=${
+              encodeURIComponent(message)
+            }`;
 
-          whatsapp.textContent =
-            'Reserved';
+        });
 
-          whatsapp.classList.add(
-            'reserved-btn'
-          );
-
-          whatsapp.removeAttribute(
-            'href'
-          );
-
-          whatsapp.removeAttribute(
-            'target'
-          );
-
-          whatsapp.removeAttribute(
-            'rel'
-          );
-
-          whatsapp.classList.remove(
-            'whatsapp-btn'
-          );
-
-        }
-
-        return;
-
-      }
+    }
 
 
-      /* SOLD */
 
-      if(status === 'sold'){
+    /* =======================================================
+       PRODUCT STATUS
+    ======================================================== */
 
-        badge.textContent =
-          'SOLD';
+    function initialiseStatuses() {
 
-
-        if(whatsapp){
-
-          whatsapp.textContent =
-            'Sold';
-
-          whatsapp.classList.add(
-            'sold-btn'
-          );
-
-          whatsapp.removeAttribute(
-            'href'
-          );
-
-          whatsapp.removeAttribute(
-            'target'
-          );
-
-          whatsapp.removeAttribute(
-            'rel'
-          );
-
-          whatsapp.classList.remove(
-            'whatsapp-btn'
-          );
-
-        }
-
-      }
-
-    });
-
-}
+      document
+        .querySelectorAll(
+          '.product-card'
+        )
+        .forEach(card => {
 
 
-/* =========================================================
-   START
-========================================================= */
+          const status =
+            card.dataset.status;
 
-loadProducts();
 
-</script>
+          const badge =
+            card.querySelector(
+              '.status-badge'
+            );
+
+
+          const whatsapp =
+            card.querySelector(
+              '.whatsapp-btn'
+            );
+
+
+          if (!badge) {
+
+            return;
+
+          }
+
+
+
+          /* -----------------------------
+             AVAILABLE
+          ----------------------------- */
+
+          if (status === 'available') {
+
+            badge.textContent =
+              'AVAILABLE';
+
+            return;
+
+          }
+
+
+
+          /* -----------------------------
+             RESERVED
+          ----------------------------- */
+
+          if (status === 'reserved') {
+
+            badge.textContent =
+              'RESERVED';
+
+
+            if (whatsapp) {
+
+              whatsapp.textContent =
+                'Reserved';
+
+
+              whatsapp.classList.add(
+                'reserved-btn'
+              );
+
+
+              whatsapp.removeAttribute(
+                'href'
+              );
+
+
+              whatsapp.removeAttribute(
+                'target'
+              );
+
+
+              whatsapp.removeAttribute(
+                'rel'
+              );
+
+
+              whatsapp.classList.remove(
+                'whatsapp-btn'
+              );
+
+            }
+
+
+            return;
+
+          }
+
+
+
+          /* -----------------------------
+             SOLD
+          ----------------------------- */
+
+          if (status === 'sold') {
+
+            badge.textContent =
+              'SOLD';
+
+
+            if (whatsapp) {
+
+              whatsapp.textContent =
+                'Sold';
+
+
+              whatsapp.classList.add(
+                'sold-btn'
+              );
+
+
+              whatsapp.removeAttribute(
+                'href'
+              );
+
+
+              whatsapp.removeAttribute(
+                'target'
+              );
+
+
+              whatsapp.removeAttribute(
+                'rel'
+              );
+
+
+              whatsapp.classList.remove(
+                'whatsapp-btn'
+              );
+
+            }
+
+          }
+
+        });
+
+    }
+
+
+
+    /* =======================================================
+       START WEBSITE
+    ======================================================== */
+
+    loadProducts();
+
+  </script>
 
 </body>
+
 </html>
