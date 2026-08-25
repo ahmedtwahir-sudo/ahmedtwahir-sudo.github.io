@@ -6,10 +6,10 @@
     "price": "KSh 60,500",
     "status": "available",
     "images": [
-      "images/hp440-1.jpg",
-      "images/hp440-2.jpg",
-      "images/hp440-3.jpg",
-      "images/hp440-4.jpg"
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
     ]
   },
   {
@@ -19,10 +19,10 @@
     "price": "KSh 48,500",
     "status": "available",
     "images": [
-      "images/hp440-1.jpg",
-      "images/hp440-2.jpg",
-      "images/hp440-3.jpg",
-      "images/hp440-4.jpg"
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
     ]
   },
   {
@@ -32,10 +32,10 @@
     "price": "KSh 45,000",
     "status": "available",
     "images": [
-      "images/hp440-1.jpg",
-      "images/hp440-2.jpg",
-      "images/hp440-3.jpg",
-      "images/hp440-4.jpg"
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
     ]
   }
 ]
