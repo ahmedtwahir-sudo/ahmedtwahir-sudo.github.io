@@ -3,129 +3,414 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ShikaDeal — Tech Hustle, Kilifi</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --ink:#171512;
-    --ink-2:#1F1C18;
-    --paper:#F1E9D8;
-    --rust:#C1440E;
-    --signal:#F2B705;
-    --wire:#3AAFA9;
+  :root {
+    --ink: #171512;
+    --ink-2: #1F1C18;
+    --paper: #F1E9D8;
+    --rust: #C1440E;
+    --signal: #F2B705;
+    --wire: #3AAFA9;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--ink);
-    background-image:radial-gradient(circle at 1px 1px, rgba(241,233,216,0.05) 1px, transparent 0);
-    background-size:22px 22px;
-    color:var(--paper);
-    font-family:'IBM Plex Mono', monospace;
-  }
-  a{color:inherit;}
-  .wrap{max-width:920px; margin:0 auto; padding:0 20px;}
 
-  /* Header */
-  header{
-    position:sticky; top:0; z-index:10;
-    background:rgba(23,21,18,0.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(241,233,216,0.12);
+  * {
+    box-sizing: border-box;
   }
-  .nav-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 20px;
-    flex-wrap:wrap; gap:12px;
-  }
-  .logo{
-    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:20px; letter-spacing:0.5px;
-    text-decoration:none;
-  }
-  nav ul{
-    list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;
-  }
-  nav a{
-    text-decoration:none; font-size:12.5px; letter-spacing:1px; text-transform:uppercase;
-    color:rgba(241,233,216,0.75);
-    padding-bottom:3px; border-bottom:2px solid transparent;
-  }
-  nav a:hover{ color:var(--paper); border-bottom-color:var(--signal); }
 
-  /* Hero / ticket */
-  .hero{ padding:64px 20px 40px; text-align:center; }
-  .hole{ width:14px;height:14px; border-radius:50%; border:2px solid var(--paper); margin:0 auto -1px; background:var(--ink); }
-  .string{ width:2px; height:30px; background:repeating-linear-gradient(var(--paper) 0 4px, transparent 4px 8px); margin:0 auto; }
-  .tag{
-    max-width:420px; margin:0 auto; text-align:left;
-    background:var(--paper); color:var(--ink); border-radius:6px;
-    padding:28px 26px 22px;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  html {
+    scroll-behavior: smooth;
   }
-  .row-top{ display:flex; justify-content:space-between; align-items:baseline; font-family:'Rajdhani',sans-serif; }
-  .brand{ font-size:28px; font-weight:700; }
-  .ticket-no{ font-size:12px; color:rgba(23,21,18,0.6); }
-  .location{ margin-top:2px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--wire); font-weight:500; }
-  .divider{ border:none; border-top:1px dashed rgba(23,21,18,0.3); margin:16px 0; }
-  .stamp{
-    display:inline-block; border:3px solid var(--rust); color:var(--rust);
-    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:14px; letter-spacing:2px;
-    padding:5px 12px; transform:rotate(-6deg); border-radius:4px; margin:4px 0 16px;
-  }
-  .lede{ font-size:13.5px; line-height:1.6; color:rgba(23,21,18,0.85); margin:0; }
 
-  /* Section shell */
-  section{ padding:64px 0; border-top:1px dashed rgba(241,233,216,0.15); }
-  .eyebrow{ font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--wire); margin:0 0 8px; }
-  h2{ font-family:'Rajdhani',sans-serif; font-size:30px; font-weight:700; margin:0 0 18px; }
-  p.body-text{ font-size:14px; line-height:1.75; color:rgba(241,233,216,0.8); max-width:640px; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(
+        circle at 1px 1px,
+        rgba(241,233,216,0.05) 1px,
+        transparent 0
+      );
+    background-size: 22px 22px;
+    color: var(--paper);
+    font-family: 'IBM Plex Mono', monospace;
+  }
 
-  /* Cards grid */
-  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:24px; }
-  .card{
-    background:var(--ink-2); border:1px solid rgba(241,233,216,0.12); border-radius:6px;
-    padding:20px; position:relative;
+  a {
+    color: inherit;
   }
-  .card .tag-corner{
-    position:absolute; top:-1px; right:14px; background:var(--rust); color:var(--paper);
-    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:10px; letter-spacing:1px;
-    padding:3px 8px; border-radius:0 0 4px 4px;
-  }
-  .card h3{ font-family:'Rajdhani',sans-serif; font-size:17px; margin:6px 0 8px; }
-  .card img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:4px; margin-bottom:12px; display:block; }
-  .card p{ font-size:12.5px; line-height:1.6; color:rgba(241,233,216,0.7); margin:0; }
-  .card .price{ font-family:'Rajdhani',sans-serif; font-weight:700; color:var(--signal); font-size:15px; margin-top:10px; display:block; } 
-  .card .condition{ font-size:11px; color:var(--wire); text-transform:uppercase; letter-spacing:1px; }
 
-  /* Contact */
-  .contact-links{ display:flex; gap:14px; flex-wrap:wrap; margin-top:20px; }
-  .btn{
-    display:inline-block; background:var(--signal); color:var(--ink); text-decoration:none;
-    font-family:'Rajdhani',sans-serif; font-weight:600; font-size:13px; letter-spacing:1px;
-    padding:11px 18px; border-radius:4px;
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
-  .btn.alt{ background:transparent; border:1px solid rgba(241,233,216,0.4); color:var(--paper); }
 
-  /* Footer */
-  footer{
-    border-top:1px solid rgba(241,233,216,0.12);
-    padding:28px 20px; text-align:center;
-    font-size:11px; color:rgba(241,233,216,0.5);
+  /* =========================
+     HEADER
+  ========================= */
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(23,21,18,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(241,233,216,0.12);
   }
-  footer .foot-links{ margin-top:10px; display:flex; gap:16px; justify-content:center; }
-  footer a{ text-decoration:none; color:rgba(241,233,216,0.6); }
-  footer a:hover{ color:var(--signal); }
-  .lightbox{ display:none; position:fixed; inset:0; z-index:50; background:rgba(23,21,18,0.92); align-items:center; justify-content:center; padding:24px; cursor:zoom-out; } 
-  .lightbox.open{ display:flex; } .lightbox img{ max-width:100%; max-height:90vh; border-radius:6px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.7); } .card img{ cursor:zoom-in; }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-size: 12.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(241,233,216,0.75);
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+  }
+
+  nav a:hover {
+    color: var(--paper);
+    border-bottom-color: var(--signal);
+  }
+
+  /* =========================
+     HERO
+  ========================= */
+
+  .hero {
+    padding: 64px 20px 40px;
+    text-align: center;
+  }
+
+  .hole {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--paper);
+    margin: 0 auto -1px;
+    background: var(--ink);
+  }
+
+  .string {
+    width: 2px;
+    height: 30px;
+    background:
+      repeating-linear-gradient(
+        var(--paper) 0 4px,
+        transparent 4px 8px
+      );
+    margin: 0 auto;
+  }
+
+  .tag {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 6px;
+    padding: 28px 26px 22px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+
+  .row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .brand {
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .ticket-no {
+    font-size: 12px;
+    color: rgba(23,21,18,0.6);
+  }
+
+  .location {
+    margin-top: 2px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--wire);
+    font-weight: 500;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px dashed rgba(23,21,18,0.3);
+    margin: 16px 0;
+  }
+
+  .stamp {
+    display: inline-block;
+    border: 3px solid var(--rust);
+    color: var(--rust);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    transform: rotate(-6deg);
+    border-radius: 4px;
+    margin: 4px 0 16px;
+  }
+
+  .lede {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(23,21,18,0.85);
+    margin: 0;
+  }
+
+  /* =========================
+     SECTIONS
+  ========================= */
+
+  section {
+    padding: 64px 0;
+    border-top: 1px dashed rgba(241,233,216,0.15);
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--wire);
+    margin: 0 0 8px;
+  }
+
+  h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 18px;
+  }
+
+  p.body-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(241,233,216,0.8);
+    max-width: 640px;
+  }
+
+  /* =========================
+     CARDS
+  ========================= */
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(220px, 1fr)
+    );
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .card {
+    background: var(--ink-2);
+    border: 1px solid rgba(241,233,216,0.12);
+    border-radius: 6px;
+    padding: 20px;
+    position: relative;
+  }
+
+  .card .tag-corner {
+    position: absolute;
+    top: -1px;
+    right: 14px;
+    background: var(--rust);
+    color: var(--paper);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .card h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    margin: 6px 0 8px;
+  }
+
+  /* NORMAL PRODUCT IMAGE */
+
+  .card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .card p {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(241,233,216,0.7);
+    margin: 0;
+  }
+
+  .card .price {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    color: var(--signal);
+    font-size: 15px;
+    margin-top: 10px;
+    display: block;
+  }
+
+  .card .condition {
+    font-size: 11px;
+    color: var(--wire);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* =========================
+     BUTTONS
+  ========================= */
+
+  .contact-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--signal);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 11px 18px;
+    border-radius: 4px;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  .btn.alt {
+    background: transparent;
+    border: 1px solid rgba(241,233,216,0.4);
+    color: var(--paper);
+  }
+
+  /* =========================
+     LIGHTBOX
+  ========================= */
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(23,21,18,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7);
+  }
+
+  /* =========================
+     FOOTER
+  ========================= */
+
+  footer {
+    border-top: 1px solid rgba(241,233,216,0.12);
+    padding: 28px 20px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(241,233,216,0.5);
+  }
+
+  footer .foot-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  footer a {
+    text-decoration: none;
+    color: rgba(241,233,216,0.6);
+  }
+
+  footer a:hover {
+    color: var(--signal);
+  }
 </style>
 </head>
+
 <body>
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
   <div class="nav-inner">
+
     <a class="logo" href="#top">SHIKADEAL</a>
+
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
@@ -136,128 +421,493 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+
   </div>
 </header>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <div id="top" class="hero">
+
   <div class="hole"></div>
   <div class="string"></div>
+
   <div class="tag">
+
     <div class="row-top">
       <span class="brand">SHIKADEAL</span>
       <span class="ticket-no">NO. 001</span>
     </div>
-    <div class="location">Tech Hustle · Kilifi, Kenya</div>
+
+    <div class="location">
+      Tech Hustle · Kilifi, Kenya
+    </div>
+
     <hr class="divider">
+
     <span class="stamp">COMING SOON</span>
-    <p class="lede">Whether it's phones or laptops, real deals on tech, and 3D prints made to order. Everything under one roof, out of Kilifi.</p>
+
+    <p class="lede">
+      Whether it's phones or laptops, real deals on tech,
+      and 3D prints made to order. Everything under one roof,
+      out of Kilifi.
+    </p>
+
   </div>
 </div>
+
 
 <div class="wrap">
 
+  <!-- =========================
+       ABOUT
+  ========================= -->
+
   <section id="about">
-    <p class="eyebrow">Ticket 01 — About</p>
-    <h2>Built on repair benches, not boardrooms</h2>
-    <p class="body-text">ShikaDeal runs out of Kilifi — repairing and reselling electronics, breaking down what's actually worth buying, and 3D printing custom parts on demand. No corporate polish, just someone who opens the device up and tells you the truth about it.</p>
+
+    <p class="eyebrow">
+      Ticket 01 — About
+    </p>
+
+    <h2>
+      Built on repair benches, not boardrooms
+    </h2>
+
+    <p class="body-text">
+      ShikaDeal runs out of Kilifi — repairing and reselling
+      electronics, breaking down what's actually worth buying,
+      and 3D printing custom parts on demand. No corporate polish,
+      just someone who opens the device up and tells you the truth
+      about it.
+    </p>
+
   </section>
+
+
+  <!-- =========================
+       DEALS
+  ========================= -->
 
   <section id="deals">
-    <p class="eyebrow">Ticket 02 — Deals</p>
-    <h2>Deals, checked before they're posted</h2>
-    <p class="body-text">Every listing gets tested and priced honestly before it goes up. First batch of deals is being prepped now.</p>
+
+    <p class="eyebrow">
+      Ticket 02 — Deals
+    </p>
+
+    <h2>
+      Deals, checked before they're posted
+    </h2>
+
+    <p class="body-text">
+      Every listing gets tested and priced honestly before it goes up.
+      First batch of deals is being prepped now.
+    </p>
+
+
     <div class="grid">
 
-      <div class="card"><span class="tag-corner">CONDITION: USED</span><img src="images/hp440.jpg" alt="HP 440 G10"><h3>HP 440 G10</h3><p>Core i5- 13th Gen 32Gb Ram/ 1TB SSD. Comes with charger.</p><span class="price">KSh 60,500</span> 
-      <!-- WhatsApp Button Added Below -->
-      <a class="btn whatsapp-btn"
-       href="#"
-       data-product="HP 440 G10 - Ksh 60,500"
-       target="_blank"
-       rel="noopener">
-       WhatsApp
-      </a>
-   
-      <div class="card"><span class="tag-corner">SOON</span><h3>Phones</h3><p>Tested, unlocked, sold with proof of ownership.</p></div>
-      <div class="card"><span class="tag-corner">SOON</span><h3>Laptops</h3><p>Screens, batteries, keyboards — sourced and checked.</p></div>
-      <div class="card"><span class="tag-corner">SOON</span><h3>Accessories</h3><p>Chargers, cases, and the small stuff worth trusting.</p></div>
+      <!-- HP 440 G10 -->
+
+      <div class="card">
+
+        <span class="tag-corner">
+          CONDITION: USED
+        </span>
+
+        <img
+          src="images/hp440.jpg"
+          alt="HP 440 G10"
+        >
+
+        <h3>
+          HP 440 G10
+        </h3>
+
+        <p>
+          Core i5 - 13th Gen, 32GB RAM / 1TB SSD.
+          Comes with charger.
+        </p>
+
+        <span class="price">
+          KSh 60,500
+        </span>
+
+        <a
+          class="btn whatsapp-btn"
+          href="#"
+          data-product="HP 440 G10"
+          data-price="KSh 60,500"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp
+        </a>
+
+      </div>
+
+
+      <!-- PHONES -->
+
+      <div class="card">
+
+        <span class="tag-corner">
+          SOON
+        </span>
+
+        <h3>
+          Phones
+        </h3>
+
+        <p>
+          Tested, unlocked, sold with proof of ownership.
+        </p>
+
+      </div>
+
+
+      <!-- LAPTOPS -->
+
+      <div class="card">
+
+        <span class="tag-corner">
+          SOON
+        </span>
+
+        <h3>
+          Laptops
+        </h3>
+
+        <p>
+          Screens, batteries, keyboards — sourced and checked.
+        </p>
+
+      </div>
+
+
+      <!-- ACCESSORIES -->
+
+      <div class="card">
+
+        <span class="tag-corner">
+          SOON
+        </span>
+
+        <h3>
+          Accessories
+        </h3>
+
+        <p>
+          Chargers, cases, and the small stuff worth trusting.
+        </p>
+
+      </div>
+
     </div>
+
   </section>
+
+
+  <!-- =========================
+       BLOG
+  ========================= -->
 
   <section id="blog">
-    <p class="eyebrow">Ticket 03 — Blog</p>
-    <h2>What's actually wrong with your device</h2>
-    <p class="body-text">Repair breakdowns, teardown notes, and the real cost of fixing vs. replacing. First posts landing soon.</p>
+
+    <p class="eyebrow">
+      Ticket 03 — Blog
+    </p>
+
+    <h2>
+      What's actually wrong with your device
+    </h2>
+
+    <p class="body-text">
+      Repair breakdowns, teardown notes, and the real cost
+      of fixing vs. replacing. First posts landing soon.
+    </p>
+
     <div class="grid">
-      <div class="card"><h3>HP Laptop Repair Series</h3><p>A running series on common HP faults and fixes.</p></div>
-      <div class="card"><h3>Buy vs. Repair</h3><p>How to tell when a device is actually done for.</p></div>
+
+      <div class="card">
+        <h3>
+          HP Laptop Repair Series
+        </h3>
+
+        <p>
+          A running series on common HP faults and fixes.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>
+          Buy vs. Repair
+        </h3>
+
+        <p>
+          How to tell when a device is actually done for.
+        </p>
+      </div>
+
     </div>
+
   </section>
+
+
+  <!-- =========================
+       GUIDES
+  ========================= -->
 
   <section id="guides">
-    <p class="eyebrow">Ticket 04 — Guides</p>
-    <h2>Guides that save you from a bad deal</h2>
-    <p class="body-text">Paid, practical guides — starting with Proof of Ownership - a must have guide for everyone (Buyers, Sellers and Owners). If it's of value you need this guide.</p>
+
+    <p class="eyebrow">
+      Ticket 04 — Guides
+    </p>
+
+    <h2>
+      Guides that save you from a bad deal
+    </h2>
+
+    <p class="body-text">
+      Paid, practical guides — starting with Proof of Ownership -
+      a must have guide for everyone (Buyers, Sellers and Owners).
+      If it's of value you need this guide.
+    </p>
+
     <div class="grid">
-      <div class="card"><span class="tag-corner">PDF</span><h3>Proof of Ownership Guide</h3><p>How to protect your purchases or inventory the easy way</p></div>
+
+      <div class="card">
+
+        <span class="tag-corner">
+          PDF
+        </span>
+
+        <h3>
+          Proof of Ownership Guide
+        </h3>
+
+        <p>
+          How to protect your purchases or inventory the easy way.
+        </p>
+
+      </div>
+
     </div>
+
   </section>
+
+
+  <!-- =========================
+       3D PRINTS
+  ========================= -->
 
   <section id="prints">
-    <p class="eyebrow">Ticket 05 — 3D Prints</p>
-    <h2>Printed locally, made to fit</h2>
-    <p class="body-text">Running on a Bambu 3D Printer — custom brackets, replacement clips or a fancy phone stand you can't find in a shop, printed to order.</p>
+
+    <p class="eyebrow">
+      Ticket 05 — 3D Prints
+    </p>
+
+    <h2>
+      Printed locally, made to fit
+    </h2>
+
+    <p class="body-text">
+      Running on a Bambu 3D Printer — custom brackets,
+      replacement clips or a fancy phone stand you can't
+      find in a shop, printed to order.
+    </p>
+
   </section>
 
+
+  <!-- =========================
+       CONTACT
+  ========================= -->
+
   <section id="contact">
-    <p class="eyebrow">Ticket 06 — Contact</p>
-    <h2>Get in touch</h2>
-    <p class="body-text">Fastest way to reach ShikaDeal right now is WhatsApp or TikTok. Site-based contact is coming once the shop is fully live.</p>
+
+    <p class="eyebrow">
+      Ticket 06 — Contact
+    </p>
+
+    <h2>
+      Get in touch
+    </h2>
+
+    <p class="body-text">
+      Fastest way to reach ShikaDeal right now is WhatsApp
+      or TikTok. Site-based contact is coming once the shop
+      is fully live.
+    </p>
+
     <div class="contact-links">
-      <a class="btn" href="https://wa.me/254795761999" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn alt" href="https://www.tiktok.com/@shikadeal.com" target="_blank" rel="noopener">TikTok</a>
+
+      <a
+        class="btn"
+        href="https://wa.me/254795761999"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+
+      <a
+        class="btn alt"
+        href="https://www.tiktok.com/@shikadeal.com"
+        target="_blank"
+        rel="noopener"
+      >
+        TikTok
+      </a>
+
     </div>
+
   </section>
 
 </div>
 
-<footer>
-  <div id="opened"></div>
-  <div class="foot-links">
-    <a href="https://wa.me/254795761999" target="_blank" rel="noopener">WhatsApp</a>
-    <a href="https://www.tiktok.com/@shikadeal.com" target="_blank" rel="noopener">TikTok</a>
-  </div>
-</footer>
-<div class="lightbox" id="lightbox"> <img id="lightbox-img" src="" alt=""> </div>
 
-  <script>
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div id="opened"></div>
+
+  <div class="foot-links">
+
+    <a
+      href="https://wa.me/254795761999"
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp
+    </a>
+
+    <a
+      href="https://www.tiktok.com/@shikadeal.com"
+      target="_blank"
+      rel="noopener"
+    >
+      TikTok
+    </a>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     IMAGE LIGHTBOX
+========================= -->
+
+<div class="lightbox" id="lightbox">
+
+  <img
+    id="lightbox-img"
+    src=""
+    alt=""
+  >
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+  /*
+   * FOOTER YEAR
+   */
+
   const opened = document.getElementById('opened');
+
   const today = new Date();
 
-  // Lightbox
-  document.querySelectorAll('.card img').forEach(img => {
-    img.addEventListener('click', () => {
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox').classList.add('open');
+  opened.textContent =
+    '© ' +
+    today.getFullYear() +
+    ' ShikaDeal — Kilifi, Kenya';
+
+
+  /*
+   * IMAGE LIGHTBOX
+   *
+   * Product images stay small on the page.
+   * Clicking one opens the full-size image.
+   */
+
+  const lightbox =
+    document.getElementById('lightbox');
+
+  const lightboxImg =
+    document.getElementById('lightbox-img');
+
+
+  document
+    .querySelectorAll('.card img')
+    .forEach(img => {
+
+      img.addEventListener('click', () => {
+
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+
+        lightbox.classList.add('open');
+
+      });
+
     });
+
+
+  /*
+   * CLOSE LIGHTBOX
+   */
+
+  lightbox.addEventListener('click', () => {
+
+    lightbox.classList.remove('open');
+
   });
 
-  document.getElementById('lightbox').addEventListener('click', () => {
-    document.getElementById('lightbox').classList.remove('open');
-  });
 
-  // Footer copyright
-  opened.textContent = '© ' + today.getFullYear() + ' ShikaDeal — Kilifi, Kenya';
+  /*
+   * WHATSAPP PRODUCT LINKS
+   *
+   * Each product button contains:
+   *
+   * data-product="HP 440 G10"
+   * data-price="KSh 60,500"
+   *
+   * JavaScript automatically creates
+   * the WhatsApp message.
+   */
 
-  // WhatsApp product messages
-  document.querySelectorAll('.whatsapp-btn').forEach(button => {
-    const product = button.dataset.product;
+  document
+    .querySelectorAll('.whatsapp-btn')
+    .forEach(button => {
 
-    const message = `Hi, I'm interested in the ${product}. Is it still available?`;
+      const product =
+        button.dataset.product;
 
-    button.href =
-      `https://wa.me/254795761999?text=${encodeURIComponent(message)}`;
-  });
+      const price =
+        button.dataset.price;
+
+
+      const message =
+        `Hi, I'm interested in the ${product} (${price}). Is it still available?`;
+
+
+      button.href =
+        `https://wa.me/254795761999?text=${encodeURIComponent(message)}`;
+
+    });
+
 </script>
 
 </body>
