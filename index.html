@@ -1,1 +1,228 @@
- <!DOCTYPE html> <html> <head><title>ShikaDeal Test</title></head> <body><h1>Hello, Shikadeal is coming really really soon</h1></body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShikaDeal — Tech Hustle, Kilifi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171512;
+    --paper:#F1E9D8;
+    --rust:#C1440E;
+    --signal:#F2B705;
+    --wire:#3AAFA9;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--ink);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(241,233,216,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 16px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .string{
+    width:2px;
+    height:36px;
+    background:repeating-linear-gradient(var(--paper) 0 4px, transparent 4px 8px);
+    margin:0 auto;
+  }
+  .hole{
+    width:14px;height:14px;
+    border-radius:50%;
+    border:2px solid var(--paper);
+    margin:0 auto -1px;
+    background:var(--ink);
+  }
+  .tag{
+    max-width:420px;
+    width:100%;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:6px;
+    padding:32px 28px 26px;
+    position:relative;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .tag::before, .tag::after{
+    content:"";
+    position:absolute;
+    left:0; right:0;
+    height:0;
+    border-top:2px dashed rgba(23,21,18,0.25);
+  }
+  .row-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:'Rajdhani',sans-serif;
+  }
+  .brand{
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:0.5px;
+  }
+  .ticket-no{
+    font-size:12px;
+    color:rgba(23,21,18,0.6);
+  }
+  .location{
+    margin-top:2px;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--wire);
+    font-weight:500;
+  }
+  .divider{
+    border:none;
+    border-top:1px dashed rgba(23,21,18,0.3);
+    margin:18px 0;
+  }
+  .stamp{
+    display:inline-block;
+    border:3px solid var(--rust);
+    color:var(--rust);
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:2px;
+    padding:6px 14px;
+    transform:rotate(-6deg);
+    border-radius:4px;
+    margin:6px 0 20px;
+    animation:stamp-in 0.5s cubic-bezier(.2,1.6,.4,1) 0.15s both;
+  }
+  @keyframes stamp-in{
+    from{opacity:0; transform:rotate(-6deg) scale(1.8);}
+    to{opacity:1; transform:rotate(-6deg) scale(1);}
+  }
+  .lede{
+    font-size:14px;
+    line-height:1.6;
+    color:rgba(23,21,18,0.85);
+    margin:0 0 20px;
+  }
+  .items{
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-size:13.5px;
+  }
+  .items li{
+    display:flex;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px dashed rgba(23,21,18,0.18);
+  }
+  .items li:last-child{border-bottom:none;}
+  .num{
+    color:var(--wire);
+    font-weight:500;
+  }
+  .item-title{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    display:block;
+  }
+  .item-desc{
+    color:rgba(23,21,18,0.65);
+    font-size:12.5px;
+  }
+  .footer{
+    margin-top:22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:11px;
+    color:rgba(23,21,18,0.55);
+  }
+  .cta{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--signal);
+    text-decoration:none;
+    font-family:'Rajdhani',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:1px;
+    padding:10px 16px;
+    border-radius:4px;
+  }
+  .barcode{
+    height:26px;
+    margin-top:16px;
+    background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 11px);
+    opacity:0.85;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .stamp{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+  <div>
+    <div class="hole"></div>
+    <div class="string"></div>
+    <div class="tag">
+      <div class="row-top">
+        <span class="brand">SHIKADEAL</span>
+        <span class="ticket-no">NO. 001</span>
+      </div>
+      <div class="location">Tech Hustle · Kilifi, Kenya</div>
+
+      <hr class="divider">
+
+      <span class="stamp">COMING SOON</span>
+
+      <p class="lede">Phones and laptops fixed, real deals on gear, and prints made to order. Everything under one roof, out of Kilifi.</p>
+
+      <ul class="items">
+        <li>
+          <span class="num">01</span>
+          <span>
+            <span class="item-title">Repairs &amp; Resale</span>
+            <span class="item-desc">Diagnosed, fixed, and sold with proof of ownership.</span>
+          </span>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <span>
+            <span class="item-title">Deals &amp; Buying Guides</span>
+            <span class="item-desc">What to buy, what to skip, and where the real price is.</span>
+          </span>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <span>
+            <span class="item-title">Prints on Demand</span>
+            <span class="item-desc">Bambu A1 with AMS — custom parts, made locally.</span>
+          </span>
+        </li>
+      </ul>
+
+      <div class="footer">
+        <span id="opened"></span>
+        <a class="cta" href="#" onclick="return false;">FOLLOW ALONG</a>
+      </div>
+
+      <div class="barcode"></div>
+    </div>
+  </div>
+
+<script>
+  const opened = document.getElementById('opened');
+  const today = new Date();
+  opened.textContent = 'Opened ' + today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+</script>
+</body>
+</html>
