@@ -10,395 +10,465 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-  :root {
-    --ink: #171512;
-    --ink-2: #1F1C18;
-    --paper: #F1E9D8;
-    --rust: #C1440E;
-    --signal: #F2B705;
-    --wire: #3AAFA9;
+  :root{
+    --ink:#171512;
+    --ink-2:#1F1C18;
+    --paper:#F1E9D8;
+    --rust:#C1440E;
+    --signal:#F2B705;
+    --wire:#3AAFA9;
   }
 
-  * {
-    box-sizing: border-box;
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--ink);
+    background-image:radial-gradient(circle at 1px 1px, rgba(241,233,216,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+    color:var(--paper);
+    font-family:'IBM Plex Mono', monospace;
   }
 
-  html {
-    scroll-behavior: smooth;
+  a{color:inherit;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 20px;
   }
 
-  body {
-    margin: 0;
-    background: var(--ink);
-    background-image:
-      radial-gradient(
-        circle at 1px 1px,
-        rgba(241,233,216,0.05) 1px,
-        transparent 0
-      );
-    background-size: 22px 22px;
-    color: var(--paper);
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  .wrap {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
 
   /* =========================
      HEADER
   ========================= */
 
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(23,21,18,0.92);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(241,233,216,0.12);
+  header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(23,21,18,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(241,233,216,0.12);
   }
 
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-    flex-wrap: wrap;
-    gap: 12px;
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    flex-wrap:wrap;
+    gap:12px;
   }
 
-  .logo {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-    text-decoration: none;
+  .logo{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:0.5px;
+    text-decoration:none;
   }
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 22px;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:22px;
+    margin:0;
+    padding:0;
+    flex-wrap:wrap;
   }
 
-  nav a {
-    text-decoration: none;
-    font-size: 12.5px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(241,233,216,0.75);
-    padding-bottom: 3px;
-    border-bottom: 2px solid transparent;
+  nav a{
+    text-decoration:none;
+    font-size:12.5px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:rgba(241,233,216,0.75);
+    padding-bottom:3px;
+    border-bottom:2px solid transparent;
   }
 
-  nav a:hover {
-    color: var(--paper);
-    border-bottom-color: var(--signal);
+  nav a:hover{
+    color:var(--paper);
+    border-bottom-color:var(--signal);
   }
+
 
   /* =========================
      HERO
   ========================= */
 
-  .hero {
-    padding: 64px 20px 40px;
-    text-align: center;
+  .hero{
+    padding:64px 20px 40px;
+    text-align:center;
   }
 
-  .hole {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid var(--paper);
-    margin: 0 auto -1px;
-    background: var(--ink);
+  .hole{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    border:2px solid var(--paper);
+    margin:0 auto -1px;
+    background:var(--ink);
   }
 
-  .string {
-    width: 2px;
-    height: 30px;
-    background:
-      repeating-linear-gradient(
-        var(--paper) 0 4px,
-        transparent 4px 8px
-      );
-    margin: 0 auto;
+  .string{
+    width:2px;
+    height:30px;
+    background:repeating-linear-gradient(
+      var(--paper) 0 4px,
+      transparent 4px 8px
+    );
+    margin:0 auto;
   }
 
-  .tag {
-    max-width: 420px;
-    margin: 0 auto;
-    text-align: left;
-    background: var(--paper);
-    color: var(--ink);
-    border-radius: 6px;
-    padding: 28px 26px 22px;
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  .tag{
+    max-width:420px;
+    margin:0 auto;
+    text-align:left;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:6px;
+    padding:28px 26px 22px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
   }
 
-  .row-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-family: 'Rajdhani', sans-serif;
+  .row-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:'Rajdhani',sans-serif;
   }
 
-  .brand {
-    font-size: 28px;
-    font-weight: 700;
+  .brand{
+    font-size:28px;
+    font-weight:700;
   }
 
-  .ticket-no {
-    font-size: 12px;
-    color: rgba(23,21,18,0.6);
+  .ticket-no{
+    font-size:12px;
+    color:rgba(23,21,18,0.6);
   }
 
-  .location {
-    margin-top: 2px;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--wire);
-    font-weight: 500;
+  .location{
+    margin-top:2px;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--wire);
+    font-weight:500;
   }
 
-  .divider {
-    border: none;
-    border-top: 1px dashed rgba(23,21,18,0.3);
-    margin: 16px 0;
+  .divider{
+    border:none;
+    border-top:1px dashed rgba(23,21,18,0.3);
+    margin:16px 0;
   }
 
-  .stamp {
-    display: inline-block;
-    border: 3px solid var(--rust);
-    color: var(--rust);
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 2px;
-    padding: 5px 12px;
-    transform: rotate(-6deg);
-    border-radius: 4px;
-    margin: 4px 0 16px;
+  .stamp{
+    display:inline-block;
+    border:3px solid var(--rust);
+    color:var(--rust);
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:2px;
+    padding:5px 12px;
+    transform:rotate(-6deg);
+    border-radius:4px;
+    margin:4px 0 16px;
   }
 
-  .lede {
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: rgba(23,21,18,0.85);
-    margin: 0;
+  .lede{
+    font-size:13.5px;
+    line-height:1.6;
+    color:rgba(23,21,18,0.85);
+    margin:0;
   }
+
 
   /* =========================
      SECTIONS
   ========================= */
 
-  section {
-    padding: 64px 0;
-    border-top: 1px dashed rgba(241,233,216,0.15);
+  section{
+    padding:64px 0;
+    border-top:1px dashed rgba(241,233,216,0.15);
   }
 
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--wire);
-    margin: 0 0 8px;
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--wire);
+    margin:0 0 8px;
   }
 
-  h2 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    margin: 0 0 18px;
+  h2{
+    font-family:'Rajdhani',sans-serif;
+    font-size:30px;
+    font-weight:700;
+    margin:0 0 18px;
   }
 
-  p.body-text {
-    font-size: 14px;
-    line-height: 1.75;
-    color: rgba(241,233,216,0.8);
-    max-width: 640px;
+  p.body-text{
+    font-size:14px;
+    line-height:1.75;
+    color:rgba(241,233,216,0.8);
+    max-width:640px;
   }
+
 
   /* =========================
      CARDS
   ========================= */
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(220px, 1fr)
-    );
-    gap: 16px;
-    margin-top: 24px;
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    margin-top:24px;
   }
 
-  .card {
-    background: var(--ink-2);
-    border: 1px solid rgba(241,233,216,0.12);
-    border-radius: 6px;
-    padding: 20px;
-    position: relative;
+  .card{
+    background:var(--ink-2);
+    border:1px solid rgba(241,233,216,0.12);
+    border-radius:6px;
+    padding:20px;
+    position:relative;
   }
 
-  .card .tag-corner {
-    position: absolute;
-    top: -1px;
-    right: 14px;
-    background: var(--rust);
-    color: var(--paper);
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 1px;
-    padding: 3px 8px;
-    border-radius: 0 0 4px 4px;
+  .card .tag-corner{
+    position:absolute;
+    top:-1px;
+    right:14px;
+    background:var(--rust);
+    color:var(--paper);
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    font-size:10px;
+    letter-spacing:1px;
+    padding:3px 8px;
+    border-radius:0 0 4px 4px;
   }
 
-  .card h3 {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 17px;
-    margin: 6px 0 8px;
+  .card h3{
+    font-family:'Rajdhani',sans-serif;
+    font-size:17px;
+    margin:6px 0 8px;
   }
 
-  /* NORMAL PRODUCT IMAGE */
-
-  .card img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 12px;
-    display: block;
-    cursor: zoom-in;
+  .card p{
+    font-size:12.5px;
+    line-height:1.6;
+    color:rgba(241,233,216,0.7);
+    margin:0;
   }
 
-  .card p {
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: rgba(241,233,216,0.7);
-    margin: 0;
+  .card .price{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    color:var(--signal);
+    font-size:15px;
+    margin-top:10px;
+    margin-bottom:12px;
+    display:block;
   }
 
-  .card .price {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    color: var(--signal);
-    font-size: 15px;
-    margin-top: 10px;
-    display: block;
+
+  /* =========================
+     PRODUCT IMAGE GALLERY
+  ========================= */
+
+  .product-gallery{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    margin-bottom:7px;
+    border-radius:4px;
   }
 
-  .card .condition {
-    font-size: 11px;
-    color: var(--wire);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  .product-gallery::-webkit-scrollbar{
+    display:none;
   }
+
+  .product-gallery img{
+    flex:0 0 100%;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:4px;
+    scroll-snap-align:start;
+    cursor:zoom-in;
+    margin:0;
+    display:block;
+  }
+
+
+  /* =========================
+     GALLERY DOTS
+  ========================= */
+
+  .gallery-dots{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+    margin:6px 0 12px;
+  }
+
+  .gallery-dots span{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(241,233,216,0.25);
+    transition:background 0.2s ease, transform 0.2s ease;
+    cursor:pointer;
+  }
+
+  .gallery-dots span.active{
+    background:var(--signal);
+    transform:scale(1.25);
+  }
+
 
   /* =========================
      BUTTONS
   ========================= */
 
-  .contact-links {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+  .contact-links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:20px;
   }
 
-  .btn {
-    display: inline-block;
-    background: var(--signal);
-    color: var(--ink);
-    text-decoration: none;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1px;
-    padding: 11px 18px;
-    border-radius: 4px;
+  .btn{
+    display:inline-block;
+    background:var(--signal);
+    color:var(--ink);
+    text-decoration:none;
+    font-family:'Rajdhani',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:1px;
+    padding:11px 18px;
+    border-radius:4px;
   }
 
-  .btn:hover {
-    opacity: 0.9;
+  .btn:hover{
+    opacity:0.9;
   }
 
-  .btn.alt {
-    background: transparent;
-    border: 1px solid rgba(241,233,216,0.4);
-    color: var(--paper);
+  .btn.alt{
+    background:transparent;
+    border:1px solid rgba(241,233,216,0.4);
+    color:var(--paper);
   }
+
 
   /* =========================
      LIGHTBOX
   ========================= */
 
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    background: rgba(23,21,18,0.92);
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    cursor: zoom-out;
+  .lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:50;
+    background:rgba(23,21,18,0.92);
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    cursor:zoom-out;
   }
 
-  .lightbox.open {
-    display: flex;
+  .lightbox.open{
+    display:flex;
   }
 
-  .lightbox img {
-    max-width: 100%;
-    max-height: 90vh;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.7);
+  .lightbox img{
+    max-width:100%;
+    max-height:90vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:6px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.7);
   }
+
 
   /* =========================
      FOOTER
   ========================= */
 
-  footer {
-    border-top: 1px solid rgba(241,233,216,0.12);
-    padding: 28px 20px;
-    text-align: center;
-    font-size: 11px;
-    color: rgba(241,233,216,0.5);
+  footer{
+    border-top:1px solid rgba(241,233,216,0.12);
+    padding:28px 20px;
+    text-align:center;
+    font-size:11px;
+    color:rgba(241,233,216,0.5);
   }
 
-  footer .foot-links {
-    margin-top: 10px;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
+  footer .foot-links{
+    margin-top:10px;
+    display:flex;
+    gap:16px;
+    justify-content:center;
   }
 
-  footer a {
-    text-decoration: none;
-    color: rgba(241,233,216,0.6);
+  footer a{
+    text-decoration:none;
+    color:rgba(241,233,216,0.6);
   }
 
-  footer a:hover {
-    color: var(--signal);
+  footer a:hover{
+    color:var(--signal);
   }
+
+
+  /* =========================
+     MOBILE
+  ========================= */
+
+  @media(max-width:600px){
+
+    .nav-inner{
+      justify-content:center;
+    }
+
+    nav ul{
+      justify-content:center;
+      gap:14px;
+    }
+
+    .hero{
+      padding-top:40px;
+    }
+
+    section{
+      padding:48px 0;
+    }
+
+    h2{
+      font-size:27px;
+    }
+
+    .card{
+      padding:16px;
+    }
+
+  }
+
 </style>
 </head>
+
 
 <body>
 
@@ -442,9 +512,7 @@
       <span class="ticket-no">NO. 001</span>
     </div>
 
-    <div class="location">
-      Tech Hustle · Kilifi, Kenya
-    </div>
+    <div class="location">Tech Hustle · Kilifi, Kenya</div>
 
     <hr class="divider">
 
@@ -457,314 +525,213 @@
     </p>
 
   </div>
+
 </div>
 
 
 <div class="wrap">
 
-  <!-- =========================
-       ABOUT
-  ========================= -->
 
-  <section id="about">
+<!-- =========================
+     ABOUT
+========================= -->
 
-    <p class="eyebrow">
-      Ticket 01 — About
-    </p>
+<section id="about">
 
-    <h2>
-      Built on repair benches, not boardrooms
-    </h2>
+  <p class="eyebrow">Ticket 01 — About</p>
 
-    <p class="body-text">
-      ShikaDeal runs out of Kilifi — repairing and reselling
-      electronics, breaking down what's actually worth buying,
-      and 3D printing custom parts on demand. No corporate polish,
-      just someone who opens the device up and tells you the truth
-      about it.
-    </p>
+  <h2>Built on repair benches, not boardrooms</h2>
 
-  </section>
+  <p class="body-text">
+    ShikaDeal runs out of Kilifi — repairing and reselling electronics,
+    breaking down what's actually worth buying, and 3D printing custom
+    parts on demand. No corporate polish, just someone who opens the
+    device up and tells you the truth about it.
+  </p>
+
+</section>
 
 
-  <!-- =========================
-       DEALS
-  ========================= -->
+<!-- =========================
+     DEALS
+========================= -->
 
-  <section id="deals">
+<section id="deals">
 
-    <p class="eyebrow">
-      Ticket 02 — Deals
-    </p>
+  <p class="eyebrow">Ticket 02 — Deals</p>
 
-    <h2>
-      Deals, checked before they're posted
-    </h2>
+  <h2>Deals, checked before they're posted</h2>
 
-    <p class="body-text">
-      Every listing gets tested and priced honestly before it goes up.
-      First batch of deals is being prepped now.
-    </p>
+  <p class="body-text">
+    Every listing gets tested and priced honestly before it goes up.
+    First batch of deals is being prepped now.
+  </p>
 
 
-    <div class="grid">
+  <div class="grid">
 
-      <!-- HP 440 G10 -->
 
-      <div class="card">
-
-        <span class="tag-corner">
-          CONDITION: USED
-        </span>
-
-        <img
-          src="images/hp440.jpg"
-          alt="HP 440 G10"
-        >
-
-        <h3>
-          HP 440 G10
-        </h3>
-
-        <p>
-          Core i5 - 13th Gen, 32GB RAM / 1TB SSD.
-          Comes with charger.
-        </p>
-
-        <span class="price">
-          KSh 60,500
-        </span>
-
-        <a
-          class="btn whatsapp-btn"
-          href="#"
-          data-product="HP 440 G10"
-          data-price="KSh 60,500"
-          target="_blank"
-          rel="noopener"
-        >
-          WhatsApp
-        </a>
-
+    <!-- HP 440 G10 -->
+    <div class="card">
+      <span class="tag-corner">USED</span>
+      <div class="product-gallery">
+        <img src="images/hp440-1.jpg" alt="HP 440 G10 front">
+        <img src="images/hp440-2.jpg" alt="HP 440 G10 keyboard">
+        <img src="images/hp440-3.jpg" alt="HP 440 G10 side">
+        <img src="images/hp440-4.jpg" alt="HP 440 G10 back">
       </div>
-
-
-      <!-- PHONES -->
-
-      <div class="card">
-
-        <span class="tag-corner">
-          SOON
-        </span>
-
-        <h3>
-          Phones
-        </h3>
-
-        <p>
-          Tested, unlocked, sold with proof of ownership.
-        </p>
-
-      </div>
-
-
-      <!-- LAPTOPS -->
-
-      <div class="card">
-
-        <span class="tag-corner">
-          SOON
-        </span>
-
-        <h3>
-          Laptops
-        </h3>
-
-        <p>
-          Screens, batteries, keyboards — sourced and checked.
-        </p>
-
-      </div>
-
-
-      <!-- ACCESSORIES -->
-
-      <div class="card">
-
-        <span class="tag-corner">
-          SOON
-        </span>
-
-        <h3>
-          Accessories
-        </h3>
-
-        <p>
-          Chargers, cases, and the small stuff worth trusting.
-        </p>
-
-      </div>
-
+      <div class="gallery-dots"><span class="active"></span><span></span><span></span><span></span></div>
+      <h3>HP 440 G10</h3>
+      <p>Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.</p>
+      <span class="price">KSh 60,500</span>
+      <a class="btn whatsapp-btn" href="#" data-product="HP 440 G10" data-price="KSh 60,500" target="_blank" rel="noopener">WhatsApp</a>
     </div>
 
-  </section>
 
-
-  <!-- =========================
-       BLOG
-  ========================= -->
-
-  <section id="blog">
-
-    <p class="eyebrow">
-      Ticket 03 — Blog
-    </p>
-
-    <h2>
-      What's actually wrong with your device
-    </h2>
-
-    <p class="body-text">
-      Repair breakdowns, teardown notes, and the real cost
-      of fixing vs. replacing. First posts landing soon.
-    </p>
-
-    <div class="grid">
-
-      <div class="card">
-        <h3>
-          HP Laptop Repair Series
-        </h3>
-
-        <p>
-          A running series on common HP faults and fixes.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>
-          Buy vs. Repair
-        </h3>
-
-        <p>
-          How to tell when a device is actually done for.
-        </p>
-      </div>
-
+    <!-- PHONES -->
+    <div class="card">
+      <span class="tag-corner">SOON</span>
+      <h3>Phones</h3>
+      <p>Tested, unlocked, sold with proof of ownership.</p>
     </div>
 
-  </section>
 
-
-  <!-- =========================
-       GUIDES
-  ========================= -->
-
-  <section id="guides">
-
-    <p class="eyebrow">
-      Ticket 04 — Guides
-    </p>
-
-    <h2>
-      Guides that save you from a bad deal
-    </h2>
-
-    <p class="body-text">
-      Paid, practical guides — starting with Proof of Ownership -
-      a must have guide for everyone (Buyers, Sellers and Owners).
-      If it's of value you need this guide.
-    </p>
-
-    <div class="grid">
-
-      <div class="card">
-
-        <span class="tag-corner">
-          PDF
-        </span>
-
-        <h3>
-          Proof of Ownership Guide
-        </h3>
-
-        <p>
-          How to protect your purchases or inventory the easy way.
-        </p>
-
-      </div>
-
+    <!-- LAPTOPS -->
+    <div class="card">
+      <span class="tag-corner">SOON</span>
+      <h3>Laptops</h3>
+      <p>Screens, batteries, keyboards — sourced and checked.</p>
     </div>
 
-  </section>
 
-
-  <!-- =========================
-       3D PRINTS
-  ========================= -->
-
-  <section id="prints">
-
-    <p class="eyebrow">
-      Ticket 05 — 3D Prints
-    </p>
-
-    <h2>
-      Printed locally, made to fit
-    </h2>
-
-    <p class="body-text">
-      Running on a Bambu 3D Printer — custom brackets,
-      replacement clips or a fancy phone stand you can't
-      find in a shop, printed to order.
-    </p>
-
-  </section>
-
-
-  <!-- =========================
-       CONTACT
-  ========================= -->
-
-  <section id="contact">
-
-    <p class="eyebrow">
-      Ticket 06 — Contact
-    </p>
-
-    <h2>
-      Get in touch
-    </h2>
-
-    <p class="body-text">
-      Fastest way to reach ShikaDeal right now is WhatsApp
-      or TikTok. Site-based contact is coming once the shop
-      is fully live.
-    </p>
-
-    <div class="contact-links">
-
-      <a
-        class="btn"
-        href="https://wa.me/254795761999"
-        target="_blank"
-        rel="noopener"
-      >
-        WhatsApp
-      </a>
-
-      <a
-        class="btn alt"
-        href="https://www.tiktok.com/@shikadeal.com"
-        target="_blank"
-        rel="noopener"
-      >
-        TikTok
-      </a>
-
+    <!-- ACCESSORIES -->
+    <div class="card">
+      <span class="tag-corner">SOON</span>
+      <h3>Accessories</h3>
+      <p>Chargers, cases, and the small stuff worth trusting.</p>
     </div>
 
-  </section>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BLOG
+========================= -->
+
+<section id="blog">
+
+  <p class="eyebrow">Ticket 03 — Blog</p>
+
+  <h2>What's actually wrong with your device</h2>
+
+  <p class="body-text">
+    Repair breakdowns, teardown notes, and the real cost of fixing
+    vs. replacing. First posts landing soon.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>HP Laptop Repair Series</h3>
+      <p>A running series on common HP faults and fixes.</p>
+    </div>
+
+    <div class="card">
+      <h3>Buy vs. Repair</h3>
+      <p>How to tell when a device is actually done for.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     GUIDES
+========================= -->
+
+<section id="guides">
+
+  <p class="eyebrow">Ticket 04 — Guides</p>
+
+  <h2>Guides that save you from a bad deal</h2>
+
+  <p class="body-text">
+    Paid, practical guides — starting with Proof of Ownership -
+    a must have guide for everyone (Buyers, Sellers and Owners).
+    If it's of value you need this guide.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <span class="tag-corner">PDF</span>
+      <h3>Proof of Ownership Guide</h3>
+      <p>How to protect your purchases or inventory the easy way.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     3D PRINTS
+========================= -->
+
+<section id="prints">
+
+  <p class="eyebrow">Ticket 05 — 3D Prints</p>
+
+  <h2>Printed locally, made to fit</h2>
+
+  <p class="body-text">
+    Running on a Bambu 3D Printer — custom brackets, replacement
+    clips or a fancy phone stand you can't find in a shop,
+    printed to order.
+  </p>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+  <p class="eyebrow">Ticket 06 — Contact</p>
+
+  <h2>Get in touch</h2>
+
+  <p class="body-text">
+    Fastest way to reach ShikaDeal right now is WhatsApp or TikTok.
+    Site-based contact is coming once the shop is fully live.
+  </p>
+
+  <div class="contact-links">
+
+    <a class="btn"
+       href="https://wa.me/254795761999"
+       target="_blank"
+       rel="noopener">
+      WhatsApp
+    </a>
+
+    <a class="btn alt"
+       href="https://www.tiktok.com/@shikadeal.com"
+       target="_blank"
+       rel="noopener">
+      TikTok
+    </a>
+
+  </div>
+
+</section>
+
 
 </div>
 
@@ -779,19 +746,15 @@
 
   <div class="foot-links">
 
-    <a
-      href="https://wa.me/254795761999"
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="https://wa.me/254795761999"
+       target="_blank"
+       rel="noopener">
       WhatsApp
     </a>
 
-    <a
-      href="https://www.tiktok.com/@shikadeal.com"
-      target="_blank"
-      rel="noopener"
-    >
+    <a href="https://www.tiktok.com/@shikadeal.com"
+       target="_blank"
+       rel="noopener">
       TikTok
     </a>
 
@@ -801,17 +764,11 @@
 
 
 <!-- =========================
-     IMAGE LIGHTBOX
+     LIGHTBOX
 ========================= -->
 
 <div class="lightbox" id="lightbox">
-
-  <img
-    id="lightbox-img"
-    src=""
-    alt=""
-  >
-
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 
@@ -821,92 +778,101 @@
 
 <script>
 
-  /*
-   * FOOTER YEAR
-   */
-
+  /* Footer year */
   const opened = document.getElementById('opened');
-
   const today = new Date();
 
   opened.textContent =
-    '© ' +
-    today.getFullYear() +
-    ' ShikaDeal — Kilifi, Kenya';
+    '© ' + today.getFullYear() + ' ShikaDeal — Kilifi, Kenya';
 
 
-  /*
-   * IMAGE LIGHTBOX
-   *
-   * Product images stay small on the page.
-   * Clicking one opens the full-size image.
-   */
+  /* Lightbox */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
 
-  const lightbox =
-    document.getElementById('lightbox');
+  document.querySelectorAll('.product-gallery img').forEach(img => {
 
-  const lightboxImg =
-    document.getElementById('lightbox-img');
+    img.addEventListener('click', () => {
+
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+
+      lightbox.classList.add('open');
+
+    });
+
+  });
 
 
-  document
-    .querySelectorAll('.card img')
-    .forEach(img => {
+  /* Close lightbox */
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('open');
+  });
 
-      img.addEventListener('click', () => {
 
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
+  /* Gallery scrolling + dots */
+  document.querySelectorAll('.product-gallery').forEach(gallery => {
 
-        lightbox.classList.add('open');
+    const dotsContainer = gallery.nextElementSibling;
+    const dots = dotsContainer.querySelectorAll('span');
+    const images = gallery.querySelectorAll('img');
+
+    function updateDots() {
+
+      const scrollLeft = gallery.scrollLeft;
+      const galleryWidth = gallery.clientWidth;
+
+      let index = Math.round(scrollLeft / galleryWidth);
+
+      if (index >= images.length) {
+        index = images.length - 1;
+      }
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+
+    }
+
+    gallery.addEventListener(
+      'scroll',
+      updateDots,
+      { passive:true }
+    );
+
+
+    /* Allow dots to be clicked */
+    dots.forEach((dot, index) => {
+
+      dot.addEventListener('click', () => {
+
+        gallery.scrollTo({
+          left: index * gallery.clientWidth,
+          behavior:'smooth'
+        });
 
       });
 
     });
 
-
-  /*
-   * CLOSE LIGHTBOX
-   */
-
-  lightbox.addEventListener('click', () => {
-
-    lightbox.classList.remove('open');
+    updateDots();
 
   });
 
 
-  /*
-   * WHATSAPP PRODUCT LINKS
-   *
-   * Each product button contains:
-   *
-   * data-product="HP 440 G10"
-   * data-price="KSh 60,500"
-   *
-   * JavaScript automatically creates
-   * the WhatsApp message.
-   */
+  /* Product-specific WhatsApp messages */
+  document.querySelectorAll('.whatsapp-btn').forEach(button => {
 
-  document
-    .querySelectorAll('.whatsapp-btn')
-    .forEach(button => {
+    const product = button.dataset.product;
+    const price = button.dataset.price;
 
-      const product =
-        button.dataset.product;
+    const message =
+      `Hi, I'm interested in the ${product} (${price}). Is it still available?`;
 
-      const price =
-        button.dataset.price;
+    button.href =
+      `https://wa.me/254795761999?text=${encodeURIComponent(message)}`;
 
-
-      const message =
-        `Hi, I'm interested in the ${product} (${price}). Is it still available?`;
-
-
-      button.href =
-        `https://wa.me/254795761999?text=${encodeURIComponent(message)}`;
-
-    });
+  });
 
 </script>
 
