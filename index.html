@@ -1663,8 +1663,9 @@
 
         const response =
           await fetch(
-            'data/products.json?v=' + Date.now()
-          );
+            'data/products.json?v=' + Date.now(), {
+              cache: 'no-store'
+            });
 
 
         if (!response.ok) {
