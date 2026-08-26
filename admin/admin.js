@@ -8,7 +8,8 @@ let editingIndex = null;
 let hasUnsavedChanges = false;
 
 const WORKER_URL =
-  'https://shikadeal-admin-api.ahmedtwahir.workers.dev/';
+  'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/products';
+
 
 
 /* =========================================================
