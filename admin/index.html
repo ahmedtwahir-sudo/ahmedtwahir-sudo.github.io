@@ -1,1 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ShikaDeal Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="admin-header">
+
+    <div class="header-inner">
+
+      <a href="../" class="logo">
+        SHIKADEAL
+      </a>
+
+      <div class="admin-label">
+        ADMIN PANEL
+      </div>
+
+      <a href="../" class="view-site">
+        View Site ↗
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="admin-main">
+
+    <div class="page-heading">
+
+      <p class="eyebrow">
+        Control Room
+      </p>
+
+      <h1>
+        ShikaDeal Admin
+      </h1>
+
+      <p class="intro">
+        Manage products, blog posts, PDF guides and 3D prints
+        from one place.
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         DASHBOARD CARDS
+    ========================== -->
+
+    <section class="dashboard-grid">
+
+
+      <!-- PRODUCTS -->
+
+      <a
+        href="#products"
+        class="admin-card">
+
+        <div class="card-number">
+          01
+        </div>
+
+        <div class="card-icon">
+          ◈
+        </div>
+
+        <h2>
+          Products
+        </h2>
+
+        <p>
+          Add, edit and remove inventory.
+          Change prices and availability.
+          Manage product images.
+        </p>
+
+        <span class="card-action">
+          Manage Products →
+        </span>
+
+      </a>
+
+
+      <!-- BLOG -->
+
+      <a
+        href="#blog"
+        class="admin-card">
+
+        <div class="card-number">
+          02
+        </div>
+
+        <div class="card-icon">
+          ▤
+        </div>
+
+        <h2>
+          Blog
+        </h2>
+
+        <p>
+          Create repair articles, teardown notes
+          and buying advice.
+        </p>
+
+        <span class="card-action">
+          Manage Blog →
+        </span>
+
+      </a>
+
+
+      <!-- GUIDES -->
+
+      <a
+        href="#guides"
+        class="admin-card">
+
+        <div class="card-number">
+          03
+        </div>
+
+        <div class="card-icon">
+          ▱
+        </div>
+
+        <h2>
+          PDF Guides
+        </h2>
+
+        <p>
+          Add guides, update descriptions and
+          manage downloadable PDFs.
+        </p>
+
+        <span class="card-action">
+          Manage Guides →
+        </span>
+
+      </a>
+
+
+      <!-- 3D PRINTS -->
+
+      <a
+        href="#prints"
+        class="admin-card">
+
+        <div class="card-number">
+          04
+        </div>
+
+        <div class="card-icon">
+          ◫
+        </div>
+
+        <h2>
+          3D Prints
+        </h2>
+
+        <p>
+          Add printed products, images,
+          descriptions and pricing.
+        </p>
+
+        <span class="card-action">
+          Manage Prints →
+        </span>
+
+      </a>
+
+
+    </section>
+
+
+    <!-- =========================
+         QUICK STATUS
+    ========================== -->
+
+    <section class="status-section">
+
+      <div class="section-heading">
+
+        <div>
+
+          <p class="eyebrow">
+            System Status
+          </p>
+
+          <h2>
+            Quick Overview
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="status-grid">
+
+
+        <div class="status-card">
+
+          <span class="status-label">
+            Products
+          </span>
+
+          <strong id="product-count">
+            —
+          </strong>
+
+          <small>
+            Current listings
+          </small>
+
+        </div>
+
+
+        <div class="status-card">
+
+          <span class="status-label">
+            Available
+          </span>
+
+          <strong id="available-count">
+            —
+          </strong>
+
+          <small>
+            Ready for sale
+          </small>
+
+        </div>
+
+
+        <div class="status-card">
+
+          <span class="status-label">
+            Reserved
+          </span>
+
+          <strong id="reserved-count">
+            —
+          </strong>
+
+          <small>
+            Currently reserved
+          </small>
+
+        </div>
+
+
+        <div class="status-card">
+
+          <span class="status-label">
+            Sold
+          </span>
+
+          <strong id="sold-count">
+            —
+          </strong>
+
+          <small>
+            Completed sales
+          </small>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FUTURE SECTIONS
+    ========================== -->
+
+    <section
+      id="products"
+      class="placeholder-section">
+
+      <p class="eyebrow">
+        Ticket 01
+      </p>
+
+      <h2>
+        Products
+      </h2>
+
+      <p>
+        Product management will be connected here next.
+      </p>
+
+    </section>
+
+
+    <section
+      id="blog"
+      class="placeholder-section">
+
+      <p class="eyebrow">
+        Ticket 02
+      </p>
+
+      <h2>
+        Blog
+      </h2>
+
+      <p>
+        Blog management will be connected here next.
+      </p>
+
+    </section>
+
+
+    <section
+      id="guides"
+      class="placeholder-section">
+
+      <p class="eyebrow">
+        Ticket 03
+      </p>
+
+      <h2>
+        PDF Guides
+      </h2>
+
+      <p>
+        Guide management will be connected here next.
+      </p>
+
+    </section>
+
+
+    <section
+      id="prints"
+      class="placeholder-section">
+
+      <p class="eyebrow">
+        Ticket 04
+      </p>
+
+      <h2>
+        3D Prints
+      </h2>
+
+      <p>
+        3D print management will be connected here next.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <p>
+      SHIKADEAL ADMIN · KILIFI, KENYA
+    </p>
+
+    <p>
+      <a href="../">
+        ← Return to public site
+      </a>
+    </p>
+
+  </footer>
+
+
+  <script src="admin.js"></script>
+
+</body>
+</html>
 
