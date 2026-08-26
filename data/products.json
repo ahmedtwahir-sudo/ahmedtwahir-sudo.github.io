@@ -26,11 +26,11 @@
     ]
   },
   {
-    "name": "Lenovo ThinkPad T14",
-    "status": "available",
-    "condition": "USED",
-    "price": 45000,
-    "description": "Core i5, 10th Gen, 16GB RAM / 512GB SSD. Good working condition.",
+    "name": "SONY",
+    "status": "reserved",
+    "condition": "NEW",
+    "price": 10000,
+    "description": "Core i5, 13th Gen.",
     "images": [
       "images/products/hp440-1.jpg",
       "images/products/hp440-2.jpg",
