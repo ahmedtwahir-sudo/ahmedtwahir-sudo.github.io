@@ -1,9 +1,9 @@
 [
   {
-    "name": "CMS TEST",
+    "name": "HP 440 G10",
     "status": "available",
     "condition": "USED",
-    "price": "",
+    "price": "61000",
     "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
     "images": [
       "images/products/hp440-1.jpg",
