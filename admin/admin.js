@@ -14,22 +14,48 @@ const WORKER_URL =
    ELEMENTS
 ========================================================= */
 
-const productList = document.getElementById('product-list');
-const productEditor = document.getElementById('product-editor');
-const productForm = document.getElementById('product-form');
-const editorTitle = document.getElementById('editor-title');
-const imageFields = document.getElementById('image-fields');
+const productList =
+  document.getElementById('product-list');
 
-const productName = document.getElementById('product-name');
-const productStatus = document.getElementById('product-status');
-const productCondition = document.getElementById('product-condition');
-const productPrice = document.getElementById('product-price');
-const productDescription = document.getElementById('product-description');
+const productEditor =
+  document.getElementById('product-editor');
 
-const addProductButton = document.getElementById('add-product');
-const addImageButton = document.getElementById('add-image');
-const cancelProductButton = document.getElementById('cancel-product');
-const closeEditorButton = document.getElementById('close-editor');
+const productForm =
+  document.getElementById('product-form');
+
+const editorTitle =
+  document.getElementById('editor-title');
+
+const imageFields =
+  document.getElementById('image-fields');
+
+const productName =
+  document.getElementById('product-name');
+
+const productStatus =
+  document.getElementById('product-status');
+
+const productCondition =
+  document.getElementById('product-condition');
+
+const productPrice =
+  document.getElementById('product-price');
+
+const productDescription =
+  document.getElementById('product-description');
+
+const addProductButton =
+  document.getElementById('add-product-button');
+
+const addImageButton =
+  document.getElementById('add-image-button');
+
+const cancelProductButton =
+  document.getElementById('cancel-product');
+
+const closeEditorButton =
+  document.getElementById('close-editor');
+
 
 /* =========================================================
    LOAD PRODUCTS
@@ -37,6 +63,7 @@ const closeEditorButton = document.getElementById('close-editor');
 
 async function loadProducts() {
   try {
+
     const response = await fetch(
       `../data/products.json?v=${Date.now()}`,
       {
@@ -45,16 +72,21 @@ async function loadProducts() {
     );
 
     if (!response.ok) {
-      throw new Error('Could not load products.json');
+      throw new Error(
+        'Could not load products.json'
+      );
     }
 
     const data = await response.json();
 
     if (!Array.isArray(data)) {
-      throw new Error('products.json must contain an array');
+      throw new Error(
+        'products.json must contain an array'
+      );
     }
 
     products = data.map(product => {
+
       let rawPrice = product.price;
 
       if (typeof rawPrice === 'string') {
@@ -63,48 +95,67 @@ async function loadProducts() {
           .trim();
       }
 
-      const parsedPrice = parseInt(rawPrice, 10);
+      const parsedPrice =
+        parseInt(rawPrice, 10);
 
       return {
         name: product.name || '',
-        status: product.status || 'available',
-        condition: product.condition || '',
-        price: isNaN(parsedPrice) ? '' : parsedPrice,
-        description: product.description || '',
-        images: Array.isArray(product.images)
-          ? [...product.images]
-          : []
+        status:
+          product.status || 'available',
+        condition:
+          product.condition || '',
+        price:
+          isNaN(parsedPrice)
+            ? ''
+            : parsedPrice,
+        description:
+          product.description || '',
+        images:
+          Array.isArray(product.images)
+            ? [...product.images]
+            : []
       };
+
     });
 
     renderProducts();
     updateStats();
 
   } catch (error) {
+
     console.error(error);
 
     productList.innerHTML = `
       <div class="loading-card">
-        <strong>Unable to load products.</strong><br><br>
-        Check that <code>data/products.json</code> exists
-        and contains valid JSON.
+        <strong>
+          Unable to load products.
+        </strong>
+
+        <br><br>
+
+        Check that
+        <code>data/products.json</code>
+        exists and contains valid JSON.
       </div>
     `;
   }
 }
+
 
 /* =========================================================
    RENDER PRODUCT LIST
 ========================================================= */
 
 function renderProducts() {
+
   productList.innerHTML = '';
 
   if (products.length === 0) {
+
     productList.innerHTML = `
       <div class="loading-card">
-        No products yet. Click
-        <strong>+ Add Product</strong>
+        No products yet.
+        Click <strong>+ Add Product</strong>
         to create your first listing.
       </div>
     `;
@@ -112,137 +163,201 @@ function renderProducts() {
     return;
   }
 
-  products.forEach((product, index) => {
-    const row = document.createElement('div');
-    row.className = 'product-row';
+  products.forEach(
+    (product, index) => {
 
-    /* -------------------------
-       PRODUCT IMAGE
-    ------------------------- */
+      const row =
+        document.createElement('div');
 
-    const firstImage =
-      product.images && product.images.length
-        ? product.images[0]
-        : '';
+      row.className =
+        'product-row';
 
-    if (firstImage) {
-      const image = document.createElement('img');
 
-      image.className = 'product-thumbnail';
-      image.src = getImagePath(firstImage);
-      image.alt = product.name;
+      /* -------------------------
+         IMAGE
+      ------------------------- */
 
-      image.onerror = () => {
-        image.replaceWith(createPlaceholder());
-      };
+      const firstImage =
+        product.images &&
+        product.images.length
+          ? product.images[0]
+          : '';
 
-      row.appendChild(image);
+      if (firstImage) {
 
-    } else {
-      row.appendChild(createPlaceholder());
+        const image =
+          document.createElement('img');
+
+        image.className =
+          'product-thumbnail';
+
+        image.src =
+          getImagePath(firstImage);
+
+        image.alt =
+          product.name;
+
+        image.onerror = () => {
+          image.replaceWith(
+            createPlaceholder()
+          );
+        };
+
+        row.appendChild(image);
+
+      } else {
+
+        row.appendChild(
+          createPlaceholder()
+        );
+      }
+
+
+      /* -------------------------
+         NAME
+      ------------------------- */
+
+      const name =
+        document.createElement('div');
+
+      name.className =
+        'product-row-name';
+
+      const strong =
+        document.createElement('strong');
+
+      strong.textContent =
+        product.name ||
+        'Untitled Product';
+
+      const small =
+        document.createElement('small');
+
+      small.textContent =
+        product.condition ||
+        'No condition specified';
+
+      name.appendChild(strong);
+      name.appendChild(small);
+
+      row.appendChild(name);
+
+
+      /* -------------------------
+         PRICE
+      ------------------------- */
+
+      const price =
+        document.createElement('div');
+
+      price.className =
+        'product-row-price';
+
+      price.textContent =
+        formatPrice(product.price);
+
+      row.appendChild(price);
+
+
+      /* -------------------------
+         STATUS
+      ------------------------- */
+
+      const status =
+        document.createElement('span');
+
+      status.className =
+        `product-status status-${product.status}`;
+
+      status.textContent =
+        getStatusLabel(product.status);
+
+      row.appendChild(status);
+
+
+      /* -------------------------
+         ACTIONS
+      ------------------------- */
+
+      const actions =
+        document.createElement('div');
+
+      actions.className =
+        'product-row-actions';
+
+
+      const editButton =
+        document.createElement('button');
+
+      editButton.type =
+        'button';
+
+      editButton.className =
+        'small-button';
+
+      editButton.textContent =
+        'Edit';
+
+      editButton.addEventListener(
+        'click',
+        () => {
+          openEditor(index);
+        }
+      );
+
+
+      const deleteButton =
+        document.createElement('button');
+
+      deleteButton.type =
+        'button';
+
+      deleteButton.className =
+        'small-button delete';
+
+      deleteButton.textContent =
+        'Delete';
+
+      deleteButton.addEventListener(
+        'click',
+        () => {
+          deleteProduct(index);
+        }
+      );
+
+
+      actions.appendChild(editButton);
+      actions.appendChild(deleteButton);
+
+      row.appendChild(actions);
+
+      productList.appendChild(row);
     }
-
-    /* -------------------------
-       PRODUCT NAME
-    ------------------------- */
-
-    const name = document.createElement('div');
-    name.className = 'product-row-name';
-
-    const strong = document.createElement('strong');
-    strong.textContent =
-      product.name || 'Untitled Product';
-
-    const small = document.createElement('small');
-    small.textContent =
-      product.condition || 'No condition specified';
-
-    name.appendChild(strong);
-    name.appendChild(small);
-
-    row.appendChild(name);
-
-    /* -------------------------
-       PRICE
-    ------------------------- */
-
-    const price = document.createElement('div');
-    price.className = 'product-row-price';
-    price.textContent = formatPrice(product.price);
-
-    row.appendChild(price);
-
-    /* -------------------------
-       STATUS
-    ------------------------- */
-
-    const status = document.createElement('span');
-
-    status.className =
-      `product-status status-${product.status}`;
-
-    status.textContent =
-      getStatusLabel(product.status);
-
-    row.appendChild(status);
-
-    /* -------------------------
-       ACTIONS
-    ------------------------- */
-
-    const actions = document.createElement('div');
-    actions.className = 'product-row-actions';
-
-    const editButton =
-      document.createElement('button');
-
-    editButton.type = 'button';
-    editButton.className = 'small-button';
-    editButton.textContent = 'Edit';
-
-    editButton.addEventListener('click', () => {
-      openEditor(index);
-    });
-
-    const deleteButton =
-      document.createElement('button');
-
-    deleteButton.type = 'button';
-    deleteButton.className =
-      'small-button delete';
-
-    deleteButton.textContent = 'Delete';
-
-    deleteButton.addEventListener('click', () => {
-      deleteProduct(index);
-    });
-
-    actions.appendChild(editButton);
-    actions.appendChild(deleteButton);
-
-    row.appendChild(actions);
-
-    productList.appendChild(row);
-  });
+  );
 }
 
+
 /* =========================================================
-   UTILITIES & FORMATTERS
+   UTILITIES
 ========================================================= */
 
 function createPlaceholder() {
+
   const placeholder =
     document.createElement('div');
 
   placeholder.className =
     'product-thumbnail-placeholder';
 
-  placeholder.textContent = 'NO IMAGE';
+  placeholder.textContent =
+    'NO IMAGE';
 
   return placeholder;
 }
 
+
 function getImagePath(path) {
+
   if (!path) {
     return '';
   }
@@ -258,7 +373,9 @@ function getImagePath(path) {
   return '../' + path;
 }
 
+
 function formatPrice(price) {
+
   if (
     price === undefined ||
     price === null ||
@@ -267,7 +384,8 @@ function formatPrice(price) {
     return '';
   }
 
-  const number = Number(price);
+  const number =
+    Number(price);
 
   if (isNaN(number)) {
     return String(price);
@@ -279,11 +397,13 @@ function formatPrice(price) {
   );
 }
 
+
 /* =========================================================
-   STATS & DATA BINDING
+   STATUS
 ========================================================= */
 
 function getStatusLabel(status) {
+
   if (status === 'sold') {
     return 'SOLD';
   }
@@ -295,63 +415,79 @@ function getStatusLabel(status) {
   return 'AVAILABLE';
 }
 
+
 function updateStats() {
+
   document.getElementById(
     'product-count'
-  ).textContent = products.length;
+  ).textContent =
+    products.length;
+
 
   document.getElementById(
     'available-count'
   ).textContent =
     products.filter(
-      product => product.status === 'available'
+      product =>
+        product.status === 'available'
     ).length;
+
 
   document.getElementById(
     'reserved-count'
   ).textContent =
     products.filter(
-      product => product.status === 'reserved'
+      product =>
+        product.status === 'reserved'
     ).length;
+
 
   document.getElementById(
     'sold-count'
   ).textContent =
     products.filter(
-      product => product.status === 'sold'
+      product =>
+        product.status === 'sold'
     ).length;
 }
 
+
 /* =========================================================
-   OPEN / CLOSE EDITOR
+   OPEN EDITOR
 ========================================================= */
 
 function openEditor(index = null) {
+
   editingIndex = index;
 
   imageFields.innerHTML = '';
 
   if (index === null) {
 
-    editorTitle.textContent = 'Add Product';
+    editorTitle.textContent =
+      'Add Product';
 
     productForm.reset();
 
-    productStatus.value = 'available';
+    productStatus.value =
+      'available';
 
     addImageField('');
 
   } else {
 
-    const product = products[index];
+    const product =
+      products[index];
 
-    editorTitle.textContent = 'Edit Product';
+    editorTitle.textContent =
+      'Edit Product';
 
     productName.value =
       product.name || '';
 
     productStatus.value =
-      product.status || 'available';
+      product.status ||
+      'available';
 
     productCondition.value =
       product.condition || '';
@@ -362,14 +498,17 @@ function openEditor(index = null) {
     productDescription.value =
       product.description || '';
 
+
     if (
       product.images &&
       product.images.length
     ) {
 
-      product.images.forEach(image => {
-        addImageField(image);
-      });
+      product.images.forEach(
+        image => {
+          addImageField(image);
+        }
+      );
 
     } else {
 
@@ -377,58 +516,73 @@ function openEditor(index = null) {
     }
   }
 
-  productEditor.hidden = false;
+  productEditor.hidden =
+    false;
 
   productEditor.scrollIntoView({
     behavior: 'smooth',
     block: 'start'
   });
 
-  hasUnsavedChanges = false;
+  hasUnsavedChanges =
+    false;
 }
 
+
+/* =========================================================
+   CLOSE EDITOR
+========================================================= */
+
 function closeEditor() {
+
   if (hasUnsavedChanges) {
 
-    const confirmed = confirm(
-      'You have unsaved changes. Close anyway?'
-    );
+    const confirmed =
+      confirm(
+        'You have unsaved changes. Close anyway?'
+      );
 
     if (!confirmed) {
       return;
     }
   }
 
-  productEditor.hidden = true;
+  productEditor.hidden =
+    true;
 
-  editingIndex = null;
+  editingIndex =
+    null;
 
-  hasUnsavedChanges = false;
+  hasUnsavedChanges =
+    false;
 }
 
+
 /* =========================================================
-   IMAGE DYNAMIC FORM FIELDS
+   IMAGE FIELDS
 ========================================================= */
 
 function addImageField(value = '') {
+
   const wrapper =
     document.createElement('div');
 
-  wrapper.className = 'image-field';
+  wrapper.className =
+    'image-field';
 
-  /* -------------------------
-     IMAGE PREVIEW
-  ------------------------- */
 
   const preview =
     document.createElement('img');
 
-  preview.className = 'image-preview';
+  preview.className =
+    'image-preview';
 
-  preview.alt = 'Image preview';
+  preview.alt =
+    'Image preview';
 
   if (value) {
-    preview.src = getImagePath(value);
+    preview.src =
+      getImagePath(value);
   }
 
   preview.onerror = () => {
@@ -437,54 +591,63 @@ function addImageField(value = '') {
 
   wrapper.appendChild(preview);
 
-  /* -------------------------
-     IMAGE INPUT
-  ------------------------- */
 
   const input =
     document.createElement('input');
 
-  input.type = 'text';
+  input.type =
+    'text';
 
-  input.className = 'image-input';
+  input.className =
+    'image-input';
 
   input.placeholder =
     'images/products/example.jpg';
 
-  input.value = value;
+  input.value =
+    value;
 
-  input.addEventListener('input', () => {
 
-    hasUnsavedChanges = true;
+  input.addEventListener(
+    'input',
+    () => {
 
-    if (input.value.trim()) {
+      hasUnsavedChanges =
+        true;
 
-      preview.src =
-        getImagePath(
-          input.value.trim()
+      const imagePath =
+        input.value.trim();
+
+      if (imagePath) {
+
+        preview.src =
+          getImagePath(imagePath);
+
+      } else {
+
+        preview.removeAttribute(
+          'src'
         );
-
-    } else {
-
-      preview.removeAttribute('src');
+      }
     }
-  });
+  );
+
 
   wrapper.appendChild(input);
 
-  /* -------------------------
-     REMOVE BUTTON
-  ------------------------- */
 
   const removeButton =
     document.createElement('button');
 
-  removeButton.type = 'button';
+  removeButton.type =
+    'button';
 
   removeButton.className =
     'remove-image';
 
-  removeButton.textContent = '×';
+  removeButton.textContent =
+    '×';
+
 
   removeButton.addEventListener(
     'click',
@@ -492,26 +655,39 @@ function addImageField(value = '') {
 
       wrapper.remove();
 
-      hasUnsavedChanges = true;
+      hasUnsavedChanges =
+        true;
     }
   );
 
-  wrapper.appendChild(removeButton);
 
-  imageFields.appendChild(wrapper);
+  wrapper.appendChild(
+    removeButton
+  );
+
+  imageFields.appendChild(
+    wrapper
+  );
 }
 
+
 function getImagesFromForm() {
+
   return Array.from(
     imageFields.querySelectorAll(
       '.image-input'
     )
   )
-    .map(input =>
-      input.value.trim()
+    .map(
+      input =>
+        input.value.trim()
     )
-    .filter(value => value !== '');
+    .filter(
+      value =>
+        value !== ''
+    );
 }
+
 
 /* =========================================================
    SAVE PRODUCT
@@ -523,8 +699,10 @@ productForm.addEventListener(
 
     event.preventDefault();
 
+
     const name =
       productName.value.trim();
+
 
     if (!name) {
 
@@ -537,6 +715,7 @@ productForm.addEventListener(
       return;
     }
 
+
     const cleanPrice =
       productPrice.value === ''
         ? ''
@@ -545,30 +724,46 @@ productForm.addEventListener(
             10
           );
 
+
     const product = {
-      name: name,
+
+      name:
+
+        name,
 
       status:
+
         productStatus.value,
 
       condition:
+
         productCondition.value.trim(),
 
-      price: cleanPrice,
+      price:
+
+        cleanPrice,
 
       description:
+
         productDescription.value.trim(),
 
       images:
+
         getImagesFromForm()
     };
+
 
     const updatedProducts =
       [...products];
 
-    if (editingIndex === null) {
 
-      updatedProducts.push(product);
+    if (
+      editingIndex === null
+    ) {
+
+      updatedProducts.push(
+        product
+      );
 
     } else {
 
@@ -577,13 +772,17 @@ productForm.addEventListener(
       ] = product;
     }
 
-    const adminKey = prompt(
-      'Enter your admin key to save changes:'
-    );
+
+    const adminKey =
+      prompt(
+        'Enter your admin key to save changes:'
+      );
+
 
     if (!adminKey) {
       return;
     }
+
 
     try {
 
@@ -591,9 +790,11 @@ productForm.addEventListener(
         await fetch(
           WORKER_URL,
           {
-            method: 'POST',
+            method:
+              'POST',
 
             headers: {
+
               'Content-Type':
                 'application/json',
 
@@ -608,8 +809,10 @@ productForm.addEventListener(
           }
         );
 
+
       const result =
         await response.json();
+
 
       if (!response.ok) {
 
@@ -619,22 +822,30 @@ productForm.addEventListener(
         );
       }
 
+
       products =
         updatedProducts;
+
 
       renderProducts();
 
       updateStats();
 
-      productEditor.hidden = true;
 
-      editingIndex = null;
+      productEditor.hidden =
+        true;
 
-      hasUnsavedChanges = false;
+      editingIndex =
+        null;
+
+      hasUnsavedChanges =
+        false;
+
 
       alert(
         'Product saved successfully to GitHub.'
       );
+
 
     } catch (error) {
 
@@ -648,6 +859,7 @@ productForm.addEventListener(
   }
 );
 
+
 /* =========================================================
    DELETE PRODUCT
 ========================================================= */
@@ -657,30 +869,38 @@ async function deleteProduct(index) {
   const product =
     products[index];
 
+
   const confirmed =
     confirm(
       `Delete "${product.name}" permanently?`
     );
 
+
   if (!confirmed) {
     return;
   }
 
+
   const updatedProducts =
     [...products];
+
 
   updatedProducts.splice(
     index,
     1
   );
 
-  const adminKey = prompt(
-    'Enter your admin key to confirm deletion:'
-  );
+
+  const adminKey =
+    prompt(
+      'Enter your admin key to confirm deletion:'
+    );
+
 
   if (!adminKey) {
     return;
   }
+
 
   try {
 
@@ -688,9 +908,11 @@ async function deleteProduct(index) {
       await fetch(
         WORKER_URL,
         {
-          method: 'POST',
+          method:
+            'POST',
 
           headers: {
+
             'Content-Type':
               'application/json',
 
@@ -705,8 +927,10 @@ async function deleteProduct(index) {
         }
       );
 
+
     const result =
       await response.json();
+
 
     if (!response.ok) {
 
@@ -716,25 +940,35 @@ async function deleteProduct(index) {
       );
     }
 
+
     products =
       updatedProducts;
+
 
     renderProducts();
 
     updateStats();
 
-    if (editingIndex === index) {
 
-      productEditor.hidden = true;
+    if (
+      editingIndex === index
+    ) {
 
-      editingIndex = null;
+      productEditor.hidden =
+        true;
 
-      hasUnsavedChanges = false;
+      editingIndex =
+        null;
+
+      hasUnsavedChanges =
+        false;
     }
+
 
     alert(
       'Product deleted successfully from GitHub.'
     );
+
 
   } catch (error) {
 
@@ -747,8 +981,9 @@ async function deleteProduct(index) {
   }
 }
 
+
 /* =========================================================
-   CORE EVENT LISTENERS
+   BUTTON EVENTS
 ========================================================= */
 
 addProductButton.addEventListener(
@@ -758,32 +993,44 @@ addProductButton.addEventListener(
   }
 );
 
+
 addImageButton.addEventListener(
   'click',
   () => {
 
     addImageField();
 
-    hasUnsavedChanges = true;
+    hasUnsavedChanges =
+      true;
   }
 );
+
 
 cancelProductButton.addEventListener(
   'click',
   closeEditor
 );
 
+
 closeEditorButton.addEventListener(
   'click',
   closeEditor
 );
 
+
 productForm.addEventListener(
   'input',
   () => {
-    hasUnsavedChanges = true;
+
+    hasUnsavedChanges =
+      true;
   }
 );
+
+
+/* =========================================================
+   UNSAVED CHANGES WARNING
+========================================================= */
 
 window.addEventListener(
   'beforeunload',
@@ -798,6 +1045,7 @@ window.addEventListener(
     event.returnValue = '';
   }
 );
+
 
 /* =========================================================
    INITIAL BOOTSTRAP
