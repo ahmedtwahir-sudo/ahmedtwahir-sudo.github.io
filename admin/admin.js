@@ -24,8 +24,8 @@ const productStatus = document.getElementById('product-status');
 const productCondition = document.getElementById('product-condition');
 const productPrice = document.getElementById('product-price');
 const productDescription = document.getElementById('product-description');
-const addProductButton = document.getElementById('add-product-button');
-const addImageButton = document.getElementById('add-image-button');
+const addProductButton = document.getElementById('add-product');
+const addImageButton = document.getElementById('add-image');
 const cancelProductButton = document.getElementById('cancel-product');
 const closeEditorButton = document.getElementById('close-editor');
 
