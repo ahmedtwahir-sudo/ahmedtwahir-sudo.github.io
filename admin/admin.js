@@ -1,11 +1,8 @@
 /* =========================================================
    SHIKADEAL ADMIN
-   PRODUCTS MANAGEMENT (INTEGRATED WITH GITHUB & CACHE BUSTING)
+   PRODUCTS MANAGEMENT
 ========================================================= */
 
-/* =========================================================
-   GLOBAL STATE
-========================================================= */
 let products = [];
 let editingIndex = null;
 let hasUnsavedChanges = false;
@@ -32,25 +29,23 @@ const closeEditorButton = document.getElementById('close-editor');
 /* =========================================================
    LOAD PRODUCTS
 ========================================================= */
-async function loadProducts(){
+async function loadProducts() {
   try {
-    // Cache bust using query timestamp to prevent old JSON states
     const response = await fetch(`../data/products.json?v=${Date.now()}`, {
       cache: 'no-store'
     });
 
-    if(!response.ok){
+    if (!response.ok) {
       throw new Error('Could not load products.json');
     }
 
     const data = await response.json();
 
-    if(!Array.isArray(data)){
+    if (!Array.isArray(data)) {
       throw new Error('products.json must contain an array');
     }
 
     products = data.map(product => {
-      // Robust clean-up logic to convert string pricing like "KSh 48,500" into clean numbers inside the app
       let rawPrice = product.price;
       if (typeof rawPrice === 'string') {
         rawPrice = rawPrice.replace(/KSh\s?|,/gi, '').trim();
@@ -70,12 +65,11 @@ async function loadProducts(){
     renderProducts();
     updateStats();
 
-  } catch(error) {
+  } catch (error) {
     console.error(error);
     productList.innerHTML = `
       <div class="loading-card">
-        <strong>Unable to load products.</strong>
-        <br><br>
+        <strong>Unable to load products.</strong><br><br>
         Check that <code>data/products.json</code> exists and contains valid JSON.
       </div>
     `;
@@ -85,10 +79,10 @@ async function loadProducts(){
 /* =========================================================
    RENDER PRODUCT LIST
 ========================================================= */
-function renderProducts(){
+function renderProducts() {
   productList.innerHTML = '';
 
-  if(products.length === 0){
+  if (products.length === 0) {
     productList.innerHTML = `
       <div class="loading-card">
         No products yet. Click <strong>+ Add Product</strong> to create your first listing.
@@ -101,9 +95,8 @@ function renderProducts(){
     const row = document.createElement('div');
     row.className = 'product-row';
 
-    /* IMAGE */
     const firstImage = product.images && product.images.length ? product.images[0] : '';
-    if(firstImage){
+    if (firstImage) {
       const image = document.createElement('img');
       image.className = 'product-thumbnail';
       image.src = getImagePath(firstImage);
@@ -116,7 +109,6 @@ function renderProducts(){
       row.appendChild(createPlaceholder());
     }
 
-    /* NAME */
     const name = document.createElement('div');
     name.className = 'product-row-name';
 
@@ -130,19 +122,16 @@ function renderProducts(){
     name.appendChild(small);
     row.appendChild(name);
 
-    /* PRICE */
     const price = document.createElement('div');
     price.className = 'product-row-price';
     price.textContent = formatPrice(product.price);
     row.appendChild(price);
 
-    /* STATUS */
     const status = document.createElement('span');
     status.className = `product-status status-${product.status}`;
     status.textContent = getStatusLabel(product.status);
     row.appendChild(status);
 
-    /* ACTIONS */
     const actions = document.createElement('div');
     actions.className = 'product-row-actions';
 
@@ -173,35 +162,35 @@ function renderProducts(){
 /* =========================================================
    UTILITIES & FORMATTERS
 ========================================================= */
-function createPlaceholder(){
+function createPlaceholder() {
   const placeholder = document.createElement('div');
   placeholder.className = 'product-thumbnail-placeholder';
   placeholder.textContent = 'NO IMAGE';
   return placeholder;
 }
 
-function getImagePath(path){
-  if(!path) return '';
-  if(path.startsWith('http://') || path.startsWith('https://') || path.startsWith('../')){
+function getImagePath(path) {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('../')) {
     return path;
   }
   return '../' + path;
 }
 
-function formatPrice(price){
-  if(price === undefined || price === null || price === '') return '';
+function formatPrice(price) {
+  if (price === undefined || price === null || price === '') return '';
   const number = Number(price);
-  if(isNaN(number)) return String(price);
+  if (isNaN(number)) return String(price);
   return 'KSh ' + number.toLocaleString('en-KE');
 }
 
-function getStatusLabel(status){
-  if(status === 'sold') return 'SOLD';
-  if(status === 'reserved') return 'RESERVED';
+function getStatusLabel(status) {
+  if (status === 'sold') return 'SOLD';
+  if (status === 'reserved') return 'RESERVED';
   return 'AVAILABLE';
 }
 
-function updateStats(){
+function updateStats() {
   document.getElementById('product-count').textContent = products.length;
   document.getElementById('available-count').textContent = products.filter(p => p.status === 'available').length;
   document.getElementById('reserved-count').textContent = products.filter(p => p.status === 'reserved').length;
@@ -211,11 +200,11 @@ function updateStats(){
 /* =========================================================
    OPEN / CLOSE EDITOR
 ========================================================= */
-function openEditor(index = null){
+function openEditor(index = null) {
   editingIndex = index;
   imageFields.innerHTML = '';
 
-  if(index === null){
+  if (index === null) {
     editorTitle.textContent = 'Add Product';
     productForm.reset();
     productStatus.value = 'available';
@@ -229,7 +218,7 @@ function openEditor(index = null){
     productPrice.value = product.price ?? '';
     productDescription.value = product.description || '';
 
-    if(product.images && product.images.length){
+    if (product.images && product.images.length) {
       product.images.forEach(image => addImageField(image));
     } else {
       addImageField('');
@@ -241,10 +230,10 @@ function openEditor(index = null){
   hasUnsavedChanges = false;
 }
 
-function closeEditor(){
-  if(hasUnsavedChanges){
+function closeEditor() {
+  if (hasUnsavedChanges) {
     const confirmed = confirm('You have unsaved changes. Close anyway?');
-    if(!confirmed) return;
+    if (!confirmed) return;
   }
   productEditor.hidden = true;
   editingIndex = null;
@@ -254,14 +243,14 @@ function closeEditor(){
 /* =========================================================
    IMAGE DYNAMIC FORM FIELDS
 ========================================================= */
-function addImageField(value = ''){
+function addImageField(value = '') {
   const wrapper = document.createElement('div');
   wrapper.className = 'image-field';
 
   const preview = document.createElement('img');
   preview.className = 'image-preview';
   preview.alt = 'Image preview';
-  if(value) preview.src = getImagePath(value);
+  if (value) preview.src = getImagePath(value);
   preview.onerror = () => preview.removeAttribute('src');
   wrapper.appendChild(preview);
 
@@ -272,7 +261,7 @@ function addImageField(value = ''){
   input.value = value;
   input.addEventListener('input', () => {
     hasUnsavedChanges = true;
-    if(input.value.trim()){
+    if (input.value.trim()) {
       preview.src = getImagePath(input.value.trim());
     } else {
       preview.removeAttribute('src');
@@ -293,10 +282,26 @@ function addImageField(value = ''){
   imageFields.appendChild(wrapper);
 }
 
-function getImagesFromForm(){
+function getImagesFromForm() {
   return Array.from(imageFields.querySelectorAll('.image-input'))
     .map(input => input.value.trim())
     .filter(value => value !== '');
 }
 
 /* =========================================================
+   SAVE CONTENT SYSTEM
+========================================================= */
+productForm.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  const name = productName.value.trim();
+  if (!name) {
+    alert('Please enter a product name.');
+    productName.focus();
+    return;
+  }
+
+  const cleanPrice = productPrice.value === '' ? '' : parseInt(productPrice.value, 10);
+
+  const product = {
+    name,
