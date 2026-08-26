@@ -3,7 +3,7 @@
     "name": "HP 440 G10",
     "status": "available",
     "condition": "USED",
-    "price": "61000",
+    "price": 70000,
     "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
     "images": [
       "images/products/hp440-1.jpg",
@@ -16,7 +16,7 @@
     "name": "Dell Latitude 5420",
     "status": "sold",
     "condition": "USED",
-    "price": "48500",
+    "price": 48500,
     "description": "Core i5, 11th Gen, 16GB RAM / 512GB SSD. Comes with charger.",
     "images": [
       "images/products/hp440-1.jpg",
@@ -29,7 +29,7 @@
     "name": "Lenovo ThinkPad T14",
     "status": "available",
     "condition": "USED",
-    "price": "45000",
+    "price": 45000,
     "description": "Core i5, 10th Gen, 16GB RAM / 512GB SSD. Good working condition.",
     "images": [
       "images/products/hp440-1.jpg",
