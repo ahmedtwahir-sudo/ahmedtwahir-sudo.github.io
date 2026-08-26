@@ -1,10 +1,10 @@
 [
   {
-    "name": "HP 440 G10",
-    "condition": "USED",
-    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
-    "price": "KSh 60,500",
+    "name": "CMS TEST",
     "status": "available",
+    "condition": "USED",
+    "price": "",
+    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger.",
     "images": [
       "images/products/hp440-1.jpg",
       "images/products/hp440-2.jpg",
@@ -14,10 +14,10 @@
   },
   {
     "name": "Dell Latitude 5420",
-    "condition": "USED",
-    "description": "Core i5, 11th Gen, 16GB RAM / 512GB SSD. Comes with charger.",
-    "price": "KSh 48,500",
     "status": "sold",
+    "condition": "USED",
+    "price": "KSh 48,500",
+    "description": "Core i5, 11th Gen, 16GB RAM / 512GB SSD. Comes with charger.",
     "images": [
       "images/products/hp440-1.jpg",
       "images/products/hp440-2.jpg",
@@ -27,10 +27,10 @@
   },
   {
     "name": "Lenovo ThinkPad T14",
-    "condition": "USED",
-    "description": "Core i5, 10th Gen, 16GB RAM / 512GB SSD. Good working condition.",
-    "price": "KSh 45,000",
     "status": "available",
+    "condition": "USED",
+    "price": "KSh 45,000",
+    "description": "Core i5, 10th Gen, 16GB RAM / 512GB SSD. Good working condition.",
     "images": [
       "images/products/hp440-1.jpg",
       "images/products/hp440-2.jpg",
