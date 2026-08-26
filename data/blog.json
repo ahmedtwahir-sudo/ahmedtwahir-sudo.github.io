@@ -1,1 +1,21 @@
+[
+  {
+    "id": "hp-laptop-repair-series",
+    "title": "HP Laptop Repair Series",
+    "description": "A running series on common HP faults and fixes.",
+    "content": "This is where the full blog article will go.",
+    "image": "images/blog/hp-repair.jpg",
+    "published": true,
+    "date": "2026-08-26"
+  },
+  {
+    "id": "buy-vs-repair",
+    "title": "Buy vs. Repair",
+    "description": "How to tell when a device is actually done for.",
+    "content": "A practical guide to deciding whether you should repair or replace your device.",
+    "image": "",
+    "published": true,
+    "date": "2026-08-26"
+  }
+]
 
