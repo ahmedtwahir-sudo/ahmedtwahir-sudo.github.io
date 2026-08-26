@@ -808,12 +808,12 @@ function getImagesFromForm(){
 
 
 /* =========================================================
-   SAVE PRODUCT LOCALLY
+   SAVE PRODUCT TO GITHUB
 ========================================================= */
 
 productForm.addEventListener(
   'submit',
-  event => {
+  async event => {
 
     event.preventDefault();
 
@@ -857,53 +857,132 @@ productForm.addEventListener(
     };
 
 
+    /* ---------------------------------------------
+       BUILD UPDATED PRODUCT LIST
+    --------------------------------------------- */
+
+    const updatedProducts =
+      [...products];
+
+
     if(editingIndex === null){
 
-      products.push(product);
+      updatedProducts.push(product);
 
     }else{
 
-      products[editingIndex] =
+      updatedProducts[editingIndex] =
         product;
 
     }
 
 
-    renderProducts();
+    /* ---------------------------------------------
+       ADMIN KEY
+    --------------------------------------------- */
 
-    updateStats();
-
-
-    productEditor.hidden =
-      true;
-
-
-    editingIndex =
-      null;
+    const adminKey =
+      prompt(
+        'Enter your admin key to save changes:'
+      );
 
 
-    hasUnsavedChanges =
-      false;
+    if(!adminKey){
+
+      return;
+
+    }
 
 
-    /*
-      IMPORTANT:
+    /* ---------------------------------------------
+       SAVE TO WORKER
+    --------------------------------------------- */
 
-      At this stage the changes only exist
-      in this browser session.
+    try{
 
-      We will connect this to the secure
-      Cloudflare Worker / GitHub API later.
-    */
+      const response =
+        await fetch(
+          'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/products',
+          {
 
-    alert(
-      'Product updated in the admin preview. ' +
-      'GitHub saving will be connected next.'
-    );
+            method:'POST',
 
+            headers:{
+              'Content-Type':
+                'application/json',
+
+              'X-Admin-Key':
+                adminKey
+            },
+
+            body:
+              JSON.stringify(
+                updatedProducts
+              )
+
+          }
+        );
+
+
+      const result =
+        await response.json();
+
+
+      if(!response.ok){
+
+        throw new Error(
+          result.error ||
+          'The Worker could not save the products.'
+        );
+
+      }
+
+
+      /* ---------------------------------------------
+         UPDATE LOCAL ADMIN STATE
+      --------------------------------------------- */
+
+      products =
+        updatedProducts;
+
+
+      renderProducts();
+
+      updateStats();
+
+
+      productEditor.hidden =
+        true;
+
+
+      editingIndex =
+        null;
+
+
+      hasUnsavedChanges =
+        false;
+
+
+      alert(
+        'Product saved successfully to GitHub.'
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+
+      alert(
+        'Could not save the product.\n\n' +
+        error.message
+      );
+
+    }
 
   }
 );
+
 
 
 /* =========================================================
