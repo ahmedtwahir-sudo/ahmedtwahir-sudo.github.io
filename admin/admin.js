@@ -10,6 +10,7 @@ let hasUnsavedChanges = false;
 const WORKER_URL =
   'https://shikadeal-admin-api.ahmedtwahir.workers.dev/';
 
+
 /* =========================================================
    ELEMENTS
 ========================================================= */
@@ -62,6 +63,7 @@ const closeEditorButton =
 ========================================================= */
 
 async function loadProducts() {
+
   try {
 
     const response = await fetch(
@@ -77,7 +79,8 @@ async function loadProducts() {
       );
     }
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     if (!Array.isArray(data)) {
       throw new Error(
@@ -87,35 +90,55 @@ async function loadProducts() {
 
     products = data.map(product => {
 
-      let rawPrice = product.price;
+      let rawPrice =
+        product.price;
 
-      if (typeof rawPrice === 'string') {
-        rawPrice = rawPrice
-          .replace(/KSh\s?|,/gi, '')
-          .trim();
+      if (
+        typeof rawPrice === 'string'
+      ) {
+
+        rawPrice =
+          rawPrice
+            .replace(
+              /KSh\s?|,/gi,
+              ''
+            )
+            .trim();
       }
 
       const parsedPrice =
-        parseInt(rawPrice, 10);
+        parseInt(
+          rawPrice,
+          10
+        );
 
       return {
-        name: product.name || '',
+
+        name:
+          product.name || '',
+
         status:
-          product.status || 'available',
+          product.status ||
+          'available',
+
         condition:
           product.condition || '',
+
         price:
-          isNaN(parsedPrice)
+          Number.isNaN(parsedPrice)
             ? ''
             : parsedPrice,
+
         description:
           product.description || '',
+
         images:
-          Array.isArray(product.images)
+          Array.isArray(
+            product.images
+          )
             ? [...product.images]
             : []
       };
-
     });
 
     renderProducts();
@@ -123,7 +146,10 @@ async function loadProducts() {
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      'Load products error:',
+      error
+    );
 
     productList.innerHTML = `
       <div class="loading-card">
@@ -143,7 +169,7 @@ async function loadProducts() {
 
 
 /* =========================================================
-   RENDER PRODUCT LIST
+   RENDER PRODUCTS
 ========================================================= */
 
 function renderProducts() {
@@ -167,7 +193,9 @@ function renderProducts() {
     (product, index) => {
 
       const row =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
 
       row.className =
         'product-row';
@@ -178,32 +206,42 @@ function renderProducts() {
       ------------------------- */
 
       const firstImage =
-        product.images &&
-        product.images.length
+        Array.isArray(
+          product.images
+        ) &&
+        product.images.length > 0
           ? product.images[0]
           : '';
 
       if (firstImage) {
 
         const image =
-          document.createElement('img');
+          document.createElement(
+            'img'
+          );
 
         image.className =
           'product-thumbnail';
 
         image.src =
-          getImagePath(firstImage);
+          getImagePath(
+            firstImage
+          );
 
         image.alt =
-          product.name;
+          product.name ||
+          'Product image';
 
         image.onerror = () => {
+
           image.replaceWith(
             createPlaceholder()
           );
         };
 
-        row.appendChild(image);
+        row.appendChild(
+          image
+        );
 
       } else {
 
@@ -218,29 +256,45 @@ function renderProducts() {
       ------------------------- */
 
       const name =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
 
       name.className =
         'product-row-name';
 
+
       const strong =
-        document.createElement('strong');
+        document.createElement(
+          'strong'
+        );
 
       strong.textContent =
         product.name ||
         'Untitled Product';
 
+
       const small =
-        document.createElement('small');
+        document.createElement(
+          'small'
+        );
 
       small.textContent =
         product.condition ||
         'No condition specified';
 
-      name.appendChild(strong);
-      name.appendChild(small);
 
-      row.appendChild(name);
+      name.appendChild(
+        strong
+      );
+
+      name.appendChild(
+        small
+      );
+
+      row.appendChild(
+        name
+      );
 
 
       /* -------------------------
@@ -248,15 +302,21 @@ function renderProducts() {
       ------------------------- */
 
       const price =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
 
       price.className =
         'product-row-price';
 
       price.textContent =
-        formatPrice(product.price);
+        formatPrice(
+          product.price
+        );
 
-      row.appendChild(price);
+      row.appendChild(
+        price
+      );
 
 
       /* -------------------------
@@ -264,15 +324,21 @@ function renderProducts() {
       ------------------------- */
 
       const status =
-        document.createElement('span');
+        document.createElement(
+          'span'
+        );
 
       status.className =
         `product-status status-${product.status}`;
 
       status.textContent =
-        getStatusLabel(product.status);
+        getStatusLabel(
+          product.status
+        );
 
-      row.appendChild(status);
+      row.appendChild(
+        status
+      );
 
 
       /* -------------------------
@@ -280,14 +346,20 @@ function renderProducts() {
       ------------------------- */
 
       const actions =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
 
       actions.className =
         'product-row-actions';
 
 
+      /* EDIT */
+
       const editButton =
-        document.createElement('button');
+        document.createElement(
+          'button'
+        );
 
       editButton.type =
         'button';
@@ -300,14 +372,21 @@ function renderProducts() {
 
       editButton.addEventListener(
         'click',
-        () => {
-          openEditor(index);
+        function () {
+
+          openEditor(
+            index
+          );
         }
       );
 
 
+      /* DELETE */
+
       const deleteButton =
-        document.createElement('button');
+        document.createElement(
+          'button'
+        );
 
       deleteButton.type =
         'button';
@@ -320,31 +399,45 @@ function renderProducts() {
 
       deleteButton.addEventListener(
         'click',
-        () => {
-          deleteProduct(index);
+        function () {
+
+          deleteProduct(
+            index
+          );
         }
       );
 
 
-      actions.appendChild(editButton);
-      actions.appendChild(deleteButton);
+      actions.appendChild(
+        editButton
+      );
 
-      row.appendChild(actions);
+      actions.appendChild(
+        deleteButton
+      );
 
-      productList.appendChild(row);
+      row.appendChild(
+        actions
+      );
+
+      productList.appendChild(
+        row
+      );
     }
   );
 }
 
 
 /* =========================================================
-   UTILITIES
+   PLACEHOLDER
 ========================================================= */
 
 function createPlaceholder() {
 
   const placeholder =
-    document.createElement('div');
+    document.createElement(
+      'div'
+    );
 
   placeholder.className =
     'product-thumbnail-placeholder';
@@ -356,6 +449,10 @@ function createPlaceholder() {
 }
 
 
+/* =========================================================
+   IMAGE PATH
+========================================================= */
+
 function getImagePath(path) {
 
   if (!path) {
@@ -363,16 +460,27 @@ function getImagePath(path) {
   }
 
   if (
-    path.startsWith('http://') ||
-    path.startsWith('https://') ||
-    path.startsWith('../')
+    path.startsWith(
+      'http://'
+    ) ||
+    path.startsWith(
+      'https://'
+    ) ||
+    path.startsWith(
+      '../'
+    )
   ) {
+
     return path;
   }
 
   return '../' + path;
 }
 
+
+/* =========================================================
+   PRICE FORMAT
+========================================================= */
 
 function formatPrice(price) {
 
@@ -381,34 +489,48 @@ function formatPrice(price) {
     price === null ||
     price === ''
   ) {
+
     return '';
   }
 
   const number =
     Number(price);
 
-  if (isNaN(number)) {
-    return String(price);
+  if (
+    Number.isNaN(number)
+  ) {
+
+    return String(
+      price
+    );
   }
 
   return (
     'KSh ' +
-    number.toLocaleString('en-KE')
+    number.toLocaleString(
+      'en-KE'
+    )
   );
 }
 
 
 /* =========================================================
-   STATUS
+   STATUS LABEL
 ========================================================= */
 
 function getStatusLabel(status) {
 
-  if (status === 'sold') {
+  if (
+    status === 'sold'
+  ) {
+
     return 'SOLD';
   }
 
-  if (status === 'reserved') {
+  if (
+    status === 'reserved'
+  ) {
+
     return 'RESERVED';
   }
 
@@ -416,39 +538,71 @@ function getStatusLabel(status) {
 }
 
 
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
 function updateStats() {
 
-  document.getElementById(
-    'product-count'
-  ).textContent =
-    products.length;
+  const productCount =
+    document.getElementById(
+      'product-count'
+    );
+
+  const availableCount =
+    document.getElementById(
+      'available-count'
+    );
+
+  const reservedCount =
+    document.getElementById(
+      'reserved-count'
+    );
+
+  const soldCount =
+    document.getElementById(
+      'sold-count'
+    );
 
 
-  document.getElementById(
-    'available-count'
-  ).textContent =
-    products.filter(
-      product =>
-        product.status === 'available'
-    ).length;
+  if (productCount) {
+
+    productCount.textContent =
+      products.length;
+  }
 
 
-  document.getElementById(
-    'reserved-count'
-  ).textContent =
-    products.filter(
-      product =>
-        product.status === 'reserved'
-    ).length;
+  if (availableCount) {
+
+    availableCount.textContent =
+      products.filter(
+        product =>
+          product.status ===
+          'available'
+      ).length;
+  }
 
 
-  document.getElementById(
-    'sold-count'
-  ).textContent =
-    products.filter(
-      product =>
-        product.status === 'sold'
-    ).length;
+  if (reservedCount) {
+
+    reservedCount.textContent =
+      products.filter(
+        product =>
+          product.status ===
+          'reserved'
+      ).length;
+  }
+
+
+  if (soldCount) {
+
+    soldCount.textContent =
+      products.filter(
+        product =>
+          product.status ===
+          'sold'
+      ).length;
+  }
 }
 
 
@@ -458,9 +612,35 @@ function updateStats() {
 
 function openEditor(index = null) {
 
-  editingIndex = index;
+  /*
+    IMPORTANT:
+    Store the index of the product being edited.
+  */
 
-  imageFields.innerHTML = '';
+  editingIndex =
+    index;
+
+
+  /*
+    Remove old image fields.
+  */
+
+  imageFields.innerHTML =
+    '';
+
+
+  /*
+    Opening an editor does not mean
+    the user has changed anything yet.
+  */
+
+  hasUnsavedChanges =
+    false;
+
+
+  /* =======================================================
+     ADD NEW PRODUCT
+  ======================================================= */
 
   if (index === null) {
 
@@ -474,39 +654,93 @@ function openEditor(index = null) {
 
     addImageField('');
 
-  } else {
+  }
+
+
+  /* =======================================================
+     EDIT EXISTING PRODUCT
+  ======================================================= */
+
+  else {
 
     const product =
       products[index];
 
+
+    if (!product) {
+
+      console.error(
+        'Product not found:',
+        index
+      );
+
+      alert(
+        'Could not open this product.'
+      );
+
+      return;
+    }
+
+
     editorTitle.textContent =
       'Edit Product';
 
+
+    /*
+      Fill the form with the
+      existing product data.
+    */
+
     productName.value =
       product.name || '';
+
 
     productStatus.value =
       product.status ||
       'available';
 
+
     productCondition.value =
       product.condition || '';
 
-    productPrice.value =
-      product.price ?? '';
+
+    if (
+      product.price === null ||
+      product.price === undefined ||
+      product.price === ''
+    ) {
+
+      productPrice.value =
+        '';
+
+    } else {
+
+      productPrice.value =
+        product.price;
+    }
+
 
     productDescription.value =
       product.description || '';
 
 
+    /*
+      Restore all existing images.
+    */
+
     if (
-      product.images &&
-      product.images.length
+      Array.isArray(
+        product.images
+      ) &&
+      product.images.length > 0
     ) {
 
       product.images.forEach(
         image => {
-          addImageField(image);
+
+          addImageField(
+            image
+          );
         }
       );
 
@@ -516,16 +750,19 @@ function openEditor(index = null) {
     }
   }
 
+
+  /* =======================================================
+     SHOW EDITOR
+  ======================================================= */
+
   productEditor.hidden =
     false;
+
 
   productEditor.scrollIntoView({
     behavior: 'smooth',
     block: 'start'
   });
-
-  hasUnsavedChanges =
-    false;
 }
 
 
@@ -535,7 +772,9 @@ function openEditor(index = null) {
 
 function closeEditor() {
 
-  if (hasUnsavedChanges) {
+  if (
+    hasUnsavedChanges
+  ) {
 
     const confirmed =
       confirm(
@@ -546,6 +785,7 @@ function closeEditor() {
       return;
     }
   }
+
 
   productEditor.hidden =
     true;
@@ -559,20 +799,30 @@ function closeEditor() {
 
 
 /* =========================================================
-   IMAGE FIELDS
+   ADD IMAGE FIELD
 ========================================================= */
 
-function addImageField(value = '') {
+function addImageField(
+  value = ''
+) {
 
   const wrapper =
-    document.createElement('div');
+    document.createElement(
+      'div'
+    );
 
   wrapper.className =
     'image-field';
 
 
+  /* -------------------------
+     PREVIEW
+  ------------------------- */
+
   const preview =
-    document.createElement('img');
+    document.createElement(
+      'img'
+    );
 
   preview.className =
     'image-preview';
@@ -580,20 +830,38 @@ function addImageField(value = '') {
   preview.alt =
     'Image preview';
 
+
   if (value) {
+
     preview.src =
-      getImagePath(value);
+      getImagePath(
+        value
+      );
   }
 
-  preview.onerror = () => {
-    preview.removeAttribute('src');
-  };
 
-  wrapper.appendChild(preview);
+  preview.onerror =
+    function () {
 
+      preview.removeAttribute(
+        'src'
+      );
+    };
+
+
+  wrapper.appendChild(
+    preview
+  );
+
+
+  /* -------------------------
+     INPUT
+  ------------------------- */
 
   const input =
-    document.createElement('input');
+    document.createElement(
+      'input'
+    );
 
   input.type =
     'text';
@@ -610,18 +878,22 @@ function addImageField(value = '') {
 
   input.addEventListener(
     'input',
-    () => {
+    function () {
 
       hasUnsavedChanges =
         true;
 
-      const imagePath =
+
+      const path =
         input.value.trim();
 
-      if (imagePath) {
+
+      if (path) {
 
         preview.src =
-          getImagePath(imagePath);
+          getImagePath(
+            path
+          );
 
       } else {
 
@@ -633,11 +905,19 @@ function addImageField(value = '') {
   );
 
 
-  wrapper.appendChild(input);
+  wrapper.appendChild(
+    input
+  );
 
+
+  /* -------------------------
+     REMOVE BUTTON
+  ------------------------- */
 
   const removeButton =
-    document.createElement('button');
+    document.createElement(
+      'button'
+    );
 
   removeButton.type =
     'button';
@@ -651,7 +931,7 @@ function addImageField(value = '') {
 
   removeButton.addEventListener(
     'click',
-    () => {
+    function () {
 
       wrapper.remove();
 
@@ -665,11 +945,16 @@ function addImageField(value = '') {
     removeButton
   );
 
+
   imageFields.appendChild(
     wrapper
   );
 }
 
+
+/* =========================================================
+   GET IMAGES
+========================================================= */
 
 function getImagesFromForm() {
 
@@ -695,7 +980,7 @@ function getImagesFromForm() {
 
 productForm.addEventListener(
   'submit',
-  async event => {
+  async function (event) {
 
     event.preventDefault();
 
@@ -725,37 +1010,58 @@ productForm.addEventListener(
           );
 
 
+    if (
+      productPrice.value !== '' &&
+      Number.isNaN(
+        cleanPrice
+      )
+    ) {
+
+      alert(
+        'Please enter a valid price.'
+      );
+
+      productPrice.focus();
+
+      return;
+    }
+
+
     const product = {
 
       name:
-
         name,
 
       status:
-
         productStatus.value,
 
       condition:
-
         productCondition.value.trim(),
 
       price:
-
         cleanPrice,
 
       description:
-
         productDescription.value.trim(),
 
       images:
-
         getImagesFromForm()
     };
 
 
+    /*
+      Make a copy so we don't
+      modify the current data
+      until the Worker succeeds.
+    */
+
     const updatedProducts =
       [...products];
 
+
+    /* -------------------------
+       ADD
+    ------------------------- */
 
     if (
       editingIndex === null
@@ -764,14 +1070,38 @@ productForm.addEventListener(
       updatedProducts.push(
         product
       );
+    }
 
-    } else {
+
+    /* -------------------------
+       EDIT
+    ------------------------- */
+
+    else {
+
+      if (
+        !updatedProducts[
+          editingIndex
+        ]
+      ) {
+
+        alert(
+          'The product could not be found. Please reload the page.'
+        );
+
+        return;
+      }
+
 
       updatedProducts[
         editingIndex
       ] = product;
     }
 
+
+    /* -------------------------
+       ADMIN KEY
+    ------------------------- */
 
     const adminKey =
       prompt(
@@ -783,6 +1113,10 @@ productForm.addEventListener(
       return;
     }
 
+
+    /* -------------------------
+       SEND TO WORKER
+    ------------------------- */
 
     try {
 
@@ -823,6 +1157,12 @@ productForm.addEventListener(
       }
 
 
+      /*
+        Only update the local
+        products after the Worker
+        confirms success.
+      */
+
       products =
         updatedProducts;
 
@@ -849,7 +1189,11 @@ productForm.addEventListener(
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        'Save error:',
+        error
+      );
+
 
       alert(
         'Could not save the product.\n\n' +
@@ -864,10 +1208,22 @@ productForm.addEventListener(
    DELETE PRODUCT
 ========================================================= */
 
-async function deleteProduct(index) {
+async function deleteProduct(
+  index
+) {
 
   const product =
     products[index];
+
+
+  if (!product) {
+
+    alert(
+      'Could not find this product.'
+    );
+
+    return;
+  }
 
 
   const confirmed =
@@ -950,6 +1306,12 @@ async function deleteProduct(index) {
     updateStats();
 
 
+    /*
+      If the deleted product was
+      the one currently being edited,
+      close the editor.
+    */
+
     if (
       editingIndex === index
     ) {
@@ -965,6 +1327,21 @@ async function deleteProduct(index) {
     }
 
 
+    /*
+      If a product before the
+      currently edited product
+      was deleted, adjust the index.
+    */
+
+    else if (
+      editingIndex !== null &&
+      index < editingIndex
+    ) {
+
+      editingIndex--;
+    }
+
+
     alert(
       'Product deleted successfully from GitHub.'
     );
@@ -972,7 +1349,11 @@ async function deleteProduct(index) {
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      'Delete error:',
+      error
+    );
+
 
     alert(
       'Could not delete product.\n\n' +
@@ -988,7 +1369,8 @@ async function deleteProduct(index) {
 
 addProductButton.addEventListener(
   'click',
-  () => {
+  function () {
+
     openEditor();
   }
 );
@@ -996,7 +1378,7 @@ addProductButton.addEventListener(
 
 addImageButton.addEventListener(
   'click',
-  () => {
+  function () {
 
     addImageField();
 
@@ -1018,9 +1400,13 @@ closeEditorButton.addEventListener(
 );
 
 
+/* =========================================================
+   FORM CHANGE TRACKING
+========================================================= */
+
 productForm.addEventListener(
   'input',
-  () => {
+  function () {
 
     hasUnsavedChanges =
       true;
@@ -1034,15 +1420,19 @@ productForm.addEventListener(
 
 window.addEventListener(
   'beforeunload',
-  event => {
+  function (event) {
 
-    if (!hasUnsavedChanges) {
+    if (
+      !hasUnsavedChanges
+    ) {
+
       return;
     }
 
     event.preventDefault();
 
-    event.returnValue = '';
+    event.returnValue =
+      '';
   }
 );
 
