@@ -1377,16 +1377,193 @@ addProductButton.addEventListener(
 );
 
 
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
 addImageButton.addEventListener(
   'click',
-  function () {
+  () => {
 
-    addImageField();
+    const fileInput =
+      document.createElement('input');
 
-    hasUnsavedChanges =
-      true;
+    fileInput.type = 'file';
+
+    fileInput.accept =
+      'image/jpeg,image/png,image/webp';
+
+    fileInput.style.display =
+      'none';
+
+
+    fileInput.addEventListener(
+      'change',
+      async () => {
+
+        const file =
+          fileInput.files[0];
+
+        if (!file) {
+          fileInput.remove();
+          return;
+        }
+
+
+        /* ---------------------------------------------
+           CHECK FILE SIZE
+        --------------------------------------------- */
+
+        if (
+          file.size >
+          10 * 1024 * 1024
+        ) {
+
+          alert(
+            'Image is too large. Maximum size is 10 MB.'
+          );
+
+          fileInput.remove();
+          return;
+        }
+
+
+        /* ---------------------------------------------
+           ASK FOR ADMIN KEY
+        --------------------------------------------- */
+
+        const adminKey =
+          prompt(
+            'Enter your admin key to upload this image:'
+          );
+
+
+        if (!adminKey) {
+
+          fileInput.remove();
+          return;
+        }
+
+
+        /* ---------------------------------------------
+           SHOW UPLOAD STATUS
+        --------------------------------------------- */
+
+        addImageButton.disabled =
+          true;
+
+        addImageButton.textContent =
+          'Uploading...';
+
+
+        try {
+
+          /* -------------------------------------------
+             PREPARE FILE
+          ------------------------------------------- */
+
+          const formData =
+            new FormData();
+
+          formData.append(
+            'file',
+            file
+          );
+
+
+          /* -------------------------------------------
+             UPLOAD TO WORKER
+          ------------------------------------------- */
+
+          const response =
+            await fetch(
+              'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/upload-image',
+              {
+                method: 'POST',
+
+                headers: {
+                  'X-Admin-Key':
+                    adminKey
+                },
+
+                body:
+                  formData
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if (!response.ok) {
+
+            throw new Error(
+              result.error ||
+              'Image upload failed.'
+            );
+
+          }
+
+
+          /* -------------------------------------------
+             ADD UPLOADED IMAGE TO FORM
+          ------------------------------------------- */
+
+          addImageField(
+            result.path
+          );
+
+
+          hasUnsavedChanges =
+            true;
+
+
+          alert(
+            'Image uploaded successfully.'
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            'Image upload error:',
+            error
+          );
+
+
+          alert(
+            'Could not upload image.\n\n' +
+            error.message
+          );
+
+
+        } finally {
+
+          addImageButton.disabled =
+            false;
+
+          addImageButton.textContent =
+            '+ Add Image';
+
+          fileInput.remove();
+
+        }
+
+      }
+    );
+
+
+    document.body.appendChild(
+      fileInput
+    );
+
+
+    fileInput.click();
+
   }
 );
+
 
 
 cancelProductButton.addEventListener(
