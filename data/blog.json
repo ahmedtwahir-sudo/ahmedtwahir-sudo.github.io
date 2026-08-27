@@ -1,2 +1,24 @@
-[]
-
+[
+  {
+    "id": "blog-test-001",
+    "title": "Test Blog Post",
+    "slug": "test-blog-post",
+    "content": "This is a temporary test post.",
+    "coverImage": "",
+    "date": "2026-08-27T20:00:00+03:00",
+    "status": "draft",
+    "categories": [
+      "Test"
+    ],
+    "tags": [
+      "test"
+    ],
+    "author": {
+      "name": "ShikaDeal",
+      "profile": ""
+    },
+    "metaTitle": "Test Blog Post | ShikaDeal",
+    "metaDescription": "Temporary test post.",
+    "excerpt": "Temporary test post for API testing."
+  }
+]
