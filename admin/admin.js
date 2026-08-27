@@ -950,6 +950,7 @@ function addImageField(
   imageFields.appendChild(
     wrapper
   );
+   return wrapper;
 }
 
 
@@ -1510,9 +1511,23 @@ addImageButton.addEventListener(
              ADD UPLOADED IMAGE TO FORM
           ------------------------------------------- */
 
-          addImageField(
-            result.path
-          );
+          
+           const imageField =
+              addImageField(
+                result.path
+              );
+            
+            if (imageField) {
+              const preview =
+                imageField.querySelector(
+                  '.image-preview'
+                );
+            
+              if (preview) {
+                preview.src =
+                  URL.createObjectURL(file);
+              }
+            }
 
 
           hasUnsavedChanges =
