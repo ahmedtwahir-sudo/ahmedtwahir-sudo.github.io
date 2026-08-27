@@ -2009,16 +2009,357 @@ function renderBlog() {
    OPEN BLOG EDITOR
 ========================================================= */
 
-function openBlogEditor(
-  index = null
-) {
+function openBlogEditor(index = null) {
 
-  console.log(
-    'Blog editor requested:',
-    index
-  );
+  blogEditor.hidden = false;
+
+  blogEditor.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
+
+  /* =====================================================
+     ELEMENTS
+  ===================================================== */
+
+  const title =
+    document.getElementById('blog-title');
+
+  const slug =
+    document.getElementById('blog-slug');
+
+  const status =
+    document.getElementById('blog-status');
+
+  const date =
+    document.getElementById('blog-date');
+
+  const excerpt =
+    document.getElementById('blog-excerpt');
+
+  const content =
+    document.getElementById('blog-content');
+
+  const categories =
+    document.getElementById('blog-categories');
+
+  const tags =
+    document.getElementById('blog-tags');
+
+  const authorName =
+    document.getElementById('blog-author-name');
+
+  const authorProfile =
+    document.getElementById('blog-author-profile');
+
+  const metaTitle =
+    document.getElementById('blog-meta-title');
+
+  const metaDescription =
+    document.getElementById('blog-meta-description');
+
+
+  /* =====================================================
+     NEW POST
+  ===================================================== */
+
+  if (index === null) {
+
+    blogEditorTitle.textContent =
+      'Add Post';
+
+    blogForm.reset();
+
+    status.value =
+      'draft';
+
+    date.value =
+      '';
+
+
+    return;
+  }
+
+
+  /* =====================================================
+     EDIT EXISTING POST
+  ===================================================== */
+
+  const post =
+    blogPosts[index];
+
+
+  if (!post) {
+
+    alert(
+      'Could not find this blog post.'
+    );
+
+    return;
+  }
+
+
+  blogEditorTitle.textContent =
+    'Edit Post';
+
+
+  title.value =
+    post.title || '';
+
+
+  slug.value =
+    post.slug || '';
+
+
+  status.value =
+    post.status || 'draft';
+
+
+  /* -----------------------------------------------------
+     DATE
+  ----------------------------------------------------- */
+
+  if (post.date) {
+
+    const parsedDate =
+      new Date(post.date);
+
+
+    if (!isNaN(parsedDate)) {
+
+      const localDate =
+        new Date(
+          parsedDate.getTime() -
+          parsedDate.getTimezoneOffset() *
+            60000
+        );
+
+
+      date.value =
+        localDate
+          .toISOString()
+          .slice(
+            0,
+            16
+          );
+
+    } else {
+
+      date.value =
+        '';
+
+    }
+
+  } else {
+
+    date.value =
+      '';
+
+  }
+
+
+  /* -----------------------------------------------------
+     EXCERPT
+  ----------------------------------------------------- */
+
+  excerpt.value =
+    post.excerpt || '';
+
+
+  /* -----------------------------------------------------
+     CONTENT
+  ----------------------------------------------------- */
+
+  content.value =
+    post.content || '';
+
+
+  /* -----------------------------------------------------
+     CATEGORIES
+  ----------------------------------------------------- */
+
+  categories.value =
+    Array.isArray(
+      post.categories
+    )
+      ? post.categories.join(', ')
+      : '';
+
+
+  /* -----------------------------------------------------
+     TAGS
+  ----------------------------------------------------- */
+
+  tags.value =
+    Array.isArray(
+      post.tags
+    )
+      ? post.tags.join(', ')
+      : '';
+
+
+  /* -----------------------------------------------------
+     AUTHOR
+  ----------------------------------------------------- */
+
+  if (
+    post.author &&
+    typeof post.author === 'object'
+  ) {
+
+    authorName.value =
+      post.author.name || '';
+
+
+    authorProfile.value =
+      post.author.profile || '';
+
+  } else {
+
+    authorName.value =
+      typeof post.author === 'string'
+        ? post.author
+        : '';
+
+
+    authorProfile.value =
+      '';
+
+  }
+
+
+  /* -----------------------------------------------------
+     SEO
+  ----------------------------------------------------- */
+
+  metaTitle.value =
+    post.metaTitle || '';
+
+
+  metaDescription.value =
+    post.metaDescription || '';
+
+
+  /* =====================================================
+     COVER IMAGE
+  ===================================================== */
+
+  const coverField =
+    document.getElementById(
+      'blog-cover-field'
+    );
+
+
+  coverField.innerHTML = '';
+
+
+  if (post.coverImage) {
+
+    const wrapper =
+      document.createElement('div');
+
+
+    wrapper.className =
+      'image-field';
+
+
+    const preview =
+      document.createElement('img');
+
+
+    preview.className =
+      'image-preview';
+
+
+    preview.alt =
+      'Cover image preview';
+
+
+    preview.src =
+      getImagePath(
+        post.coverImage
+      );
+
+
+    preview.onerror = () => {
+
+      preview.removeAttribute(
+        'src'
+      );
+
+    };
+
+
+    wrapper.appendChild(
+      preview
+    );
+
+
+    const input =
+      document.createElement('input');
+
+
+    input.type =
+      'text';
+
+
+    input.className =
+      'image-input';
+
+
+    input.value =
+      post.coverImage;
+
+
+    input.placeholder =
+      'images/blog/example.jpg';
+
+
+    wrapper.appendChild(
+      input
+    );
+
+
+    const removeButton =
+      document.createElement('button');
+
+
+    removeButton.type =
+      'button';
+
+
+    removeButton.className =
+      'remove-image';
+
+
+    removeButton.textContent =
+      '×';
+
+
+    removeButton.addEventListener(
+      'click',
+      () => {
+
+        wrapper.remove();
+
+      }
+    );
+
+
+    wrapper.appendChild(
+      removeButton
+    );
+
+
+    coverField.appendChild(
+      wrapper
+    );
+
+  }
 
 }
+
 
 
 /* =========================================================
