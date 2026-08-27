@@ -1689,6 +1689,7 @@ loadProducts();
 ========================================================= */
 
 let blogPosts = [];
+let editingBlogIndex = null;
 
 
 /* =========================================================
@@ -1698,29 +1699,31 @@ let blogPosts = [];
 const blogList =
   document.getElementById('blog-list');
 
-
 const blogEditor =
   document.getElementById('blog-editor');
-
 
 const blogForm =
   document.getElementById('blog-form');
 
-
 const blogEditorTitle =
   document.getElementById('blog-editor-title');
-
 
 const addBlogButton =
   document.getElementById('add-blog-button');
 
-
 const closeBlogEditorButton =
   document.getElementById('close-blog-editor');
 
-
 const cancelBlogButton =
   document.getElementById('cancel-blog');
+
+
+/* =========================================================
+   BLOG API
+========================================================= */
+
+const BLOG_WORKER_URL =
+  'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/blog';
 
 
 /* =========================================================
@@ -2011,12 +2014,12 @@ function renderBlog() {
 
 function openBlogEditor(index = null) {
 
-  blogEditor.hidden = false;
+  editingBlogIndex =
+    index;
 
-  blogEditor.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
+
+  hasUnsavedChanges =
+    false;
 
 
   /* =====================================================
@@ -2059,6 +2062,16 @@ function openBlogEditor(index = null) {
   const metaDescription =
     document.getElementById('blog-meta-description');
 
+  const coverField =
+    document.getElementById('blog-cover-field');
+
+
+  /* =====================================================
+     CLEAR OLD COVER IMAGE
+  ===================================================== */
+
+  coverField.innerHTML = '';
+
 
   /* =====================================================
      NEW POST
@@ -2078,6 +2091,16 @@ function openBlogEditor(index = null) {
       '';
 
 
+    blogEditor.hidden =
+      false;
+
+
+    blogEditor.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
+
     return;
   }
 
@@ -2095,6 +2118,9 @@ function openBlogEditor(index = null) {
     alert(
       'Could not find this blog post.'
     );
+
+    editingBlogIndex =
+      null;
 
     return;
   }
@@ -2245,44 +2271,85 @@ function openBlogEditor(index = null) {
      COVER IMAGE
   ===================================================== */
 
+  if (post.coverImage) {
+
+    createBlogCoverField(
+      post.coverImage
+    );
+
+  }
+
+
+  /* =====================================================
+     SHOW EDITOR
+  ===================================================== */
+
+  blogEditor.hidden =
+    false;
+
+
+  blogEditor.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
+}
+
+
+/* =========================================================
+   CREATE BLOG COVER FIELD
+========================================================= */
+
+function createBlogCoverField(
+  value = ''
+) {
+
   const coverField =
     document.getElementById(
       'blog-cover-field'
     );
 
 
-  coverField.innerHTML = '';
+  const wrapper =
+    document.createElement(
+      'div'
+    );
 
 
-  if (post.coverImage) {
-
-    const wrapper =
-      document.createElement('div');
+  wrapper.className =
+    'image-field';
 
 
-    wrapper.className =
-      'image-field';
+  /* -----------------------------------------------------
+     PREVIEW
+  ----------------------------------------------------- */
+
+  const preview =
+    document.createElement(
+      'img'
+    );
 
 
-    const preview =
-      document.createElement('img');
+  preview.className =
+    'image-preview';
 
 
-    preview.className =
-      'image-preview';
+  preview.alt =
+    'Cover image preview';
 
 
-    preview.alt =
-      'Cover image preview';
-
+  if (value) {
 
     preview.src =
       getImagePath(
-        post.coverImage
+        value
       );
 
+  }
 
-    preview.onerror = () => {
+
+  preview.onerror =
+    function () {
 
       preview.removeAttribute(
         'src'
@@ -2291,75 +2358,548 @@ function openBlogEditor(index = null) {
     };
 
 
-    wrapper.appendChild(
-      preview
+  wrapper.appendChild(
+    preview
+  );
+
+
+  /* -----------------------------------------------------
+     INPUT
+  ----------------------------------------------------- */
+
+  const input =
+    document.createElement(
+      'input'
     );
 
 
-    const input =
-      document.createElement('input');
+  input.type =
+    'text';
 
 
-    input.type =
-      'text';
+  input.className =
+    'image-input';
 
 
-    input.className =
-      'image-input';
+  input.placeholder =
+    'images/blog/example.jpg';
 
 
-    input.value =
-      post.coverImage;
+  input.value =
+    value;
 
 
-    input.placeholder =
-      'images/blog/example.jpg';
+  input.addEventListener(
+    'input',
+    function () {
+
+      hasUnsavedChanges =
+        true;
 
 
-    wrapper.appendChild(
-      input
-    );
+      const path =
+        input.value.trim();
 
 
-    const removeButton =
-      document.createElement('button');
+      if (path) {
 
+        preview.src =
+          getImagePath(
+            path
+          );
 
-    removeButton.type =
-      'button';
+      } else {
 
-
-    removeButton.className =
-      'remove-image';
-
-
-    removeButton.textContent =
-      '×';
-
-
-    removeButton.addEventListener(
-      'click',
-      () => {
-
-        wrapper.remove();
+        preview.removeAttribute(
+          'src'
+        );
 
       }
+
+    }
+  );
+
+
+  wrapper.appendChild(
+    input
+  );
+
+
+  /* -----------------------------------------------------
+     REMOVE BUTTON
+  ----------------------------------------------------- */
+
+  const removeButton =
+    document.createElement(
+      'button'
     );
 
 
-    wrapper.appendChild(
-      removeButton
+  removeButton.type =
+    'button';
+
+
+  removeButton.className =
+    'remove-image';
+
+
+  removeButton.textContent =
+    '×';
+
+
+  removeButton.addEventListener(
+    'click',
+    function () {
+
+      wrapper.remove();
+
+      hasUnsavedChanges =
+        true;
+
+    }
+  );
+
+
+  wrapper.appendChild(
+    removeButton
+  );
+
+
+  coverField.appendChild(
+    wrapper
+  );
+
+
+  return wrapper;
+}
+
+
+/* =========================================================
+   GET BLOG COVER IMAGE
+========================================================= */
+
+function getBlogCoverImage() {
+
+  const input =
+    document.querySelector(
+      '#blog-cover-field .image-input'
     );
 
 
-    coverField.appendChild(
-      wrapper
-    );
+  if (!input) {
+
+    return '';
 
   }
 
+
+  return input.value.trim();
+
 }
 
+
+/* =========================================================
+   SAVE BLOG POST
+========================================================= */
+
+blogForm.addEventListener(
+  'submit',
+  async function (event) {
+
+    event.preventDefault();
+
+
+    /* =====================================================
+       GET FORM VALUES
+    ===================================================== */
+
+    const title =
+      document.getElementById(
+        'blog-title'
+      ).value.trim();
+
+
+    const slug =
+      document.getElementById(
+        'blog-slug'
+      ).value.trim();
+
+
+    const status =
+      document.getElementById(
+        'blog-status'
+      ).value;
+
+
+    const date =
+      document.getElementById(
+        'blog-date'
+      ).value;
+
+
+    const excerpt =
+      document.getElementById(
+        'blog-excerpt'
+      ).value.trim();
+
+
+    const content =
+      document.getElementById(
+        'blog-content'
+      ).value.trim();
+
+
+    const categories =
+      document.getElementById(
+        'blog-categories'
+      ).value
+        .split(',')
+        .map(
+          item =>
+            item.trim()
+        )
+        .filter(
+          item =>
+            item !== ''
+        );
+
+
+    const tags =
+      document.getElementById(
+        'blog-tags'
+      ).value
+        .split(',')
+        .map(
+          item =>
+            item.trim()
+        )
+        .filter(
+          item =>
+            item !== ''
+        );
+
+
+    const authorName =
+      document.getElementById(
+        'blog-author-name'
+      ).value.trim();
+
+
+    const authorProfile =
+      document.getElementById(
+        'blog-author-profile'
+      ).value.trim();
+
+
+    const metaTitle =
+      document.getElementById(
+        'blog-meta-title'
+      ).value.trim();
+
+
+    const metaDescription =
+      document.getElementById(
+        'blog-meta-description'
+      ).value.trim();
+
+
+    const coverImage =
+      getBlogCoverImage();
+
+
+    /* =====================================================
+       VALIDATION
+    ===================================================== */
+
+    if (!title) {
+
+      alert(
+        'Please enter a blog title.'
+      );
+
+      document
+        .getElementById('blog-title')
+        .focus();
+
+      return;
+    }
+
+
+    if (!slug) {
+
+      alert(
+        'Please enter a blog slug.'
+      );
+
+      document
+        .getElementById('blog-slug')
+        .focus();
+
+      return;
+    }
+
+
+    /* =====================================================
+       BUILD POST
+    ===================================================== */
+
+    const post = {
+
+      title:
+        title,
+
+      slug:
+        slug,
+
+      status:
+        status,
+
+      date:
+        date
+          ? new Date(date).toISOString()
+          : '',
+
+      excerpt:
+        excerpt,
+
+      content:
+        content,
+
+      coverImage:
+        coverImage,
+
+      categories:
+        categories,
+
+      tags:
+        tags,
+
+      author: {
+
+        name:
+          authorName,
+
+        profile:
+          authorProfile
+
+      },
+
+      metaTitle:
+        metaTitle,
+
+      metaDescription:
+        metaDescription
+
+    };
+
+
+    /* =====================================================
+       COPY CURRENT POSTS
+    ===================================================== */
+
+    const updatedBlogPosts =
+      [...blogPosts];
+
+
+    /* =====================================================
+       ADD
+    ===================================================== */
+
+    if (
+      editingBlogIndex === null
+    ) {
+
+      updatedBlogPosts.push(
+        post
+      );
+
+    }
+
+
+    /* =====================================================
+       EDIT
+    ===================================================== */
+
+    else {
+
+      if (
+        !updatedBlogPosts[
+          editingBlogIndex
+        ]
+      ) {
+
+        alert(
+          'The blog post could not be found. Please reload the page.'
+        );
+
+        return;
+
+      }
+
+
+      /*
+        Preserve any fields that may exist
+        in the existing post but are not
+        currently represented by the editor.
+      */
+
+      updatedBlogPosts[
+        editingBlogIndex
+      ] = {
+
+        ...updatedBlogPosts[
+          editingBlogIndex
+        ],
+
+        ...post
+
+      };
+
+    }
+
+
+    /* =====================================================
+       ADMIN KEY
+    ===================================================== */
+
+    const adminKey =
+      prompt(
+        'Enter your admin key to save changes:'
+      );
+
+
+    if (!adminKey) {
+
+      return;
+
+    }
+
+
+    /* =====================================================
+       DISABLE SAVE BUTTON
+    ===================================================== */
+
+    const saveButton =
+      blogForm.querySelector(
+        'button[type="submit"]'
+      );
+
+
+    if (saveButton) {
+
+      saveButton.disabled =
+        true;
+
+      saveButton.textContent =
+        'Saving...';
+
+    }
+
+
+    /* =====================================================
+       SEND TO WORKER
+    ===================================================== */
+
+    try {
+
+      const response =
+        await fetch(
+          BLOG_WORKER_URL,
+          {
+            method:
+              'POST',
+
+            headers: {
+
+              'Content-Type':
+                'application/json',
+
+              'X-Admin-Key':
+                adminKey
+
+            },
+
+            body:
+              JSON.stringify(
+                updatedBlogPosts
+              )
+
+          }
+        );
+
+
+      const result =
+        await response.json();
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          result.error ||
+          'The Worker could not save the blog posts.'
+        );
+
+      }
+
+
+      /* ===================================================
+         ONLY UPDATE LOCAL DATA AFTER SUCCESS
+      =================================================== */
+
+      blogPosts =
+        updatedBlogPosts;
+
+
+      renderBlog();
+
+
+      blogEditor.hidden =
+        true;
+
+
+      editingBlogIndex =
+        null;
+
+
+      hasUnsavedChanges =
+        false;
+
+
+      alert(
+        'Blog post saved successfully to GitHub.'
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        'Blog save error:',
+        error
+      );
+
+
+      alert(
+        'Could not save the blog post.\n\n' +
+        error.message
+      );
+
+
+    } finally {
+
+      if (saveButton) {
+
+        saveButton.disabled =
+          false;
+
+        saveButton.textContent =
+          'Save Post';
+
+      }
+
+    }
+
+  }
+);
 
 
 /* =========================================================
@@ -2370,7 +2910,7 @@ if (addBlogButton) {
 
   addBlogButton.addEventListener(
     'click',
-    () => {
+    function () {
 
       openBlogEditor();
 
@@ -2388,10 +2928,36 @@ if (cancelBlogButton) {
 
   cancelBlogButton.addEventListener(
     'click',
-    () => {
+    function () {
+
+      if (
+        hasUnsavedChanges
+      ) {
+
+        const confirmed =
+          confirm(
+            'You have unsaved changes. Close anyway?'
+          );
+
+        if (!confirmed) {
+
+          return;
+
+        }
+
+      }
+
 
       blogEditor.hidden =
         true;
+
+
+      editingBlogIndex =
+        null;
+
+
+      hasUnsavedChanges =
+        false;
 
     }
   );
@@ -2403,9 +2969,65 @@ if (closeBlogEditorButton) {
 
   closeBlogEditorButton.addEventListener(
     'click',
-    () => {
+    function () {
+
+      if (
+        hasUnsavedChanges
+      ) {
+
+        const confirmed =
+          confirm(
+            'You have unsaved changes. Close anyway?'
+          );
+
+        if (!confirmed) {
+
+          return;
+
+        }
+
+      }
+
 
       blogEditor.hidden =
+        true;
+
+
+      editingBlogIndex =
+        null;
+
+
+      hasUnsavedChanges =
+        false;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   BLOG FORM CHANGE TRACKING
+========================================================= */
+
+if (blogForm) {
+
+  blogForm.addEventListener(
+    'input',
+    function () {
+
+      hasUnsavedChanges =
+        true;
+
+    }
+  );
+
+
+  blogForm.addEventListener(
+    'change',
+    function () {
+
+      hasUnsavedChanges =
         true;
 
     }
