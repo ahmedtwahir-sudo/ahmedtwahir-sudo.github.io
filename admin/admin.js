@@ -1683,3 +1683,399 @@ window.addEventListener(
 ========================================================= */
 
 loadProducts();
+
+/* =========================================================
+   BLOG MANAGEMENT
+========================================================= */
+
+let blogPosts = [];
+
+
+/* =========================================================
+   BLOG ELEMENTS
+========================================================= */
+
+const blogList =
+  document.getElementById('blog-list');
+
+
+const blogEditor =
+  document.getElementById('blog-editor');
+
+
+const blogForm =
+  document.getElementById('blog-form');
+
+
+const blogEditorTitle =
+  document.getElementById('blog-editor-title');
+
+
+const addBlogButton =
+  document.getElementById('add-blog-button');
+
+
+const closeBlogEditorButton =
+  document.getElementById('close-blog-editor');
+
+
+const cancelBlogButton =
+  document.getElementById('cancel-blog');
+
+
+/* =========================================================
+   LOAD BLOG
+========================================================= */
+
+async function loadBlog() {
+
+  try {
+
+    const response =
+      await fetch(
+        `../data/blog.json?v=${Date.now()}`,
+        {
+          cache: 'no-store'
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'Could not load blog.json'
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (!Array.isArray(data)) {
+
+      throw new Error(
+        'blog.json must contain an array'
+      );
+
+    }
+
+
+    blogPosts =
+      data;
+
+
+    renderBlog();
+
+
+  } catch (error) {
+
+    console.error(
+      'Blog loading error:',
+      error
+    );
+
+
+    blogList.innerHTML = `
+      <div class="loading-card">
+
+        <strong>
+          Unable to load blog posts.
+        </strong>
+
+        <br><br>
+
+        Check that
+        <code>data/blog.json</code>
+        exists and contains valid JSON.
+
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER BLOG LIST
+========================================================= */
+
+function renderBlog() {
+
+  blogList.innerHTML = '';
+
+
+  if (blogPosts.length === 0) {
+
+    blogList.innerHTML = `
+      <div class="loading-card">
+
+        No blog posts yet.
+        Click <strong>+ Add Post</strong>
+        to create your first article.
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  blogPosts.forEach(
+    (post, index) => {
+
+      const row =
+        document.createElement('div');
+
+
+      row.className =
+        'product-row';
+
+
+      /* -----------------------------------------------
+         TITLE
+      ----------------------------------------------- */
+
+      const name =
+        document.createElement('div');
+
+
+      name.className =
+        'product-row-name';
+
+
+      const strong =
+        document.createElement('strong');
+
+
+      strong.textContent =
+        post.title ||
+        'Untitled Post';
+
+
+      const small =
+        document.createElement('small');
+
+
+      small.textContent =
+        post.status
+          ? post.status.toUpperCase()
+          : 'DRAFT';
+
+
+      name.appendChild(
+        strong
+      );
+
+
+      name.appendChild(
+        small
+      );
+
+
+      row.appendChild(
+        name
+      );
+
+
+      /* -----------------------------------------------
+         DATE
+      ----------------------------------------------- */
+
+      const date =
+        document.createElement('div');
+
+
+      date.className =
+        'product-row-price';
+
+
+      if (post.date) {
+
+        const parsedDate =
+          new Date(post.date);
+
+
+        if (!isNaN(parsedDate)) {
+
+          date.textContent =
+            parsedDate.toLocaleDateString(
+              'en-KE',
+              {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              }
+            );
+
+        }
+
+      }
+
+
+      row.appendChild(
+        date
+      );
+
+
+      /* -----------------------------------------------
+         STATUS
+      ----------------------------------------------- */
+
+      const status =
+        document.createElement('span');
+
+
+      status.className =
+        `product-status status-${post.status || 'draft'}`;
+
+
+      status.textContent =
+        (
+          post.status ||
+          'draft'
+        ).toUpperCase();
+
+
+      row.appendChild(
+        status
+      );
+
+
+      /* -----------------------------------------------
+         ACTIONS
+      ----------------------------------------------- */
+
+      const actions =
+        document.createElement('div');
+
+
+      actions.className =
+        'product-row-actions';
+
+
+      const editButton =
+        document.createElement('button');
+
+
+      editButton.type =
+        'button';
+
+
+      editButton.className =
+        'small-button';
+
+
+      editButton.textContent =
+        'Edit';
+
+
+      editButton.addEventListener(
+        'click',
+        () => {
+
+          openBlogEditor(
+            index
+          );
+
+        }
+      );
+
+
+      actions.appendChild(
+        editButton
+      );
+
+
+      row.appendChild(
+        actions
+      );
+
+
+      blogList.appendChild(
+        row
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   OPEN BLOG EDITOR
+========================================================= */
+
+function openBlogEditor(
+  index = null
+) {
+
+  console.log(
+    'Blog editor requested:',
+    index
+  );
+
+}
+
+
+/* =========================================================
+   ADD BLOG BUTTON
+========================================================= */
+
+if (addBlogButton) {
+
+  addBlogButton.addEventListener(
+    'click',
+    () => {
+
+      openBlogEditor();
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   BLOG CLOSE BUTTONS
+========================================================= */
+
+if (cancelBlogButton) {
+
+  cancelBlogButton.addEventListener(
+    'click',
+    () => {
+
+      blogEditor.hidden =
+        true;
+
+    }
+  );
+
+}
+
+
+if (closeBlogEditorButton) {
+
+  closeBlogEditorButton.addEventListener(
+    'click',
+    () => {
+
+      blogEditor.hidden =
+        true;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   START BLOG
+========================================================= */
+
+loadBlog();
+
