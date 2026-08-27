@@ -49,5 +49,15 @@
     "images": [
       "images/products/sony-1-1787847915287.jpg"
     ]
+  },
+  {
+    "name": "TEST PRODUCT 2 - DELETE ME",
+    "status": "available",
+    "condition": "Used",
+    "price": 56789,
+    "description": "Testing 1,2,3",
+    "images": [
+      "images/products/sony-1-1787848813837.jpg"
+    ]
   }
 ]
