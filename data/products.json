@@ -41,16 +41,6 @@
     ]
   },
   {
-    "name": "TEST PRODUCT - DELETE ME",
-    "status": "available",
-    "condition": "Test",
-    "price": 12345,
-    "description": "Temporary test product",
-    "images": [
-      "images/products/sony-1-1787847915287.jpg"
-    ]
-  },
-  {
     "name": "TEST PRODUCT 2 - DELETE ME",
     "status": "available",
     "condition": "Used",
