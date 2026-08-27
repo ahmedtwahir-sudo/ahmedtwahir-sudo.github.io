@@ -39,5 +39,15 @@
       "images/products/sony-1-1787843421361.jpg",
       "images/products/sony-1-1787847398095.jpg"
     ]
+  },
+  {
+    "name": "TEST PRODUCT - DELETE ME",
+    "status": "available",
+    "condition": "Test",
+    "price": 12345,
+    "description": "Temporary test product",
+    "images": [
+      "images/products/sony-1-1787847915287.jpg"
+    ]
   }
 ]
