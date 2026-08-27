@@ -20,5 +20,26 @@
     "metaTitle": "Test Blog Post | ShikaDeal",
     "metaDescription": "Temporary test post.",
     "excerpt": "Temporary test post for API testing."
+  },
+  {
+    "title": "Test blog title",
+    "slug": "how to choose a good phone",
+    "status": "draft",
+    "date": "2026-08-27T19:33:00.000Z",
+    "excerpt": "Test excerpt",
+    "content": "Test content",
+    "coverImage": "",
+    "categories": [
+      "Guides"
+    ],
+    "tags": [
+      "laptops"
+    ],
+    "author": {
+      "name": "Ahmed",
+      "profile": ""
+    },
+    "metaTitle": "Test Meta title",
+    "metaDescription": "Test meta description"
   }
 ]
