@@ -67,7 +67,9 @@
 <main class="admin-main">
 
 
-  <!-- PAGE HEADING -->
+  <!-- ===================================================
+       PAGE HEADING
+  ==================================================== -->
 
   <div class="page-heading">
 
@@ -93,6 +95,8 @@
 
   <section class="dashboard-grid">
 
+
+    <!-- PRODUCTS -->
 
     <a
       href="#products"
@@ -124,6 +128,8 @@
     </a>
 
 
+    <!-- BLOG -->
+
     <a
       href="#blog"
       class="admin-card"
@@ -147,11 +153,13 @@
       </p>
 
       <span class="card-action">
-        Coming Next →
+        Manage Blog →
       </span>
 
     </a>
 
+
+    <!-- PDF GUIDES -->
 
     <a
       href="#guides"
@@ -181,6 +189,8 @@
 
     </a>
 
+
+    <!-- 3D PRINTS -->
 
     <a
       href="#prints"
@@ -305,6 +315,7 @@
         </small>
 
       </div>
+
 
     </div>
 
@@ -568,28 +579,394 @@
 
 
   <!-- ===================================================
-       FUTURE AREAS
+       BLOG
   ==================================================== -->
 
   <section
     id="blog"
-    class="placeholder-section"
+    class="management-section"
   >
 
-    <p class="eyebrow">
-      Ticket 02
-    </p>
+    <div class="management-heading">
 
-    <h2>
-      Blog
-    </h2>
+      <div>
 
-    <p>
-      Blog management will be connected here next.
-    </p>
+        <p class="eyebrow">
+          Ticket 02
+        </p>
+
+        <h2>
+          Blog
+        </h2>
+
+        <p class="section-description">
+          Create and manage repair articles, teardown notes
+          and buying advice.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        id="add-blog-button"
+      >
+        + Add Post
+      </button>
+
+    </div>
+
+
+    <!-- BLOG LIST -->
+
+    <div
+      id="blog-list"
+      class="product-list"
+    >
+
+      <div class="loading-card">
+        Loading blog posts...
+      </div>
+
+    </div>
+
+
+    <!-- BLOG EDITOR -->
+
+    <div
+      id="blog-editor"
+      class="editor"
+      hidden
+    >
+
+      <div class="editor-header">
+
+        <div>
+
+          <p class="eyebrow">
+            Blog Editor
+          </p>
+
+          <h2 id="blog-editor-title">
+            Add Post
+          </h2>
+
+        </div>
+
+        <button
+          type="button"
+          class="close-button"
+          id="close-blog-editor"
+          aria-label="Close blog editor"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="blog-form">
+
+
+        <!-- TITLE -->
+
+        <div class="form-group">
+
+          <label for="blog-title">
+            Title
+          </label>
+
+          <input
+            type="text"
+            id="blog-title"
+            required
+            placeholder="Enter the public headline"
+          >
+
+        </div>
+
+
+        <!-- SLUG -->
+
+        <div class="form-group">
+
+          <label for="blog-slug">
+            Slug
+          </label>
+
+          <input
+            type="text"
+            id="blog-slug"
+            required
+            placeholder="how-to-choose-a-used-laptop"
+          >
+
+          <small>
+            Used as the readable part of the article URL.
+          </small>
+
+        </div>
+
+
+        <!-- STATUS + DATE -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="blog-status">
+              Status
+            </label>
+
+            <select id="blog-status">
+
+              <option value="draft">
+                Draft
+              </option>
+
+              <option value="scheduled">
+                Scheduled
+              </option>
+
+              <option value="published">
+                Published
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="blog-date">
+              Publication Date
+            </label>
+
+            <input
+              type="datetime-local"
+              id="blog-date"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- EXCERPT -->
+
+        <div class="form-group">
+
+          <label for="blog-excerpt">
+            Excerpt
+          </label>
+
+          <textarea
+            id="blog-excerpt"
+            rows="3"
+            placeholder="Short preview shown on feed pages..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="form-group">
+
+          <label for="blog-content">
+            Content
+          </label>
+
+          <textarea
+            id="blog-content"
+            rows="15"
+            placeholder="Write the full article here..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- COVER IMAGE -->
+
+        <div class="images-editor">
+
+          <div class="images-heading">
+
+            <div>
+
+              <label>
+                Cover Image
+              </label>
+
+              <p>
+                Primary header and preview image for the post.
+              </p>
+
+            </div>
+
+            <button
+              type="button"
+              class="secondary-button"
+              id="upload-blog-cover"
+            >
+              Upload Cover Image
+            </button>
+
+          </div>
+
+
+          <div
+            id="blog-cover-field"
+            class="image-fields"
+          ></div>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div class="form-group">
+
+          <label for="blog-categories">
+            Categories
+          </label>
+
+          <input
+            type="text"
+            id="blog-categories"
+            placeholder="Buying Guides, Laptops"
+          >
+
+          <small>
+            Separate multiple categories with commas.
+          </small>
+
+        </div>
+
+
+        <!-- TAGS -->
+
+        <div class="form-group">
+
+          <label for="blog-tags">
+            Tags
+          </label>
+
+          <input
+            type="text"
+            id="blog-tags"
+            placeholder="used laptops, HP, Dell"
+          >
+
+          <small>
+            Separate multiple tags with commas.
+          </small>
+
+        </div>
+
+
+        <!-- AUTHOR -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="blog-author-name">
+              Author Name
+            </label>
+
+            <input
+              type="text"
+              id="blog-author-name"
+              placeholder="ShikaDeal"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="blog-author-profile">
+              Author Profile
+            </label>
+
+            <input
+              type="text"
+              id="blog-author-profile"
+              placeholder="Optional profile image or path"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- SEO -->
+
+        <div class="form-group">
+
+          <label for="blog-meta-title">
+            Meta Title
+          </label>
+
+          <input
+            type="text"
+            id="blog-meta-title"
+            placeholder="SEO result headline"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="blog-meta-description">
+            Meta Description
+          </label>
+
+          <textarea
+            id="blog-meta-description"
+            rows="3"
+            placeholder="Short search engine summary..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- FORM ACTIONS -->
+
+        <div class="editor-actions">
+
+          <button
+            type="button"
+            class="secondary-button"
+            id="cancel-blog"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+          >
+            Save Post
+          </button>
+
+        </div>
+
+
+      </form>
+
+    </div>
+
 
   </section>
 
+
+  <!-- ===================================================
+       PDF GUIDES
+  ==================================================== -->
 
   <section
     id="guides"
@@ -610,6 +987,10 @@
 
   </section>
 
+
+  <!-- ===================================================
+       3D PRINTS
+  ==================================================== -->
 
   <section
     id="prints"
