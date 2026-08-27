@@ -1508,30 +1508,78 @@ addImageButton.addEventListener(
 
 
           /* -------------------------------------------
-             ADD UPLOADED IMAGE TO FORM
-          ------------------------------------------- */
-
-          
-           const imageField =
-              addImageField(
-                result.path
+             ADD UPLOADED IMAGE TO FORM     
+             FIND AN EXISTING EMPTY IMAGE FIELD
+            --------------------------------------------- */
+            
+            const existingInputs =
+              imageFields.querySelectorAll(
+                '.image-input'
               );
             
+            let imageField = null;
+            
+            for (const input of existingInputs) {
+            
+              if (!input.value.trim()) {
+            
+                imageField =
+                  input.closest('.image-field');
+            
+                break;
+              }
+            }
+            
+            
+            /* ---------------------------------------------
+               USE EMPTY FIELD OR CREATE NEW ONE
+            --------------------------------------------- */
+            
             if (imageField) {
+            
+              const input =
+                imageField.querySelector(
+                  '.image-input'
+                );
+            
               const preview =
                 imageField.querySelector(
                   '.image-preview'
                 );
             
-              if (preview) {
-                preview.src =
-                  URL.createObjectURL(file);
+              input.value =
+                result.path;
+            
+              preview.src =
+                URL.createObjectURL(file);
+            
+            } else {
+            
+              imageField =
+                addImageField(
+                  result.path
+                );
+            
+              if (imageField) {
+            
+                const preview =
+                  imageField.querySelector(
+                    '.image-preview'
+                  );
+            
+                if (preview) {
+            
+                  preview.src =
+                    URL.createObjectURL(file);
+            
+                }
               }
             }
+            
+            
+            hasUnsavedChanges =
+              true;
 
-
-          hasUnsavedChanges =
-            true;
 
 
           alert(
