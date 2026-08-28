@@ -3337,6 +3337,254 @@ if (closeBlogEditorButton) {
 
 }
 
+/* =========================================================
+   BLOG COVER IMAGE UPLOAD
+========================================================= */
+
+const uploadBlogCoverButton =
+  document.getElementById(
+    'upload-blog-cover'
+  );
+
+
+if (uploadBlogCoverButton) {
+
+  uploadBlogCoverButton.addEventListener(
+    'click',
+    function () {
+
+      const fileInput =
+        document.createElement('input');
+
+
+      fileInput.type =
+        'file';
+
+
+      fileInput.accept =
+        'image/jpeg,image/png,image/webp';
+
+
+      fileInput.style.display =
+        'none';
+
+
+      fileInput.addEventListener(
+        'change',
+        async function () {
+
+          const file =
+            fileInput.files[0];
+
+
+          if (!file) {
+
+            fileInput.remove();
+
+            return;
+
+          }
+
+
+          /* =================================================
+             CHECK FILE SIZE
+          ================================================= */
+
+          if (
+            file.size >
+            10 * 1024 * 1024
+          ) {
+
+            alert(
+              'Image is too large. Maximum size is 10 MB.'
+            );
+
+
+            fileInput.remove();
+
+            return;
+
+          }
+
+
+          /* =================================================
+             ASK FOR ADMIN KEY
+          ================================================= */
+
+          const adminKey =
+            prompt(
+              'Enter your admin key to upload this image:'
+            );
+
+
+          if (!adminKey) {
+
+            fileInput.remove();
+
+            return;
+
+          }
+
+
+          /* =================================================
+             SHOW UPLOAD STATUS
+          ================================================= */
+
+          uploadBlogCoverButton.disabled =
+            true;
+
+
+          uploadBlogCoverButton.textContent =
+            'Uploading...';
+
+
+          try {
+
+            /* ===============================================
+               PREPARE FILE
+            =============================================== */
+
+            const formData =
+              new FormData();
+
+
+            formData.append(
+              'file',
+              file
+            );
+
+
+            /* ===============================================
+               UPLOAD TO EXISTING WORKER
+            =============================================== */
+
+            const response =
+              await fetch(
+                'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/upload-image',
+                {
+                  method:
+                    'POST',
+
+                  headers: {
+
+                    'X-Admin-Key':
+                      adminKey
+
+                  },
+
+                  body:
+                    formData
+
+                }
+              );
+
+
+            const result =
+              await response.json();
+
+
+            if (!response.ok) {
+
+              throw new Error(
+                result.error ||
+                'Image upload failed.'
+              );
+
+            }
+
+
+            /* ===============================================
+               ADD IMAGE TO BLOG COVER FIELD
+            =============================================== */
+
+            const coverField =
+              document.getElementById(
+                'blog-cover-field'
+              );
+
+
+            coverField.innerHTML =
+              '';
+
+
+            const wrapper =
+              createBlogCoverField(
+                result.path
+              );
+
+
+            /* ===============================================
+               SHOW LOCAL PREVIEW
+            =============================================== */
+
+            const preview =
+              wrapper.querySelector(
+                '.image-preview'
+              );
+
+
+            if (preview) {
+
+              preview.src =
+                URL.createObjectURL(
+                  file
+                );
+
+            }
+
+
+            hasUnsavedChanges =
+              true;
+
+
+            alert(
+              'Cover image uploaded successfully.'
+            );
+
+
+          } catch (error) {
+
+            console.error(
+              'Blog cover upload error:',
+              error
+            );
+
+
+            alert(
+              'Could not upload cover image.\n\n' +
+              error.message
+            );
+
+
+          } finally {
+
+            uploadBlogCoverButton.disabled =
+              false;
+
+
+            uploadBlogCoverButton.textContent =
+              'Upload Cover Image';
+
+
+            fileInput.remove();
+
+          }
+
+        }
+      );
+
+
+      document.body.appendChild(
+        fileInput
+      );
+
+
+      fileInput.click();
+
+    }
+  );
+
+}
 
 /* =========================================================
    BLOG FORM CHANGE TRACKING
