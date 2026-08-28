@@ -3086,7 +3086,153 @@ async function deleteBlogPost(
 
   }
 );
+/* =========================================================
+   DELETE BLOG POST
+========================================================= */
 
+async function deleteBlogPost(index) {
+
+  const post =
+    blogPosts[index];
+
+
+  if (!post) {
+
+    alert(
+      'Could not find this blog post.'
+    );
+
+    return;
+
+  }
+
+
+  /* =====================================================
+     CONFIRM DELETION
+  ===================================================== */
+
+  const confirmed =
+    confirm(
+      `Delete "${post.title || 'Untitled Post'}" permanently?`
+    );
+
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+
+  /* =====================================================
+     CREATE UPDATED BLOG ARRAY
+  ===================================================== */
+
+  const updatedBlogPosts =
+    [...blogPosts];
+
+
+  updatedBlogPosts.splice(
+    index,
+    1
+  );
+
+
+  /* =====================================================
+     ADMIN KEY
+  ===================================================== */
+
+  const adminKey =
+    prompt(
+      'Enter your admin key to confirm deletion:'
+    );
+
+
+  if (!adminKey) {
+
+    return;
+
+  }
+
+
+  /* =====================================================
+     SEND TO WORKER
+  ===================================================== */
+
+  try {
+
+    const response =
+      await fetch(
+        BLOG_WORKER_URL,
+        {
+          method:
+            'POST',
+
+          headers: {
+
+            'Content-Type':
+              'application/json',
+
+            'X-Admin-Key':
+              adminKey
+
+          },
+
+          body:
+            JSON.stringify(
+              updatedBlogPosts
+            )
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        result.error ||
+        'The Worker could not delete the blog post.'
+      );
+
+    }
+
+
+    /* ===================================================
+       UPDATE LOCAL DATA ONLY AFTER SUCCESS
+    =================================================== */
+
+    blogPosts =
+      updatedBlogPosts;
+
+
+    renderBlog();
+
+
+    alert(
+      'Blog post deleted successfully from GitHub.'
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      'Blog delete error:',
+      error
+    );
+
+
+    alert(
+      'Could not delete the blog post.\n\n' +
+      error.message
+    );
+
+  }
+
+}
 
 /* =========================================================
    ADD BLOG BUTTON
