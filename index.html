@@ -1694,176 +1694,251 @@
     }
 
   /* =========================================================
-     LOAD BLOG FROM JSON
-  ========================================================= */
-  
-  async function loadBlog(){
-  
-    const blogGrid =
-      document.getElementById('blog-grid');
-  
-    try{
-  
-      const response =
-        await fetch('data/blog.json');
-  
-      if(!response.ok){
-        throw new Error(
-          'Could not load blog.json'
-        );
-      }
-  
-      const posts =
-        await response.json();
-  
-      if(!Array.isArray(posts)){
-        throw new Error(
-          'blog.json must contain an array'
-        );
-      }
-  
-      blogGrid.innerHTML = '';
-  
-      const publishedPosts =
-        posts.filter(post => post.published === true);
-  
-      if(!publishedPosts.length){
-  
-        blogGrid.innerHTML = `
-          <div class="card">
-            <h3>No posts yet</h3>
-            <p>
-              New repair notes and buying guides are coming soon.
-            </p>
-          </div>
-        `;
-  
-        return;
-      }
-  
-      publishedPosts.forEach(post => {
-  
-        const card =
-          createBlogCard(post);
-  
-        blogGrid.appendChild(card);
-  
-      });
-  
-    }catch(error){
-  
-      console.error(error);
-  
+   LOAD BLOG FROM JSON
+========================================================= */
+
+async function loadBlog() {
+
+  const blogGrid =
+    document.getElementById('blog-grid');
+
+
+  try {
+
+    const response =
+      await fetch(
+        'data/blog.json?v=' + Date.now(),
+        {
+          cache: 'no-store'
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'Could not load blog.json'
+      );
+
+    }
+
+
+    const posts =
+      await response.json();
+
+
+    if (!Array.isArray(posts)) {
+
+      throw new Error(
+        'blog.json must contain an array'
+      );
+
+    }
+
+
+    blogGrid.innerHTML = '';
+
+
+    /* ---------------------------------------------
+       ONLY SHOW PUBLISHED POSTS
+    --------------------------------------------- */
+
+    const publishedPosts =
+      posts.filter(
+        post =>
+          post.status === 'published'
+      );
+
+
+    if (!publishedPosts.length) {
+
       blogGrid.innerHTML = `
         <div class="card">
-          <h3>Blog temporarily unavailable</h3>
+          <h3>No posts yet</h3>
           <p>
-            We're having trouble loading the latest posts.
-            Please check back shortly.
+            New repair notes and buying guides
+            are coming soon.
           </p>
         </div>
       `;
-  
+
+      return;
+
     }
-  
+
+
+    /* ---------------------------------------------
+       DISPLAY POSTS
+    --------------------------------------------- */
+
+    publishedPosts.forEach(
+      post => {
+
+        const card =
+          createBlogCard(post);
+
+        blogGrid.appendChild(card);
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      'Blog loading error:',
+      error
+    );
+
+
+    blogGrid.innerHTML = `
+      <div class="card">
+        <h3>
+          Blog temporarily unavailable
+        </h3>
+
+        <p>
+          We're having trouble loading
+          the latest posts. Please check
+          back shortly.
+        </p>
+      </div>
+    `;
+
   }
-  
+
+}
+
   
   /* =========================================================
-     CREATE BLOG CARD
-  ========================================================= */
-  
-  function createBlogCard(post){
-  
-    const card =
-      document.createElement('article');
-  
-    card.className =
-      'card blog-card';
-  
-  
-    /* IMAGE */
-  
-    if(post.image){
-  
-      const image =
-        document.createElement('img');
-  
-      image.src =
-        post.image;
-  
-      image.alt =
-        post.title;
-  
-      image.loading =
-        'lazy';
-  
-      image.style.width =
-        '100%';
-  
-      image.style.aspectRatio =
-        '16 / 9';
-  
-      image.style.objectFit =
-        'cover';
-  
-      image.style.borderRadius =
-        '4px';
-  
-      image.style.display =
-        'block';
-  
-      image.style.marginBottom =
-        '12px';
-  
-      card.appendChild(image);
-  
-    }
-  
-  
-    /* TITLE */
-  
-    const title =
-      document.createElement('h3');
-  
-    title.textContent =
-      post.title || '';
-  
-    card.appendChild(title);
-  
-  
-    /* DESCRIPTION */
-  
-    const description =
-      document.createElement('p');
-  
-    description.textContent =
-      post.description || '';
-  
-    card.appendChild(description);
-  
-  
-    /* DATE */
-  
-    if(post.date){
-  
-      const date =
-        document.createElement('p');
-  
-      date.className =
-        'blog-date';
-  
-      date.textContent =
-        formatBlogDate(post.date);
-  
-      card.appendChild(date);
-  
-    }
-  
-  
-    return card;
-  
+   CREATE BLOG CARD
+========================================================= */
+
+function createBlogCard(post) {
+
+  const card =
+    document.createElement('article');
+
+
+  card.className =
+    'card blog-card';
+
+
+  /* ---------------------------------------------
+     COVER IMAGE
+  --------------------------------------------- */
+
+  if (post.coverImage) {
+
+    const image =
+      document.createElement('img');
+
+
+    image.src =
+      post.coverImage;
+
+
+    image.alt =
+      post.title || 'Blog post';
+
+
+    image.loading =
+      'lazy';
+
+
+    image.decoding =
+      'async';
+
+
+    image.style.width =
+      '100%';
+
+
+    image.style.aspectRatio =
+      '16 / 9';
+
+
+    image.style.objectFit =
+      'cover';
+
+
+    image.style.borderRadius =
+      '4px';
+
+
+    image.style.display =
+      'block';
+
+
+    image.style.marginBottom =
+      '12px';
+
+
+    card.appendChild(image);
+
   }
+
+
+  /* ---------------------------------------------
+     TITLE
+  --------------------------------------------- */
+
+  const title =
+    document.createElement('h3');
+
+
+  title.textContent =
+    post.title || 'Untitled post';
+
+
+  card.appendChild(title);
+
+
+  /* ---------------------------------------------
+     EXCERPT
+  --------------------------------------------- */
+
+  const description =
+    document.createElement('p');
+
+
+  description.textContent =
+    post.excerpt ||
+    post.description ||
+    '';
+
+
+  card.appendChild(description);
+
+
+  /* ---------------------------------------------
+     DATE
+  --------------------------------------------- */
+
+  if (post.date) {
+
+    const date =
+      document.createElement('p');
+
+
+    date.className =
+      'blog-date';
+
+
+    date.textContent =
+      formatBlogDate(
+        post.date
+      );
+
+
+    card.appendChild(date);
+
+  }
+
+
+  return card;
+
+}
 
 
   /* =========================================================
