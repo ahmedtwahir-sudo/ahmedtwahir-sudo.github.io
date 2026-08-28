@@ -41,5 +41,26 @@
     },
     "metaTitle": "Test Meta title",
     "metaDescription": "TESTING THE CANOE IMAGE"
+  },
+  {
+    "title": "Test blog 3",
+    "slug": "how to choose a good phone",
+    "status": "draft",
+    "date": "2026-08-28T15:16:00.000Z",
+    "excerpt": "test",
+    "content": "testing image addition in correct folder",
+    "coverImage": "images/blog/blog-test-image-1787930251707.jpg",
+    "categories": [
+      "Guides"
+    ],
+    "tags": [
+      "laptops"
+    ],
+    "author": {
+      "name": "Ahmed",
+      "profile": ""
+    },
+    "metaTitle": "Test Meta title",
+    "metaDescription": "testing image addition in correct folder"
   }
 ]
