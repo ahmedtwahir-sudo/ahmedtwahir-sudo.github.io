@@ -3460,7 +3460,7 @@ if (uploadBlogCoverButton) {
 
             const response =
               await fetch(
-                'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/upload-image',
+                'https://shikadeal-admin-api.ahmedtwahir.workers.dev/api/upload-blog-cover',
                 {
                   method:
                     'POST',
