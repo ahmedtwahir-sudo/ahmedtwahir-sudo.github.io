@@ -41,5 +41,26 @@
     },
     "metaTitle": "Test Meta title",
     "metaDescription": "TESTING THE CANOE IMAGE"
+  },
+  {
+    "title": "another test blog",
+    "slug": "test-blog-post",
+    "status": "draft",
+    "date": "2026-08-28T16:44:00.000Z",
+    "excerpt": "short stuff",
+    "content": "testing to see where the image is being saved",
+    "coverImage": "images/blog/blog-test-image-1787935491894.jpg",
+    "categories": [
+      "Test"
+    ],
+    "tags": [
+      "test"
+    ],
+    "author": {
+      "name": "Ahmed",
+      "profile": ""
+    },
+    "metaTitle": "Test Meta title",
+    "metaDescription": "nothing to say for now"
   }
 ]
