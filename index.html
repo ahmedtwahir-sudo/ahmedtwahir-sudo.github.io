@@ -1819,9 +1819,37 @@ function createBlogCard(post) {
   const card =
     document.createElement('article');
 
-
   card.className =
     'card blog-card';
+
+
+  /* ---------------------------------------------
+     BLOG ID
+  --------------------------------------------- */
+
+  const blogId =
+    post.id;
+
+  if (
+    blogId === undefined ||
+    blogId === null ||
+    blogId === ''
+  ) {
+
+    console.warn(
+      'Blog post has no ID:',
+      post
+    );
+
+  }
+
+
+  /* ---------------------------------------------
+     BLOG URL
+  --------------------------------------------- */
+
+  const blogUrl =
+    `blog.html?id=${encodeURIComponent(blogId)}`;
 
 
   /* ---------------------------------------------
@@ -1830,51 +1858,58 @@ function createBlogCard(post) {
 
   if (post.coverImage) {
 
+    const imageLink =
+      document.createElement('a');
+
+    imageLink.href =
+      blogUrl;
+
+    imageLink.setAttribute(
+      'aria-label',
+      `Read ${post.title || 'blog post'}`
+    );
+
+
     const image =
       document.createElement('img');
-
 
     image.src =
       post.coverImage;
 
-
     image.alt =
       post.title || 'Blog post';
-
 
     image.loading =
       'lazy';
 
-
     image.decoding =
       'async';
-
 
     image.style.width =
       '100%';
 
-
     image.style.aspectRatio =
       '16 / 9';
-
 
     image.style.objectFit =
       'cover';
 
-
     image.style.borderRadius =
       '4px';
-
 
     image.style.display =
       'block';
 
-
     image.style.marginBottom =
       '12px';
 
+    image.style.cursor =
+      'pointer';
 
-    card.appendChild(image);
+
+    imageLink.appendChild(image);
+
+    card.appendChild(imageLink);
 
   }
 
@@ -1887,9 +1922,41 @@ function createBlogCard(post) {
     document.createElement('h3');
 
 
-  title.textContent =
+  const titleLink =
+    document.createElement('a');
+
+  titleLink.href =
+    blogUrl;
+
+  titleLink.textContent =
     post.title || 'Untitled post';
 
+  titleLink.style.textDecoration =
+    'none';
+
+  titleLink.style.color =
+    'inherit';
+
+
+  titleLink.addEventListener(
+    'mouseenter',
+    () => {
+      titleLink.style.color =
+        'var(--signal)';
+    }
+  );
+
+
+  titleLink.addEventListener(
+    'mouseleave',
+    () => {
+      titleLink.style.color =
+        'inherit';
+    }
+  );
+
+
+  title.appendChild(titleLink);
 
   card.appendChild(title);
 
@@ -1939,6 +2006,7 @@ function createBlogCard(post) {
   return card;
 
 }
+
 
 
   /* =========================================================
