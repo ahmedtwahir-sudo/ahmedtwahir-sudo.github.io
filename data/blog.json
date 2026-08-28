@@ -3,9 +3,9 @@
     "id": "blog-test-001",
     "title": "Test Blog Post",
     "slug": "test-blog-post",
-    "content": "This is a temporary test post.",
+    "content": "This is a temporary test post. This blog has a blog ID",
     "coverImage": "",
-    "date": "2026-08-27T20:00:00+03:00",
+    "date": "2026-08-27T17:00:00.000Z",
     "status": "draft",
     "categories": [
       "Test"
