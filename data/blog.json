@@ -64,27 +64,5 @@
     "metaTitle": "Test Meta title",
     "metaDescription": "nothing to say for now",
     "id": "blog-mtda5v4x-2"
-  },
-  {
-    "id": "blog-mtdaf7st-rbkl1b",
-    "title": "ANOTHER TEST TO CHECK ID",
-    "slug": "abcd",
-    "status": "published",
-    "date": "2026-08-28T18:24:00.000Z",
-    "excerpt": "test ID now",
-    "content": "test ID now",
-    "coverImage": "images/blog/blog-id-test-image-1787941837815.jpg",
-    "categories": [
-      "ID test"
-    ],
-    "tags": [
-      "ID test"
-    ],
-    "author": {
-      "name": "Ahmed",
-      "profile": ""
-    },
-    "metaTitle": "TEst ID",
-    "metaDescription": "ID Test"
   }
 ]
