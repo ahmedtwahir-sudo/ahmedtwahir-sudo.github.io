@@ -1,1 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>ShikaDeal — Blog</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+
+  <style>
+
+    :root {
+      --ink: #171512;
+      --ink-2: #1F1C18;
+      --paper: #F1E9D8;
+      --rust: #C1440E;
+      --signal: #F2B705;
+      --wire: #3AAFA9;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+
+      margin: 0;
+
+      background: var(--ink);
+
+      background-image:
+        radial-gradient(
+          circle at 1px 1px,
+          rgba(241, 233, 216, 0.05) 1px,
+          transparent 0
+        );
+
+      background-size: 22px 22px;
+
+      color: var(--paper);
+
+      font-family:
+        'IBM Plex Mono',
+        monospace;
+
+    }
+
+
+    a {
+      color: inherit;
+    }
+
+
+    /* =================================================
+       HEADER
+    ================================================= */
+
+    header {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 10;
+
+      background:
+        rgba(23, 21, 18, 0.92);
+
+      backdrop-filter:
+        blur(6px);
+
+      border-bottom:
+        1px solid
+        rgba(241, 233, 216, 0.12);
+
+    }
+
+
+    .nav-inner {
+
+      max-width: 920px;
+
+      margin: 0 auto;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 16px 20px;
+
+      gap: 12px;
+
+    }
+
+
+    .logo {
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-weight: 700;
+
+      font-size: 20px;
+
+      text-decoration: none;
+
+    }
+
+
+    .back-link {
+
+      text-decoration: none;
+
+      font-size: 12px;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+      color:
+        rgba(241, 233, 216, 0.7);
+
+    }
+
+
+    .back-link:hover {
+
+      color:
+        var(--signal);
+
+    }
+
+
+    /* =================================================
+       ARTICLE
+    ================================================= */
+
+    .article-wrap {
+
+      max-width: 820px;
+
+      margin: 0 auto;
+
+      padding: 60px 20px 80px;
+
+    }
+
+
+    .article {
+
+      background:
+        var(--ink-2);
+
+      border:
+        1px solid
+        rgba(241, 233, 216, 0.12);
+
+      border-radius: 6px;
+
+      overflow: hidden;
+
+    }
+
+
+    .article-cover {
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      object-fit: cover;
+
+      display: block;
+
+    }
+
+
+    .article-content {
+
+      padding: 36px;
+
+    }
+
+
+    .eyebrow {
+
+      font-size: 11px;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      color: var(--wire);
+
+      margin: 0 0 10px;
+
+    }
+
+
+    .article-title {
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-size: 42px;
+
+      line-height: 1.05;
+
+      margin: 0 0 12px;
+
+      color: var(--paper);
+
+    }
+
+
+    .article-date {
+
+      font-size: 11px;
+
+      color:
+        rgba(241, 233, 216, 0.5);
+
+      margin-bottom: 30px;
+
+    }
+
+
+    .article-body {
+
+      font-size: 14px;
+
+      line-height: 1.85;
+
+      color:
+        rgba(241, 233, 216, 0.86);
+
+    }
+
+
+    .article-body p {
+
+      margin:
+        0 0 22px;
+
+    }
+
+
+    .article-body h2 {
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-size: 28px;
+
+      margin:
+        35px 0 14px;
+
+      color: var(--paper);
+
+    }
+
+
+    .article-body h3 {
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-size: 22px;
+
+      margin:
+        30px 0 12px;
+
+      color: var(--paper);
+
+    }
+
+
+    .article-body img {
+
+      max-width: 100%;
+
+      height: auto;
+
+      display: block;
+
+      border-radius: 5px;
+
+      margin:
+        28px auto;
+
+    }
+
+
+    .article-body a {
+
+      color: var(--signal);
+
+    }
+
+
+    .article-body ul,
+    .article-body ol {
+
+      padding-left: 25px;
+
+      margin-bottom: 22px;
+
+    }
+
+
+    .article-body li {
+
+      margin-bottom: 8px;
+
+    }
+
+
+    /* =================================================
+       ERROR / LOADING
+    ================================================= */
+
+    .message {
+
+      max-width: 600px;
+
+      margin: 100px auto;
+
+      padding: 30px 20px;
+
+      text-align: center;
+
+      background: var(--ink-2);
+
+      border:
+        1px solid
+        rgba(241, 233, 216, 0.12);
+
+      border-radius: 6px;
+
+    }
+
+
+    .message h1 {
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      margin-top: 0;
+
+    }
+
+
+    .message p {
+
+      color:
+        rgba(241, 233, 216, 0.65);
+
+      font-size: 13px;
+
+      line-height: 1.7;
+
+    }
+
+
+    .btn {
+
+      display: inline-block;
+
+      background: var(--signal);
+
+      color: var(--ink);
+
+      text-decoration: none;
+
+      font-family:
+        'Rajdhani',
+        sans-serif;
+
+      font-weight: 600;
+
+      font-size: 13px;
+
+      letter-spacing: 1px;
+
+      padding: 11px 18px;
+
+      border-radius: 4px;
+
+      margin-top: 10px;
+
+    }
+
+
+    /* =================================================
+       FOOTER
+    ================================================= */
+
+    footer {
+
+      border-top:
+        1px solid
+        rgba(241, 233, 216, 0.12);
+
+      padding: 28px 20px;
+
+      text-align: center;
+
+      font-size: 11px;
+
+      color:
+        rgba(241, 233, 216, 0.5);
+
+    }
+
+
+    /* =================================================
+       MOBILE
+    ================================================= */
+
+    @media (max-width: 600px) {
+
+      .nav-inner {
+
+        justify-content: center;
+
+        flex-direction: column;
+
+      }
+
+
+      .article-wrap {
+
+        padding:
+          35px 12px 60px;
+
+      }
+
+
+      .article-content {
+
+        padding: 22px;
+
+      }
+
+
+      .article-title {
+
+        font-size: 32px;
+
+      }
+
+
+      .article-body {
+
+        font-size: 13.5px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =================================================
+       HEADER
+  ================================================= -->
+
+  <header>
+
+    <div class="nav-inner">
+
+      <a
+        class="logo"
+        href="index.html">
+
+        SHIKADEAL
+
+      </a>
+
+
+      <a
+        class="back-link"
+        href="index.html#blog">
+
+        ← Back to Blog
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =================================================
+       ARTICLE
+  ================================================= -->
+
+  <main>
+
+    <div
+      id="article-container"
+      class="article-wrap">
+
+      <div class="message">
+
+        <h1>
+          Loading...
+        </h1>
+
+        <p>
+          Loading the blog post.
+        </p>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- =================================================
+       FOOTER
+  ================================================= -->
+
+  <footer>
+
+    © <span id="year"></span>
+    ShikaDeal — Kilifi, Kenya
+
+  </footer>
+
+
+
+  <!-- =================================================
+       JAVASCRIPT
+  ================================================= -->
+
+  <script>
+
+    /* =================================================
+       FOOTER YEAR
+    ================================================= */
+
+    document.getElementById(
+      'year'
+    ).textContent =
+      new Date().getFullYear();
+
+
+
+    /* =================================================
+       GET BLOG ID FROM URL
+       
+       Example:
+       
+       blog.html?id=1724859200123
+    ================================================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const blogId =
+      params.get('id');
+
+
+
+    /* =================================================
+       ARTICLE CONTAINER
+    ================================================= */
+
+    const articleContainer =
+      document.getElementById(
+        'article-container'
+      );
+
+
+
+    /* =================================================
+       LOAD BLOG
+    ================================================= */
+
+    async function loadBlogPost() {
+
+      if (!blogId) {
+
+        showMessage(
+          'Blog post not found',
+          'No blog ID was provided in the URL.'
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            'data/blog.json?v=' +
+            Date.now(),
+            {
+              cache: 'no-store'
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'Could not load blog.json'
+          );
+
+        }
+
+
+        const posts =
+          await response.json();
+
+
+        if (!Array.isArray(posts)) {
+
+          throw new Error(
+            'blog.json must contain an array'
+          );
+
+        }
+
+
+        /* ---------------------------------------------
+           FIND POST USING ID
+           
+           IMPORTANT:
+           We deliberately use ID, NOT slug.
+        --------------------------------------------- */
+
+        const post =
+          posts.find(
+            item =>
+              String(item.id) ===
+              String(blogId)
+          );
+
+
+        if (!post) {
+
+          showMessage(
+            'Blog post not found',
+            'The blog post you are looking for does not exist.'
+          );
+
+          return;
+
+        }
+
+
+        /* ---------------------------------------------
+           ONLY PUBLISHED POSTS ARE READABLE
+        --------------------------------------------- */
+
+        if (
+          post.status !== 'published'
+        ) {
+
+          showMessage(
+            'Blog post unavailable',
+            'This blog post is not currently published.'
+          );
+
+          return;
+
+        }
+
+
+        renderBlogPost(post);
+
+
+      } catch (error) {
+
+        console.error(
+          'Blog post loading error:',
+          error
+        );
+
+
+        showMessage(
+          'Blog temporarily unavailable',
+          'We are having trouble loading this blog post. Please try again shortly.'
+        );
+
+      }
+
+    }
+
+
+
+    /* =================================================
+       RENDER BLOG POST
+    ================================================= */
+
+    function renderBlogPost(post) {
+
+      articleContainer.innerHTML = '';
+
+
+      const article =
+        document.createElement('article');
+
+
+      article.className =
+        'article';
+
+
+      /* ---------------------------------------------
+         COVER IMAGE
+      --------------------------------------------- */
+
+      if (post.coverImage) {
+
+        const image =
+          document.createElement('img');
+
+
+        image.className =
+          'article-cover';
+
+
+        image.src =
+          post.coverImage;
+
+
+        image.alt =
+          post.title ||
+          'Blog post cover';
+
+
+        image.loading =
+          'eager';
+
+
+        image.decoding =
+          'async';
+
+
+        article.appendChild(image);
+
+      }
+
+
+      /* ---------------------------------------------
+         CONTENT
+      --------------------------------------------- */
+
+      const content =
+        document.createElement('div');
+
+
+      content.className =
+        'article-content';
+
+
+      /* ---------------------------------------------
+         EYEBROW
+      --------------------------------------------- */
+
+      const eyebrow =
+        document.createElement('p');
+
+
+      eyebrow.className =
+        'eyebrow';
+
+
+      eyebrow.textContent =
+        'ShikaDeal — Repair Notes';
+
+
+      content.appendChild(
+        eyebrow
+      );
+
+
+      /* ---------------------------------------------
+         TITLE
+      --------------------------------------------- */
+
+      const title =
+        document.createElement('h1');
+
+
+      title.className =
+        'article-title';
+
+
+      title.textContent =
+        post.title ||
+        'Untitled post';
+
+
+      content.appendChild(
+        title
+      );
+
+
+      /* ---------------------------------------------
+         DATE
+      --------------------------------------------- */
+
+      if (post.date) {
+
+        const date =
+          document.createElement('div');
+
+
+        date.className =
+          'article-date';
+
+
+        date.textContent =
+          formatBlogDate(
+            post.date
+          );
+
+
+        content.appendChild(
+          date
+        );
+
+      }
+
+
+      /* ---------------------------------------------
+         BODY
+      --------------------------------------------- */
+
+      const body =
+        document.createElement('div');
+
+
+      body.className =
+        'article-body';
+
+
+      /*
+        Your admin page should save the complete
+        blog content in post.content.
+
+        If your existing field is called "body",
+        the fallback below supports that too.
+      */
+
+      const blogContent =
+        post.content ||
+        post.body ||
+        post.description ||
+        post.excerpt ||
+        '';
+
+
+      /*
+        If the admin stores HTML, render it as HTML.
+
+        If the admin stores plain text with paragraphs,
+        the fallback converts line breaks to paragraphs.
+      */
+
+      if (
+        /<[^>]+>/.test(blogContent)
+      ) {
+
+        body.innerHTML =
+          blogContent;
+
+      } else {
+
+        const paragraphs =
+          blogContent
+            .split(/\n\s*\n/)
+            .map(
+              paragraph =>
+                paragraph.trim()
+            )
+            .filter(Boolean);
+
+
+        paragraphs.forEach(
+          paragraph => {
+
+            const p =
+              document.createElement('p');
+
+
+            p.textContent =
+              paragraph;
+
+
+            body.appendChild(p);
+
+          }
+        );
+
+      }
+
+
+      content.appendChild(
+        body
+      );
+
+
+      article.appendChild(
+        content
+      );
+
+
+      articleContainer.appendChild(
+        article
+      );
+
+
+      /* ---------------------------------------------
+         UPDATE PAGE TITLE
+      --------------------------------------------- */
+
+      document.title =
+        `${post.title || 'Blog'} — ShikaDeal`;
+
+    }
+
+
+
+    /* =================================================
+       ERROR MESSAGE
+    ================================================= */
+
+    function showMessage(
+      title,
+      message
+    ) {
+
+      articleContainer.innerHTML = `
+
+        <div class="message">
+
+          <h1>
+            ${escapeHtml(title)}
+          </h1>
+
+          <p>
+            ${escapeHtml(message)}
+          </p>
+
+          <a
+            class="btn"
+            href="index.html#blog">
+
+            Back to Blog
+
+          </a>
+
+        </div>
+
+      `;
+
+    }
+
+
+
+    /* =================================================
+       ESCAPE HTML
+    ================================================= */
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+        .replace(
+          /</g,
+          '&lt;'
+        )
+        .replace(
+          />/g,
+          '&gt;'
+        )
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+
+    /* =================================================
+       BLOG DATE
+    ================================================= */
+
+    function formatBlogDate(
+      dateString
+    ) {
+
+      const date =
+        new Date(
+          dateString +
+          'T00:00:00'
+        );
+
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return dateString;
+
+      }
+
+
+      return date.toLocaleDateString(
+        'en-KE',
+        {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }
+      );
+
+    }
+
+
+
+    /* =================================================
+       START
+    ================================================= */
+
+    loadBlogPost();
+
+  </script>
+
+</body>
+
+</html>
 
