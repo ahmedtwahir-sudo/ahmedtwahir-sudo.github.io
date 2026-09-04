@@ -49,16 +49,5 @@
     "images": [
       "images/products/sony-1-1787848813837.jpg"
     ]
-  },
-  {
-    "name": "SONY CAMERA",
-    "status": "available",
-    "condition": "NEW",
-    "price": 15000,
-    "description": "Testing adding 2 images",
-    "images": [
-      "images/products/sony-1-1787849057934.jpg",
-      "images/products/sony-1-1787849073810.jpg"
-    ]
   }
 ]
