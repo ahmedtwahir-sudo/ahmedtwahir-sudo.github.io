@@ -11,18 +11,5 @@
       "images/products/hp440-3.jpg",
       "images/products/hp440-4.jpg"
     ]
-  },
-  {
-    "name": "Dell Latitude 5420",
-    "status": "sold",
-    "condition": "USED",
-    "price": 48500,
-    "description": "Core i5, 11th Gen, 16GB RAM / 512GB SSD. Comes with charger.",
-    "images": [
-      "images/products/hp440-1.jpg",
-      "images/products/hp440-2.jpg",
-      "images/products/hp440-3.jpg",
-      "images/products/hp440-4.jpg"
-    ]
   }
 ]
