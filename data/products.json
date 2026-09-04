@@ -24,20 +24,5 @@
       "images/products/hp440-3.jpg",
       "images/products/hp440-4.jpg"
     ]
-  },
-  {
-    "name": "SONY",
-    "status": "available",
-    "condition": "NEW",
-    "price": 32000,
-    "description": "Core i5, 13th Gen.",
-    "images": [
-      "images/products/hp440-1.jpg",
-      "images/products/hp440-2.jpg",
-      "images/products/hp440-3.jpg",
-      "images/products/hp440-4.jpg",
-      "images/products/sony-1-1787843421361.jpg",
-      "images/products/sony-1-1787847398095.jpg"
-    ]
   }
 ]
