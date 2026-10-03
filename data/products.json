@@ -1,0 +1,15 @@
+[
+  {
+    "name": "HP 440 G10",
+    "status": "available",
+    "condition": "USED",
+    "price": 80000,
+    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger and activated windows 11 and Microsoft Office 2019.",
+    "images": [
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
+    ]
+  }
+]

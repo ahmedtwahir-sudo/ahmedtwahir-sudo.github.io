@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ShikaDeal Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="admin.css"
+  >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="admin-header">
+
+  <div class="header-inner">
+
+    <a
+      href="../"
+      class="logo"
+    >
+      SHIKADEAL
+    </a>
+
+    <div class="admin-label">
+      ADMIN PANEL
+    </div>
+
+    <a
+      href="../"
+      class="view-site"
+    >
+      View Site ↗
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="admin-main">
+
+
+  <!-- ===================================================
+       PAGE HEADING
+  ==================================================== -->
+
+  <div class="page-heading">
+
+    <p class="eyebrow">
+      Control Room
+    </p>
+
+    <h1>
+      ShikaDeal Admin
+    </h1>
+
+    <p class="intro">
+      Manage your products, content and digital inventory
+      from one place.
+    </p>
+
+  </div>
+
+
+  <!-- ===================================================
+       DASHBOARD
+  ==================================================== -->
+
+  <section class="dashboard-grid">
+
+
+    <!-- PRODUCTS -->
+
+    <a
+      href="#products"
+      class="admin-card active-card"
+    >
+
+      <div class="card-number">
+        01
+      </div>
+
+      <div class="card-icon">
+        ◈
+      </div>
+
+      <h2>
+        Products
+      </h2>
+
+      <p>
+        Add, edit and remove inventory.
+        Change prices, availability and
+        product images.
+      </p>
+
+      <span class="card-action">
+        Manage Products →
+      </span>
+
+    </a>
+
+
+    <!-- DEALS -->
+
+    <a
+      href="#deals"
+      class="admin-card active-card"
+    >
+
+      <div class="card-number">02</div>
+      <div class="card-icon">◇</div>
+      <h2>Deals</h2>
+      <p>Publish and manage the finds in the ShikaDeal Deal Desk.</p>
+      <span class="card-action">Manage Deals →</span>
+
+    </a>
+
+
+    <!-- BLOG -->
+
+    <a
+      href="#blog"
+      class="admin-card"
+    >
+
+      <div class="card-number">
+        02
+      </div>
+
+      <div class="card-icon">
+        ▤
+      </div>
+
+      <h2>
+        Blog
+      </h2>
+
+      <p>
+        Create repair articles, teardown notes
+        and buying advice.
+      </p>
+
+      <span class="card-action">
+        Manage Blog →
+      </span>
+
+    </a>
+
+
+    <!-- PDF GUIDES -->
+
+    <a
+      href="#guides"
+      class="admin-card"
+    >
+
+      <div class="card-number">
+        03
+      </div>
+
+      <div class="card-icon">
+        ▱
+      </div>
+
+      <h2>
+        PDF Guides
+      </h2>
+
+      <p>
+        Add guides, update descriptions and
+        manage downloadable PDFs.
+      </p>
+
+      <span class="card-action">
+        Manage Guides →
+      </span>
+
+    </a>
+
+
+    <!-- 3D PRINTS -->
+
+    <a
+      href="#prints"
+      class="admin-card"
+    >
+
+      <div class="card-number">
+        04
+      </div>
+
+      <div class="card-icon">
+        ◫
+      </div>
+
+      <h2>
+        3D Prints
+      </h2>
+
+      <p>
+        Add printed products, images,
+        descriptions and pricing.
+      </p>
+
+      <span class="card-action">
+        Manage 3D Prints →
+      </span>
+
+    </a>
+
+
+  </section>
+
+
+  <!-- ===================================================
+       QUICK STATUS
+  ==================================================== -->
+
+  <section class="status-section">
+
+    <div class="section-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          System Status
+        </p>
+
+        <h2>
+          Quick Overview
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="status-grid">
+
+      <div class="status-card">
+
+        <span class="status-label">
+          Products
+        </span>
+
+        <strong id="product-count">
+          —
+        </strong>
+
+        <small>
+          Current listings
+        </small>
+
+      </div>
+
+
+      <div class="status-card">
+
+        <span class="status-label">
+          Available
+        </span>
+
+        <strong id="available-count">
+          —
+        </strong>
+
+        <small>
+          Ready for sale
+        </small>
+
+      </div>
+
+
+      <div class="status-card">
+
+        <span class="status-label">
+          Reserved
+        </span>
+
+        <strong id="reserved-count">
+          —
+        </strong>
+
+        <small>
+          Currently reserved
+        </small>
+
+      </div>
+
+
+      <div class="status-card">
+
+        <span class="status-label">
+          Sold
+        </span>
+
+        <strong id="sold-count">
+          —
+        </strong>
+
+        <small>
+          Completed sales
+        </small>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       PRODUCTS
+  ==================================================== -->
+
+  <section
+    id="products"
+    class="management-section"
+  >
+
+    <div class="management-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          Ticket 01
+        </p>
+
+        <h2>
+          Products
+        </h2>
+
+        <p class="section-description">
+          Manage the products displayed in your Deals section.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        id="add-product-button"
+      >
+        + Add Product
+      </button>
+
+    </div>
+
+
+    <!-- PRODUCT LIST -->
+
+    <div
+      id="product-list"
+      class="product-list"
+    >
+
+      <div class="loading-card">
+        Loading products...
+      </div>
+
+    </div>
+
+
+    <!-- PRODUCT EDITOR -->
+
+    <div
+      id="product-editor"
+      class="editor"
+      hidden
+    >
+
+      <div class="editor-header">
+
+        <div>
+
+          <p class="eyebrow">
+            Product Editor
+          </p>
+
+          <h2 id="editor-title">
+            Add Product
+          </h2>
+
+        </div>
+
+        <button
+          type="button"
+          class="close-button"
+          id="close-editor"
+          aria-label="Close editor"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="product-form">
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+          <label for="product-name">
+            Product Name
+          </label>
+
+          <input
+            type="text"
+            id="product-name"
+            required
+            placeholder="e.g. HP 440 G10"
+          >
+
+        </div>
+
+
+        <!-- STATUS + CONDITION -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="product-status">
+              Status
+            </label>
+
+            <select id="product-status">
+
+              <option value="available">
+                Available
+              </option>
+
+              <option value="reserved">
+                Reserved
+              </option>
+
+              <option value="sold">
+                Sold
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="product-condition">
+              Condition
+            </label>
+
+            <input
+              type="text"
+              id="product-condition"
+              placeholder="e.g. USED"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- PRICE -->
+
+        <div class="form-group">
+
+          <label for="product-price">
+            Price — KSh
+          </label>
+
+          <input
+            type="number"
+            id="product-price"
+            min="0"
+            step="1"
+            placeholder="60500"
+          >
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="form-group">
+
+          <label for="product-description">
+            Description
+          </label>
+
+          <textarea
+            id="product-description"
+            rows="5"
+            placeholder="Describe the product..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- IMAGES -->
+
+        <div class="images-editor">
+
+          <div class="images-heading">
+
+            <div>
+
+              <label>
+                Product Images
+              </label>
+
+              <p>
+                Add the image paths used by the website.
+              </p>
+
+            </div>
+
+            <button
+              type="button"
+              class="secondary-button"
+              id="add-image-button"
+            >
+              + Add Image
+            </button>
+
+          </div>
+
+
+          <div
+            id="image-fields"
+            class="image-fields"
+          ></div>
+
+        </div>
+
+
+        <!-- FORM ACTIONS -->
+
+        <div class="editor-actions">
+
+          <button
+            type="button"
+            class="secondary-button"
+            id="cancel-product"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+          >
+            Save Changes
+          </button>
+
+        </div>
+
+
+      </form>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ===================================================
+       BLOG
+  ==================================================== -->
+
+  <section
+    id="blog"
+    class="management-section"
+  >
+
+    <div class="management-heading">
+
+      <div>
+
+        <p class="eyebrow">
+          Ticket 02
+        </p>
+
+        <h2>
+          Blog
+        </h2>
+
+        <p class="section-description">
+          Create and manage repair articles, teardown notes
+          and buying advice.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="primary-button"
+        id="add-blog-button"
+      >
+        + Add Post
+      </button>
+
+    </div>
+
+
+    <!-- BLOG LIST -->
+
+    <div
+      id="blog-list"
+      class="product-list"
+    >
+
+      <div class="loading-card">
+        Loading blog posts...
+      </div>
+
+    </div>
+
+
+    <!-- BLOG EDITOR -->
+
+    <div
+      id="blog-editor"
+      class="editor"
+      hidden
+    >
+
+      <div class="editor-header">
+
+        <div>
+
+          <p class="eyebrow">
+            Blog Editor
+          </p>
+
+          <h2 id="blog-editor-title">
+            Add Post
+          </h2>
+
+        </div>
+
+        <button
+          type="button"
+          class="close-button"
+          id="close-blog-editor"
+          aria-label="Close blog editor"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="blog-form">
+
+
+        <!-- TITLE -->
+
+        <div class="form-group">
+
+          <label for="blog-title">
+            Title
+          </label>
+
+          <input
+            type="text"
+            id="blog-title"
+            required
+            placeholder="Enter the public headline"
+          >
+
+        </div>
+
+
+        <!-- SLUG -->
+
+        <div class="form-group">
+
+          <label for="blog-slug">
+            Slug
+          </label>
+
+          <input
+            type="text"
+            id="blog-slug"
+            required
+            placeholder="how-to-choose-a-used-laptop"
+          >
+
+          <small>
+            Used as the readable part of the article URL.
+          </small>
+
+        </div>
+
+
+        <!-- STATUS + DATE -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="blog-status">
+              Status
+            </label>
+
+            <select id="blog-status">
+
+              <option value="draft">
+                Draft
+              </option>
+
+              <option value="scheduled">
+                Scheduled
+              </option>
+
+              <option value="published">
+                Published
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="blog-date">
+              Publication Date
+            </label>
+
+            <input
+              type="datetime-local"
+              id="blog-date"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- EXCERPT -->
+
+        <div class="form-group">
+
+          <label for="blog-excerpt">
+            Excerpt
+          </label>
+
+          <textarea
+            id="blog-excerpt"
+            rows="3"
+            placeholder="Short preview shown on feed pages..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="form-group">
+
+          <label for="blog-content">
+            Content
+          </label>
+
+          <textarea
+            id="blog-content"
+            rows="15"
+            placeholder="Write the full article here..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- COVER IMAGE -->
+
+        <div class="images-editor">
+
+          <div class="images-heading">
+
+            <div>
+
+              <label>
+                Cover Image
+              </label>
+
+              <p>
+                Primary header and preview image for the post.
+              </p>
+
+            </div>
+
+            <button
+              type="button"
+              class="secondary-button"
+              id="upload-blog-cover"
+            >
+              Upload Cover Image
+            </button>
+
+          </div>
+
+
+          <div
+            id="blog-cover-field"
+            class="image-fields"
+          ></div>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div class="form-group">
+
+          <label for="blog-categories">
+            Categories
+          </label>
+
+          <input
+            type="text"
+            id="blog-categories"
+            placeholder="Buying Guides, Laptops"
+          >
+
+          <small>
+            Separate multiple categories with commas.
+          </small>
+
+        </div>
+
+
+        <!-- TAGS -->
+
+        <div class="form-group">
+
+          <label for="blog-tags">
+            Tags
+          </label>
+
+          <input
+            type="text"
+            id="blog-tags"
+            placeholder="used laptops, HP, Dell"
+          >
+
+          <small>
+            Separate multiple tags with commas.
+          </small>
+
+        </div>
+
+
+        <!-- AUTHOR -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="blog-author-name">
+              Author Name
+            </label>
+
+            <input
+              type="text"
+              id="blog-author-name"
+              placeholder="ShikaDeal"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="blog-author-profile">
+              Author Profile
+            </label>
+
+            <input
+              type="text"
+              id="blog-author-profile"
+              placeholder="Optional profile image or path"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- BLOG CTA -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="blog-cta-text">
+              CTA Button Text
+            </label>
+
+            <input
+              type="text"
+              id="blog-cta-text"
+              placeholder="GET THE FULL GUIDE"
+            >
+
+            <small>
+              Optional. The button is shown only when a CTA link is provided.
+            </small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="blog-cta-link">
+              CTA Link
+            </label>
+
+            <input
+              type="url"
+              id="blog-cta-link"
+              placeholder="https://example.com/..."
+            >
+
+            <small>
+              Leave blank if this article does not need a call to action.
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <!-- SEO -->
+
+        <div class="form-group">
+
+          <label for="blog-meta-title">
+            Meta Title
+          </label>
+
+          <input
+            type="text"
+            id="blog-meta-title"
+            placeholder="SEO result headline"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="blog-meta-description">
+            Meta Description
+          </label>
+
+          <textarea
+            id="blog-meta-description"
+            rows="3"
+            placeholder="Short search engine summary..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- FORM ACTIONS -->
+
+        <div class="editor-actions">
+
+          <button
+            type="button"
+            class="secondary-button"
+            id="cancel-blog"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="primary-button"
+          >
+            Save Post
+          </button>
+
+        </div>
+
+
+      </form>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ===================================================
+       PDF GUIDES
+  ==================================================== -->
+
+  <!-- =====================================================
+       DEALS
+  ====================================================== -->
+
+  <section
+    id="deals"
+    class="management-section"
+  >
+
+    <div class="management-heading">
+      <div>
+        <p class="eyebrow">Ticket 02</p>
+        <h2>Deals</h2>
+        <p class="section-description">Publish the finds that power the ShikaDeal Deal Desk. Check price, seller, condition, shipping and the catch before publishing.</p>
+      </div>
+      <button type="button" class="primary-button" id="add-deal-button">+ Add Deal</button>
+    </div>
+
+    <div id="deal-list" class="product-list">
+      <div class="loading-card">Loading deals...</div>
+    </div>
+
+    <div id="deal-editor" class="editor" hidden>
+      <div class="editor-header">
+        <div>
+          <p class="eyebrow">Deal Editor</p>
+          <h2 id="deal-editor-title">Add Deal</h2>
+        </div>
+        <button type="button" class="close-button" id="close-deal-editor" aria-label="Close editor">×</button>
+      </div>
+
+      <form id="deal-form">
+        <div class="form-group">
+          <label for="deal-title">Title</label>
+          <input type="text" id="deal-title" required placeholder="e.g. Lenovo ThinkPad X1 Carbon — eBay">
+        </div>
+
+        <div class="form-group">
+          <label for="deal-slug">Slug</label>
+          <input type="text" id="deal-slug" required placeholder="lenovo-thinkpad-x1-carbon-ebay">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-status">Status</label>
+            <select id="deal-status">
+              <option value="active">Active</option>
+              <option value="ending-soon">Ending Soon</option>
+              <option value="watch">Watch</option>
+              <option value="sold-out">Sold Out</option>
+              <option value="expired">Expired</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="deal-type">Deal Type</label>
+            <select id="deal-type">
+              <option value="international">International</option>
+              <option value="kenya">Kenya</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-category">Category</label>
+            <input type="text" id="deal-category" placeholder="Laptops, Phones, Storage, Tools">
+          </div>
+          <div class="form-group">
+            <label for="deal-currency">Currency</label>
+            <input type="text" id="deal-currency" value="KSh" placeholder="KSh or USD">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-price">Listing Price</label>
+            <input type="number" id="deal-price" min="0" step="0.01" placeholder="42500">
+          </div>
+          <div class="form-group">
+            <label for="deal-shipping">Shipping</label>
+            <input type="number" id="deal-shipping" min="0" step="0.01" placeholder="5000">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-import">Estimated Import Cost</label>
+            <input type="number" id="deal-import" min="0" step="0.01" placeholder="3000">
+          </div>
+          <div class="form-group">
+            <label for="deal-landed">Estimated Landed Cost</label>
+            <input type="number" id="deal-landed" min="0" step="0.01" placeholder="53500">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-condition">Condition</label>
+            <input type="text" id="deal-condition" placeholder="Used — Excellent">
+          </div>
+          <div class="form-group">
+            <label for="deal-seller">Seller</label>
+            <input type="text" id="deal-seller" placeholder="USA seller · 99.7% positive">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-returns">Returns / Warranty</label>
+          <input type="text" id="deal-returns" placeholder="30-day returns · No local warranty">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-last-checked">Last Checked</label>
+            <input type="datetime-local" id="deal-last-checked">
+          </div>
+          <div class="form-group">
+            <label for="deal-expires">Expires</label>
+            <input type="datetime-local" id="deal-expires">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-source-url">Original Listing URL</label>
+          <input type="url" id="deal-source-url" placeholder="https://www.ebay.com/...">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deal-assistance-url">Buying Assistance URL</label>
+            <input type="url" id="deal-assistance-url" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label for="deal-guide-url">Relevant Guide URL</label>
+            <input type="url" id="deal-guide-url" placeholder="https://shikadeal.com/...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-summary">Short Summary</label>
+          <textarea id="deal-summary" rows="3" placeholder="One or two sentences for the Deal Desk card..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-why">Why We Noticed It</label>
+          <textarea id="deal-why" rows="4" placeholder="What made this listing worth checking?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-checked">What We Checked</label>
+          <input type="text" id="deal-checked" placeholder="Seller, condition, listing photos, price, shipping">
+          <p class="field-help">Separate items with commas.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-catch">The Catch</label>
+          <textarea id="deal-catch" rows="4" placeholder="What should a buyer be careful about?"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="deal-take">Our Take</label>
+          <textarea id="deal-take" rows="4" placeholder="Your practical conclusion about the deal."></textarea>
+        </div>
+
+        <div class="images-editor">
+          <div class="images-heading">
+            <div>
+              <label>Deal Image</label>
+              <p>Add the main image used by the Deal Desk and deal page.</p>
+            </div>
+            <button type="button" class="secondary-button" id="upload-deal-image">Upload Deal Image</button>
+          </div>
+          <div id="deal-image-field" class="image-fields"></div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label><input type="checkbox" id="deal-featured"> Featured deal</label>
+        </div>
+
+        <div class="editor-actions">
+          <button type="button" class="secondary-button" id="cancel-deal">Cancel</button>
+          <button type="submit" class="primary-button">Save Deal</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+  <section
+    id="guides"
+    class="management-section"
+  >
+
+    <div class="management-heading">
+      <div>
+        <p class="eyebrow">Ticket 03</p>
+        <h2>PDF Guides</h2>
+        <p class="section-description">Create, edit and remove downloadable guides, including Payhip links.</p>
+      </div>
+      <button type="button" class="primary-button" id="add-guide-button">+ Add Guide</button>
+    </div>
+
+    <div id="guide-list" class="product-list">
+      <div class="loading-card">Loading guides...</div>
+    </div>
+
+    <div id="guide-editor" class="editor" hidden>
+      <div class="editor-header">
+        <div>
+          <p class="eyebrow">Guide Editor</p>
+          <h2 id="guide-editor-title">Add Guide</h2>
+        </div>
+        <button type="button" class="close-button" id="close-guide-editor" aria-label="Close editor">×</button>
+      </div>
+
+      <form id="guide-form">
+        <div class="form-group">
+          <label for="guide-title">Title</label>
+          <input type="text" id="guide-title" required placeholder="e.g. Proof of Ownership Guide">
+        </div>
+
+        <div class="form-group">
+          <label for="guide-slug">Slug</label>
+          <input type="text" id="guide-slug" required placeholder="proof-of-ownership-guide">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guide-status">Status</label>
+            <select id="guide-status">
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+              <option value="archived">Archived</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="guide-type">Type</label>
+            <input type="text" id="guide-type" value="PDF" placeholder="PDF">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guide-price">Price — KSh</label>
+            <input type="number" id="guide-price" min="0" step="1" placeholder="500">
+          </div>
+          <div class="form-group">
+            <label for="guide-badge">Badge</label>
+            <input type="text" id="guide-badge" placeholder="NEW, FREE BONUS, etc.">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guide-description">Description</label>
+          <textarea id="guide-description" rows="5" placeholder="Explain what the guide helps the buyer do..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="guide-url">Guide / Payhip URL</label>
+          
+            <input
+              type="url"
+              id="guide-url"
+              placeholder="https://payhip.com/b/..."
+            >
+          
+            <small>
+              Paid guide or purchase URL. This is the link users use to get the full guide.
+            </small>
+          </div>
+          
+          
+          <div class="form-group">
+            <label for="guide-preview-url">Free Preview URL</label>
+          
+            <input
+              type="url"
+              id="guide-preview-url"
+              placeholder="https://payhip.com/preview/..."
+            >
+          
+            <small>
+              Optional free preview that users can read before deciding to purchase.
+            </small>
+          </div>
+
+
+        <div class="images-editor">
+          <div class="images-heading">
+            <div>
+              <label>Cover Image</label>
+              <p>Cover/thumbnail shown for this guide.</p>
+            </div>
+            <button type="button" class="secondary-button" id="upload-guide-cover">Upload Cover Image</button>
+          </div>
+          <div id="guide-cover-field" class="image-fields"></div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label><input type="checkbox" id="guide-featured"> Featured guide</label>
+        </div>
+
+        <div class="editor-actions">
+          <button type="button" class="secondary-button" id="cancel-guide">Cancel</button>
+          <button type="submit" class="primary-button">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ===================================================
+       3D PRINTS
+  ==================================================== -->
+
+  <section
+    id="prints"
+    class="management-section"
+  >
+
+    <div class="management-heading">
+      <div>
+        <p class="eyebrow">Ticket 04</p>
+        <h2>3D Prints</h2>
+        <p class="section-description">Manage printed products, descriptions, prices, availability and images.</p>
+      </div>
+      <button type="button" class="primary-button" id="add-print-button">+ Add 3D Print</button>
+    </div>
+
+    <div id="print-list" class="product-list">
+      <div class="loading-card">Loading 3D prints...</div>
+    </div>
+
+    <div id="print-editor" class="editor" hidden>
+      <div class="editor-header">
+        <div>
+          <p class="eyebrow">3D Print Editor</p>
+          <h2 id="print-editor-title">Add 3D Print</h2>
+        </div>
+        <button type="button" class="close-button" id="close-print-editor" aria-label="Close editor">×</button>
+      </div>
+
+      <form id="print-form">
+        <div class="form-group">
+          <label for="print-name">Name</label>
+          <input type="text" id="print-name" required placeholder="e.g. Desk Cable Organizer">
+        </div>
+
+        <div class="form-group">
+          <label for="print-slug">Slug</label>
+          <input type="text" id="print-slug" required placeholder="desk-cable-organizer">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="print-status">Status</label>
+            <select id="print-status">
+              <option value="available">Available</option>
+              <option value="made-to-order">Made to Order</option>
+              <option value="unavailable">Unavailable</option>
+              <option value="sold-out">Sold Out</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="print-category">Category</label>
+            <input type="text" id="print-category" placeholder="Desk, Phone, Home, Custom">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="print-price">Price — KSh</label>
+            <input type="number" id="print-price" min="0" step="1" placeholder="800">
+          </div>
+          <div class="form-group">
+            <label for="print-material">Material</label>
+            <input type="text" id="print-material" placeholder="PLA">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="print-description">Description</label>
+          <textarea id="print-description" rows="5" placeholder="Describe the print, its use and any customization options..."></textarea>
+        </div>
+
+        <div class="images-editor">
+          <div class="images-heading">
+            <div>
+              <label>Print Images</label>
+              <p>Add the product photos used by the website.</p>
+            </div>
+            <button type="button" class="secondary-button" id="add-print-image-button">+ Add Image</button>
+          </div>
+          <div id="print-image-fields" class="image-fields"></div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label><input type="checkbox" id="print-featured"> Featured print</label>
+        </div>
+
+        <div class="editor-actions">
+          <button type="button" class="secondary-button" id="cancel-print">Cancel</button>
+          <button type="submit" class="primary-button">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+  <p>
+    SHIKADEAL ADMIN · KILIFI, KENYA
+  </p>
+
+  <p>
+    <a href="../">
+      ← Return to public site
+    </a>
+  </p>
+
+</footer>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>

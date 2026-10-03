@@ -1,0 +1,17 @@
+[
+  {
+    "id": "print-1790793332516",
+    "name": "Apple Watch Stand",
+    "slug": "desk-organisers",
+    "status": "available",
+    "category": "Desk",
+    "price": 900,
+    "material": "PLA",
+    "description": "This stand holds your Apple Watch Charger in a slanted vertical position.",
+    "images": [
+      "images/prints/apple-watch-stand-1790793320602.png"
+    ],
+    "featured": true,
+    "updatedAt": "2026-10-03T06:36:54.675Z"
+  }
+]
