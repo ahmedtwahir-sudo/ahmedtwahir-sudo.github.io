@@ -324,6 +324,85 @@
     }
 
 
+    .article-body strong {
+
+      color: var(--paper);
+
+    }
+
+
+    .article-body ul,
+    .article-body ol {
+
+      margin:
+        0 0 22px;
+
+      padding-left: 1.5em;
+
+    }
+
+
+    .article-body li {
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .article-body blockquote {
+
+      margin:
+        28px 0;
+
+      padding:
+        6px 0 6px 20px;
+
+      border-left:
+        3px solid var(--wire);
+
+      color:
+        rgba(241, 233, 216, 0.7);
+
+      font-style: italic;
+
+    }
+
+
+    .article-body blockquote p:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+    .article-body hr {
+
+      margin:
+        40px 0;
+
+      border: 0;
+
+      border-top:
+        1px dashed rgba(241, 233, 216, 0.22);
+
+    }
+
+
+    .article-body code {
+
+      padding:
+        2px 6px;
+
+      background:
+        rgba(241, 233, 216, 0.08);
+
+      border-radius: 3px;
+
+      font-size: 0.92em;
+
+    }
+
+
     .article-cta {
 
       margin-top: 48px;
@@ -647,6 +726,9 @@
   <!-- =================================================
        JAVASCRIPT
   ================================================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 
   <script>
 
@@ -974,20 +1056,53 @@
 
 
       /*
-        If the admin stores HTML, render it as HTML.
+        Posts are written in Markdown from the admin
+        formatting toolbar (bold, headings, lists, links).
 
-        If the admin stores plain text with paragraphs,
-        the fallback converts line breaks to paragraphs.
+        marked converts it to HTML, and DOMPurify strips
+        anything unsafe before it reaches the page.
+        Older posts written as plain text or HTML still
+        display correctly.
       */
 
       if (
-        /<[^>]+>/.test(blogContent)
+        window.marked &&
+        window.DOMPurify
       ) {
 
         body.innerHTML =
-          blogContent;
+          DOMPurify.sanitize(
+            marked.parse(
+              blogContent,
+              { breaks: true }
+            )
+          );
+
+
+        /* Open outside links in a new tab */
+
+        body
+          .querySelectorAll(
+            'a[href^="http"]'
+          )
+          .forEach(
+            link => {
+
+              link.target =
+                '_blank';
+
+              link.rel =
+                'noopener noreferrer';
+
+            }
+          );
 
       } else {
+
+        /*
+          Fallback if the Markdown libraries fail to load:
+          show plain paragraphs so the post is still readable.
+        */
 
         const paragraphs =
           blogContent
