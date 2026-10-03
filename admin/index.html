@@ -786,11 +786,46 @@
             Content
           </label>
 
+          <div
+            class="format-toolbar"
+            id="blog-toolbar"
+            role="toolbar"
+            aria-label="Text formatting"
+          >
+            <button type="button" data-fmt="bold" title="Bold (Ctrl+B)"><strong>B</strong></button>
+            <button type="button" data-fmt="italic" title="Italic (Ctrl+I)"><em>I</em></button>
+            <button type="button" data-fmt="h2" title="Heading">H2</button>
+            <button type="button" data-fmt="h3" title="Subheading">H3</button>
+            <button type="button" data-fmt="ul" title="Bullet list">&bull; List</button>
+            <button type="button" data-fmt="ol" title="Numbered list">1. List</button>
+            <button type="button" data-fmt="quote" title="Quote">&ldquo; Quote</button>
+            <button type="button" data-fmt="link" title="Link">Link</button>
+            <button type="button" data-fmt="hr" title="Divider line">&mdash; Line</button>
+
+            <span class="toolbar-spacer"></span>
+
+            <button type="button" data-fmt="preview" class="toolbar-preview">Preview</button>
+          </div>
+
           <textarea
             id="blog-content"
             rows="15"
             placeholder="Write the full article here..."
           ></textarea>
+
+          <div
+            id="blog-preview"
+            class="blog-preview post-body"
+            hidden
+          ></div>
+
+          <p class="format-hint">
+            Formatting uses Markdown: <code>**bold**</code>,
+            <code>*italic*</code>, <code>## Heading</code>,
+            <code>- list</code>, <code>[text](url)</code>,
+            <code>![alt](images/blog/photo.jpg)</code>.
+            Leave a blank line between paragraphs.
+          </p>
 
         </div>
 
@@ -1451,7 +1486,10 @@
 </footer>
 
 
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <script src="admin.js"></script>
+<script src="blog-format.js"></script>
 
 </body>
 </html>

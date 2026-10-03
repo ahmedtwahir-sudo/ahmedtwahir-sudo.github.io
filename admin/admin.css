@@ -1066,3 +1066,110 @@ footer a:hover{
   .management-heading{align-items:flex-start;flex-direction:column;}
   .form-row{grid-template-columns:1fr;}
 }
+
+
+/* =====================================================
+   BLOG FORMATTING TOOLBAR + PREVIEW
+===================================================== */
+
+.format-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  padding:8px;
+  background:var(--ink-3);
+  border:1px solid var(--border);
+  border-bottom:0;
+  border-radius:4px 4px 0 0;
+}
+
+.format-toolbar button{
+  min-width:34px;
+  padding:6px 9px;
+  background:transparent;
+  border:1px solid var(--border);
+  border-radius:3px;
+  color:var(--paper);
+  font-size:11px;
+}
+
+.format-toolbar button:hover:not(:disabled){
+  border-color:var(--signal);
+  color:var(--signal);
+}
+
+.format-toolbar button:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+.format-toolbar .toolbar-preview{
+  border-color:rgba(58,175,169,.5);
+  color:var(--wire);
+}
+
+.format-toolbar .toolbar-preview.active{
+  background:var(--wire);
+  color:var(--ink);
+}
+
+.toolbar-spacer{ flex:1; }
+
+.format-toolbar + textarea{
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+}
+
+.blog-preview{
+  min-height:240px;
+  max-height:600px;
+  overflow-y:auto;
+  padding:18px 20px;
+  background:#14120F;
+  border:1px solid var(--border);
+  border-radius:0 0 4px 4px;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.blog-preview[hidden]{ display:none; }
+
+.post-body h2{font-size:24px;margin:1.6em 0 .5em;}
+.post-body h3{font-size:19px;margin:1.4em 0 .4em;}
+.post-body p{margin:0 0 1em;}
+.post-body ul,
+.post-body ol{margin:0 0 1em;padding-left:1.4em;}
+.post-body li{margin-bottom:.3em;}
+.post-body a{color:var(--signal);}
+.post-body blockquote{
+  margin:1.2em 0;
+  padding:.2em 1em;
+  border-left:3px solid var(--wire);
+  color:var(--muted);
+}
+.post-body hr{
+  margin:2em 0;
+  border:0;
+  border-top:1px dashed rgba(241,233,216,.25);
+}
+.post-body img{max-width:100%;height:auto;border-radius:6px;}
+.post-body code{
+  padding:1px 5px;
+  background:var(--ink-3);
+  border-radius:3px;
+}
+
+.format-hint{
+  margin:8px 0 0;
+  color:var(--faint);
+  font-size:10px;
+  line-height:1.8;
+}
+
+.format-hint code{
+  padding:1px 4px;
+  background:var(--ink-3);
+  border-radius:3px;
+  color:var(--muted);
+}
