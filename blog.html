@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>From the Bench — ShikaDeal</title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+  <!-- =================================================
+       HEADER
+  ================================================= -->
+
+  <header class="site-header">
+
+    <div class="nav">
+
+      <a
+        class="logo"
+        href="index.html">
+
+        SHIKADEAL
+
+      </a>
+
+
+      <div class="nav-links"><a href="deals.html">Deals</a><a href="shop.html">Shop</a><a href="guides.html">Guides</a><a href="prints.html">Prints</a><a href="bench.html">Bench</a></div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =================================================
+       ARTICLE
+  ================================================= -->
+
+  <main>
+
+    <div
+      id="article-container"
+      class="article-wrap">
+
+      <div class="message">
+
+        <h1>
+          Loading...
+        </h1>
+
+        <p>
+          Loading the blog post.
+        </p>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- =================================================
+       FOOTER
+  ================================================= -->
+
+  <footer><div class="footer-inner"><div><div class="footer-logo">SHIKADEAL</div><div class="footer-meta footer-tagline">FIND IT. CHECK IT. GET IT.</div></div><div class="footer-meta footer-right">DEALS · SHOP · GUIDES · PRINTS · BENCH<br>KILIFI, KENYA<br>© <span class="footer-year"></span></div></div></footer>
+
+
+
+  <!-- =================================================
+       JAVASCRIPT
+  ================================================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+
+  <script>
+
+    /* =================================================
+       FOOTER YEAR
+    ================================================= */
+
+    const footerYear = document.querySelector('.footer-year');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+
+
+    /* =================================================
+       GET BLOG ID FROM URL
+       
+       Example:
+       
+       blog.html?id=1724859200123
+    ================================================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const blogId =
+      params.get('id');
+
+
+
+    /* =================================================
+       ARTICLE CONTAINER
+    ================================================= */
+
+    const articleContainer =
+      document.getElementById(
+        'article-container'
+      );
+
+
+
+    /* =================================================
+       LOAD BLOG
+    ================================================= */
+
+    async function loadBlogPost() {
+
+      if (!blogId) {
+
+        showMessage(
+          'Blog post not found',
+          'No blog ID was provided in the URL.'
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            'data/blog.json?v=' +
+            Date.now(),
+            {
+              cache: 'no-store'
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'Could not load blog.json'
+          );
+
+        }
+
+
+        const posts =
+          await response.json();
+
+
+        if (!Array.isArray(posts)) {
+
+          throw new Error(
+            'blog.json must contain an array'
+          );
+
+        }
+
+
+        /* ---------------------------------------------
+           FIND POST USING ID
+           
+           IMPORTANT:
+           We deliberately use ID, NOT slug.
+        --------------------------------------------- */
+
+        const post =
+          posts.find(
+            item =>
+              String(item.id) ===
+              String(blogId)
+          );
+
+
+        if (!post) {
+
+          showMessage(
+            'Blog post not found',
+            'The blog post you are looking for does not exist.'
+          );
+
+          return;
+
+        }
+
+
+        /* ---------------------------------------------
+           ONLY PUBLISHED POSTS ARE READABLE
+        --------------------------------------------- */
+
+        if (
+          post.status !== 'published'
+        ) {
+
+          showMessage(
+            'Blog post unavailable',
+            'This blog post is not currently published.'
+          );
+
+          return;
+
+        }
+
+
+        renderBlogPost(post);
+
+
+      } catch (error) {
+
+        console.error(
+          'Blog post loading error:',
+          error
+        );
+
+
+        showMessage(
+          'Blog temporarily unavailable',
+          'We are having trouble loading this blog post. Please try again shortly.'
+        );
+
+      }
+
+    }
+
+
+
+    /* =================================================
+       RENDER BLOG POST
+    ================================================= */
+
+    function renderBlogPost(post) {
+
+      articleContainer.innerHTML = '';
+
+
+      const article =
+        document.createElement('article');
+
+
+      article.className =
+        'article';
+
+
+      /* ---------------------------------------------
+         COVER IMAGE
+      --------------------------------------------- */
+
+      if (post.coverImage) {
+
+        const image =
+          document.createElement('img');
+
+
+        image.className =
+          'article-cover';
+
+
+        image.src =
+          post.coverImage;
+
+
+        image.alt =
+          post.title ||
+          'Blog post cover';
+
+
+        image.loading =
+          'eager';
+
+
+        image.decoding =
+          'async';
+
+
+        article.appendChild(image);
+
+      }
+
+
+      /* ---------------------------------------------
+         CONTENT
+      --------------------------------------------- */
+
+      const content =
+        document.createElement('div');
+
+
+      content.className =
+        'article-content';
+
+
+      /* ---------------------------------------------
+         EYEBROW
+      --------------------------------------------- */
+
+      const eyebrow =
+        document.createElement('p');
+
+
+      eyebrow.className =
+        'eyebrow';
+
+
+      eyebrow.textContent =
+        'ShikaDeal — Lessons';
+
+
+      content.appendChild(
+        eyebrow
+      );
+
+
+      /* ---------------------------------------------
+         TITLE
+      --------------------------------------------- */
+
+      const title =
+        document.createElement('h1');
+
+
+      title.className =
+        'article-title';
+
+
+      title.textContent =
+        post.title ||
+        'Untitled post';
+
+
+      content.appendChild(
+        title
+      );
+
+
+      /* ---------------------------------------------
+         DATE
+      --------------------------------------------- */
+
+      if (post.date) {
+
+        const date =
+          document.createElement('div');
+
+
+        date.className =
+          'article-date';
+
+
+        date.textContent =
+          formatBlogDate(
+            post.date
+          );
+
+
+        content.appendChild(
+          date
+        );
+
+      }
+
+
+      /* ---------------------------------------------
+         BODY
+      --------------------------------------------- */
+
+      const body =
+        document.createElement('div');
+
+
+      body.className =
+        'article-body';
+
+
+      /*
+        Your admin page should save the complete
+        blog content in post.content.
+
+        If your existing field is called "body",
+        the fallback below supports that too.
+      */
+
+      const blogContent =
+        post.content ||
+        post.body ||
+        post.description ||
+        post.excerpt ||
+        '';
+
+
+      /*
+        Posts are written in Markdown from the admin
+        formatting toolbar (bold, headings, lists, links).
+
+        marked converts it to HTML, and DOMPurify strips
+        anything unsafe before it reaches the page.
+        Older posts written as plain text or HTML still
+        display correctly.
+      */
+
+      if (
+        window.marked &&
+        window.DOMPurify
+      ) {
+
+        body.innerHTML =
+          DOMPurify.sanitize(
+            marked.parse(
+              blogContent,
+              { breaks: true }
+            )
+          );
+
+
+        /* Open outside links in a new tab */
+
+        body
+          .querySelectorAll(
+            'a[href^="http"]'
+          )
+          .forEach(
+            link => {
+
+              link.target =
+                '_blank';
+
+              link.rel =
+                'noopener noreferrer';
+
+            }
+          );
+
+      } else {
+
+        /*
+          Fallback if the Markdown libraries fail to load:
+          show plain paragraphs so the post is still readable.
+        */
+
+        const paragraphs =
+          blogContent
+            .split(/\n\s*\n/)
+            .map(
+              paragraph =>
+                paragraph.trim()
+            )
+            .filter(Boolean);
+
+
+        paragraphs.forEach(
+          paragraph => {
+
+            const p =
+              document.createElement('p');
+
+
+            p.textContent =
+              paragraph;
+
+
+            body.appendChild(p);
+
+          }
+        );
+
+      }
+
+
+      content.appendChild(
+        body
+      );
+
+
+      /* ---------------------------------------------
+         END-OF-ARTICLE CTA
+      --------------------------------------------- */
+
+      const cta =
+        document.createElement('div');
+
+      cta.className =
+        'article-cta';
+
+      if (post.ctaLink) {
+
+        const ctaButton =
+          document.createElement('a');
+
+        ctaButton.className =
+          'article-cta-button';
+
+        ctaButton.href =
+          post.ctaLink;
+
+        ctaButton.textContent =
+          post.ctaText || 'CONTINUE →';
+
+        ctaButton.setAttribute(
+          'aria-label',
+          post.ctaText || 'Continue'
+        );
+
+        cta.appendChild(
+          ctaButton
+        );
+
+      } else {
+
+        const backButton =
+          document.createElement('a');
+
+        backButton.className =
+          'article-back-button';
+
+        backButton.href =
+          'bench.html';
+
+        backButton.textContent =
+          '← Back to Bench';
+
+        cta.appendChild(
+          backButton
+        );
+      }
+
+      content.appendChild(
+        cta
+      );
+
+
+      article.appendChild(
+        content
+      );
+
+
+      articleContainer.appendChild(
+        article
+      );
+
+
+      /* ---------------------------------------------
+         UPDATE PAGE TITLE
+      --------------------------------------------- */
+
+      document.title =
+        `${post.title || 'Blog'} — ShikaDeal`;
+
+    }
+
+
+
+    /* =================================================
+       ERROR MESSAGE
+    ================================================= */
+
+    function showMessage(
+      title,
+      message
+    ) {
+
+      articleContainer.innerHTML = `
+
+        <div class="message">
+
+          <h1>
+            ${escapeHtml(title)}
+          </h1>
+
+          <p>
+            ${escapeHtml(message)}
+          </p>
+
+          <a
+            class="btn"
+            href="bench.html">
+
+            Back to Bench
+
+          </a>
+
+        </div>
+
+      `;
+
+    }
+
+
+
+    /* =================================================
+       ESCAPE HTML
+    ================================================= */
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+        .replace(
+          /</g,
+          '&lt;'
+        )
+        .replace(
+          />/g,
+          '&gt;'
+        )
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+
+    /* =================================================
+       BLOG DATE
+    ================================================= */
+
+    function formatBlogDate(
+      dateString
+    ) {
+
+      const date =
+        new Date(
+          dateString +
+          'T00:00:00'
+        );
+
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return dateString;
+
+      }
+
+
+      return date.toLocaleDateString(
+        'en-KE',
+        {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }
+      );
+
+    }
+
+
+
+    /* =================================================
+       START
+    ================================================= */
+
+    loadBlogPost();
+
+  document.querySelector('.footer-year')?.replaceWith(String(new Date().getFullYear()));
+
+  </script>
+
+</body>
+
+</html>
+

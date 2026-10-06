@@ -1,0 +1,54 @@
+[
+  {
+    "name": "HP 440 G10",
+    "status": "available",
+    "condition": "USED",
+    "price": 80000,
+    "description": "Core i5 - 13th Gen, 32GB RAM / 1TB SSD. Comes with charger and activated windows 11 and Microsoft Office 2019.",
+    "featured": true,
+    "images": [
+      "images/products/hp440-1.jpg",
+      "images/products/hp440-2.jpg",
+      "images/products/hp440-3.jpg",
+      "images/products/hp440-4.jpg"
+    ]
+  },
+  {
+    "name": "TEAMGROUP C175 64GB",
+    "status": "available",
+    "condition": "New",
+    "price": 1500,
+    "description": "USB 3.2 Gen 1 Read 100MB/s Flash Thumb Drive, External Data Storage Memory Stick Compatible with Computer/Laptop. Matte Black TC175364GB23",
+    "featured": true,
+    "images": [
+      "images/products/team-group-64gb-1791136476353.jpg"
+    ]
+  },
+  {
+    "name": "Crucial X9 1TB Portable SSD",
+    "status": "available",
+    "condition": "New",
+    "price": 25000,
+    "description": "Crucial X9 1TB Portable SSD, Up to 1050MB/s, USB 3.2 USB-C, External Solid State Drive, Compatible with Windows, Mac, & Android, Reliable Storage for Games, Files, & Backups, Black.",
+    "featured": true,
+    "images": [
+      "images/products/crucial-1tb-1791137582596.jpg",
+      "images/products/crucial-1tb-2-1791137621481.jpg",
+      "images/products/crucial-1tb-3-1791137631990.jpg"
+    ]
+  },
+  {
+    "name": "Apple iPhone 12 128GB Blue",
+    "status": "available",
+    "condition": "Used",
+    "price": 33000,
+    "description": "Apple iPhone 12 – 128GB – Blue Battery health 90%. In good condition. Comes with a free case.",
+    "featured": true,
+    "images": [
+      "images/products/iphone-12-1-1791138642667.jpg",
+      "images/products/iphone-12-2-1791138653610.jpg",
+      "images/products/iphone-12-3-1791138663195.jpg",
+      "images/products/iphone-12-4-1791138672981.jpg"
+    ]
+  }
+]

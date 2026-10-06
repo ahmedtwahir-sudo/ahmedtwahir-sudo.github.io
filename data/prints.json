@@ -1,0 +1,50 @@
+[
+  {
+    "id": "print-1790793332516",
+    "name": "Apple Watch Stand",
+    "slug": "desk-organisers",
+    "status": "available",
+    "category": "Desk",
+    "price": 900,
+    "material": "PLA",
+    "description": "This stand holds your Apple Watch Charger in a slanted vertical position.",
+    "images": [
+      "images/prints/apple-watch-stand-1790793320602.png"
+    ],
+    "featured": true,
+    "updatedAt": "2026-10-03T06:36:54.675Z"
+  },
+  {
+    "id": "print-1791139688290",
+    "name": "Earring organizer",
+    "slug": "Earring-organizer",
+    "status": "available",
+    "category": "Organizers",
+    "price": 1500,
+    "material": "PLA",
+    "description": "Simple and elegant. Easy to assemble the 2 printed parts and dimensions are: 20cm x 20cm x 7 cm",
+    "images": [
+      "images/prints/earing-stand-1-1791139655748.jpg",
+      "images/prints/earing-stand-3-1791139670810.jpg",
+      "images/prints/earing-stand-2-1791139681769.jpg"
+    ],
+    "featured": true,
+    "updatedAt": "2026-10-04T18:48:08.290Z"
+  },
+  {
+    "id": "print-1791139947539",
+    "name": "Necklace Organizer",
+    "slug": "Necklace-Organizer",
+    "status": "available",
+    "category": "Organizers",
+    "price": 2000,
+    "material": "PLA",
+    "description": "Leaf shaped necklace stand for displaying your jewelry. Not small and not bulky. Fits perfect on your dressing table.",
+    "images": [
+      "images/prints/necklace-stand-1-1791139907637.jpg",
+      "images/prints/necklace-stand-2-1791139928001.jpg"
+    ],
+    "featured": true,
+    "updatedAt": "2026-10-04T18:52:27.539Z"
+  }
+]

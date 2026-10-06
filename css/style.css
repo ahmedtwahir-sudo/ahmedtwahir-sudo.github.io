@@ -1,0 +1,2213 @@
+
+:root{
+  --ink:#11110f;
+  --ink2:#191916;
+  --paper:#f4f0e7;
+  --paper2:#e8e1d4;
+  --acid:#d7ff3f;
+  --orange:#ff5a36;
+  --blue:#7de2d1;
+  --muted:#77736a;
+  --line:rgba(17,17,15,.16);
+  --darkline:rgba(244,240,231,.16);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  width:100%;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;
+}
+
+a{
+  color:inherit;
+}
+
+button{
+  font:inherit;
+}
+
+.mono,
+.eyebrow,
+.nav-meta,
+.deal-meta,
+.score-label,
+.stock-label,
+.footer-meta{
+  font-family:'DM Mono',monospace;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(244,240,231,.93);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:16px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+
+.logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:25px;
+  letter-spacing:-.2px;
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.nav-links a{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.nav-links a:hover{
+  text-decoration:underline;
+  text-underline-offset:5px;
+}
+
+.nav-cta{
+  background:var(--ink);
+  color:var(--paper);
+  padding:9px 13px;
+  border-radius:2px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  max-width:1180px;
+  margin:auto;
+  padding:76px 24px 54px;
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:48px;
+  min-height:690px;
+  align-items:end;
+}
+
+.hero-kicker{
+  font:500 12px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(64px,10vw,142px);
+  line-height:.83;
+  letter-spacing:-.075em;
+  margin:0;
+  max-width:850px;
+}
+
+.hero h1 em{
+  font-style:normal;
+  color:var(--orange);
+}
+
+.hero-sub{
+  font-size:20px;
+  line-height:1.45;
+  max-width:620px;
+  margin:30px 0;
+}
+
+.hero-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:13px 17px;
+  background:var(--ink);
+  color:var(--paper);
+  text-decoration:none;
+  font:500 12px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  border:1px solid var(--ink);
+  cursor:pointer;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn.alt{
+  background:transparent;
+  color:var(--ink);
+}
+
+.hero-ticket{
+  align-self:start;
+  margin-top:15px;
+  border:1px solid var(--ink);
+  background:var(--paper2);
+  padding:20px;
+  transform:rotate(2deg);
+  box-shadow:10px 10px 0 var(--ink);
+}
+
+.ticket-top{
+  display:flex;
+  justify-content:space-between;
+  font:500 11px 'DM Mono',monospace;
+}
+
+.ticket-brand{
+  font-family:'Syne',sans-serif;
+  font-size:29px;
+}
+
+.ticket-rule{
+  border:0;
+  border-top:1px dashed var(--ink);
+  margin:20px 0;
+}
+
+.stamp{
+  display:inline-block;
+  border:2px solid var(--orange);
+  color:var(--orange);
+  padding:5px 8px;
+  font:700 11px 'DM Mono',monospace;
+  transform:rotate(-2deg);
+}
+
+.ticket-copy{
+  font-size:16px;
+  line-height:1.5;
+  margin:18px 0 0;
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee{
+  background:var(--acid);
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.marquee-inner{
+  display:inline-block;
+  padding:13px 0;
+  font:700 13px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  animation:scroll 28s linear infinite;
+}
+
+.marquee-inner span{
+  margin:0 22px;
+}
+
+@keyframes scroll{
+  to{
+    transform:translateX(-30%);
+  }
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+/* =========================================================
+   HOMEPAGE DIRECTORY
+========================================================= */
+.home-directory{
+  max-width:1180px;
+  margin:0 auto;
+  padding:18px 24px 0;
+}
+.home-directory-inner{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+.directory-card{
+  min-width:0;
+  border:1px solid var(--line);
+  padding:15px 14px 14px;
+  color:var(--ink);
+  text-decoration:none;
+  background:var(--paper);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  transition:transform .2s ease,background .2s ease;
+}
+.directory-card:hover{transform:translateY(-2px);background:var(--paper2);}
+.directory-number{font:500 9px 'DM Mono',monospace;color:var(--muted);}
+.directory-card strong{font:700 14px 'DM Mono',monospace;letter-spacing:.03em;}
+.directory-card span:last-child{font:500 9px 'DM Mono',monospace;text-transform:uppercase;color:var(--muted);}
+.directory-card b{color:var(--ink);}
+
+.section-head-side{
+  max-width:430px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:18px;
+}
+.section-view-all{
+  display:inline-flex;
+  width:max-content;
+  padding:10px 12px;
+  border:1px solid currentColor;
+  font:700 10px 'DM Mono',monospace;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+.section-view-all:hover{transform:translateY(-2px);}
+.empty-featured-card{
+  grid-column:1/-1;
+  min-height:260px!important;
+}
+
+
+.section{
+  max-width:1180px;
+  margin:auto;
+  padding:100px 24px;
+}
+
+.section.dark{
+  max-width:none;
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.section.dark > .section-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.section.tint{
+  max-width:none;
+  background:var(--paper2);
+}
+
+.section.tint > .section-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.eyebrow{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+  margin:0 0 18px;
+}
+
+.dark .eyebrow{
+  color:#aaa69d;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:30px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:22px;
+  margin-bottom:35px;
+}
+
+.dark .section-head{
+  border-color:var(--darkline);
+}
+
+h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(42px,6vw,78px);
+  line-height:.92;
+  letter-spacing:-.06em;
+  margin:0;
+  max-width:760px;
+}
+
+.section-intro{
+  max-width:420px;
+  line-height:1.55;
+  margin:0;
+}
+
+
+/* =========================================================
+   DEALS
+========================================================= */
+
+.deal-board{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.deal-card{
+  min-height:390px;
+  border:1px solid var(--darkline);
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+
+.deal-card.featured{
+  background:var(--paper);
+  color:var(--ink);
+  min-height:390px;
+}
+
+.deal-card.placeholder{
+  background:#24241f;
+}
+
+.deal-card.placeholder:after{
+  content:'DEALS ENGINE → NEXT';
+  position:absolute;
+  right:-42px;
+  top:48%;
+  font:700 10px 'DM Mono',monospace;
+  transform:rotate(-90deg);
+  color:#656158;
+}
+
+.deal-meta{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.deal-card h3{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(30px,4vw,58px);
+  line-height:.92;
+  letter-spacing:-.055em;
+  margin:30px 0 10px;
+}
+
+.deal-card:not(.featured) h3{
+  font-size:34px;
+}
+
+.deal-card p{
+  line-height:1.5;
+  color:#a8a49a;
+}
+
+.featured p{
+  color:#555149;
+}
+
+.deal-home-image{
+  display:block;
+  width:calc(100% + 44px);
+  height:155px;
+  margin:-22px -22px 18px;
+  padding:10px;
+  box-sizing:border-box;
+  object-fit:contain;
+  background:var(--paper2);
+  border-bottom:1px solid var(--line);
+}
+
+.deal-home-catch{
+  margin-top:14px;
+  padding:10px 12px;
+  border-left:3px solid var(--orange);
+  background:rgba(0,0,0,.035);
+  font-size:12px!important;
+}
+
+.deal-home-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+}
+
+.deal-home-actions a{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  padding:9px 11px;
+  text-decoration:none;
+  border:1px solid var(--ink);
+  color:var(--ink);
+  font:700 9px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+
+.deal-home-actions a.primary{
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.deal-home-actions a.text-link{
+  border-color:transparent;
+  padding-left:0;
+}
+
+.score{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  border-top:1px dashed currentColor;
+  padding-top:15px;
+}
+
+.score-number{
+  font:700 34px 'DM Mono',monospace;
+}
+
+.score-label{
+  font-size:10px;
+  text-transform:uppercase;
+  max-width:100px;
+  text-align:right;
+}
+
+.deal-note{
+  font:500 12px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+.deal-cta{
+  display:inline-flex;
+  margin-top:14px;
+  font:500 11px 'DM Mono',monospace;
+  text-transform:uppercase;
+  text-decoration:none;
+  width:max-content;
+}
+
+.deal-cta:hover{
+  text-decoration:underline;
+}
+
+
+/* =========================================================
+   GENERAL GRIDS / CARDS
+========================================================= */
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.shop-intro{
+  grid-column:span 3;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+  margin-bottom:8px;
+}
+
+.shop-intro strong{
+  font-family:'Syne',sans-serif;
+  font-size:26px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.card{
+  border:1px solid var(--line);
+  background:#faf7f0;
+  padding:18px;
+  position:relative;
+}
+
+.product-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.product-gallery{
+  display:flex;
+  overflow-x:auto;
+  overflow-y:hidden;
+  height:220px;
+  background:var(--paper2);
+  margin:-18px -18px 18px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  touch-action:pan-x;
+  overscroll-behavior:contain;
+}
+
+.product-gallery::-webkit-scrollbar{
+  display:none;
+}
+
+.product-gallery img{
+  width:100%;
+  min-width:100%;
+  height:220px;
+  object-fit:cover;
+  scroll-snap-align:start;
+  cursor:pointer;
+}
+
+.gallery-dots{
+  display:flex;
+  gap:5px;
+  margin:-12px 0 12px;
+}
+
+.gallery-dots span{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#bbb;
+  cursor:pointer;
+}
+
+.gallery-dots span.active{
+  background:var(--ink);
+}
+
+.tag-corner{
+  position:absolute;
+  right:12px;
+  top:12px;
+  padding:5px 7px;
+  background:var(--acid);
+  font:700 9px 'DM Mono',monospace;
+  z-index:2;
+}
+
+.card h3{
+  font-family:'Syne',sans-serif;
+  font-size:28px;
+  line-height:1;
+  margin:0 0 9px;
+  letter-spacing:-.04em;
+}
+
+.card p{
+  font-size:14px;
+  line-height:1.5;
+  color:#5e5a52;
+}
+
+.condition{
+  font:500 10px 'DM Mono',monospace!important;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.price{
+  font:700 20px 'DM Mono',monospace;
+  margin:10px 0 15px;
+}
+
+.whatsapp-btn{
+  display:inline-flex;
+  width:max-content;
+  padding:10px 13px;
+  text-decoration:none;
+  background:var(--ink);
+  color:var(--paper);
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   GUIDES
+========================================================= */
+
+.guides-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.guide-card{
+  border:1px solid var(--line);
+  background:var(--paper);
+  padding:0;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.guide-card.featured-guide{
+  border-color:var(--ink);
+}
+
+.guide-cover-link{
+  display:block;
+  background:var(--paper2);
+  overflow:hidden;
+  text-decoration:none;
+}
+
+.guide-cover{
+  width:100%;
+  aspect-ratio:16 / 10;
+  object-fit:cover;
+  display:block;
+  transition:transform .25s ease;
+}
+
+.guide-cover-link:hover .guide-cover{
+  transform:scale(1.025);
+}
+
+.guide-cover-placeholder{
+  width:100%;
+  aspect-ratio:16 / 10;
+  background:var(--ink);
+  color:var(--paper);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+  font:700 12px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.guide-body{
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.guide-topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.guide-badge{
+  display:inline-flex;
+  width:max-content;
+  background:var(--acid);
+  color:var(--ink);
+  padding:5px 7px;
+  font:700 9px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+.guide-type{
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.guide-card h3{
+  font-size:clamp(30px,4vw,48px);
+  margin:0 0 12px;
+}
+
+.guide-description{
+  margin:0;
+  max-width:650px;
+  flex:1;
+}
+
+.guide-purchase-row{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-top:25px;
+  padding-top:17px;
+  border-top:1px dashed var(--line);
+}
+
+.guide-price{
+  font:700 20px 'DM Mono',monospace;
+}
+
+.guide-price-label{
+  display:block;
+  font:500 9px 'DM Mono',monospace;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+
+.guide-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.guide-preview-btn,
+.guide-buy-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 13px;
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+  text-decoration:none;
+  border:1px solid var(--ink);
+}
+
+.guide-preview-btn{
+  background:transparent;
+  color:var(--ink);
+}
+
+.guide-buy-btn{
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.guide-preview-btn:hover,
+.guide-buy-btn:hover{
+  transform:translateY(-2px);
+}
+
+.guide-preview-unavailable{
+  display:inline-flex;
+  align-items:center;
+  padding:11px 13px;
+  border:1px solid var(--line);
+  color:var(--muted);
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   3D PRINTS
+========================================================= */
+
+.prints-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.print-card{
+  border:1px solid var(--darkline);
+  background:#191916;
+  color:var(--paper);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+.print-gallery{
+  display:flex;
+  overflow-x:auto;
+  overflow-y:hidden;
+  background:#24241f;
+  height:280px;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+
+.print-gallery::-webkit-scrollbar{
+  display:none;
+}
+
+.print-gallery img{
+  width:100%;
+  min-width:100%;
+  height:280px;
+  object-fit:cover;
+  scroll-snap-align:start;
+}
+
+.print-image-placeholder{
+  width:100%;
+  min-width:100%;
+  height:280px;
+  background:#24241f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+  color:#aaa69d;
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+.print-body{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.print-topline{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.print-category{
+  font:500 9px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#aaa69d;
+}
+
+.print-badge{
+  background:var(--acid);
+  color:var(--ink);
+  padding:5px 7px;
+  font:700 9px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+.print-card h3{
+  font-size:34px;
+  color:var(--paper);
+  margin-bottom:12px;
+}
+
+.print-card p{
+  color:#aaa69d;
+  margin:0;
+}
+
+.print-details{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:18px;
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+  color:#d0ccc2;
+}
+
+.print-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-top:22px;
+  padding-top:16px;
+  border-top:1px dashed var(--darkline);
+}
+
+.print-price{
+  font:700 20px 'DM Mono',monospace;
+}
+
+.print-order{
+  display:inline-flex;
+  padding:10px 13px;
+  background:var(--paper);
+  color:var(--ink);
+  text-decoration:none;
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+.print-order:hover{
+  transform:translateY(-2px);
+}
+
+.print-sold{
+  display:inline-flex;
+  padding:10px 13px;
+  background:#33332e;
+  color:#aaa69d;
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   MANIFESTO / FEATURE
+========================================================= */
+
+.manifesto{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:70px;
+  align-items:start;
+}
+
+.manifesto-copy{
+  font-size:clamp(25px,3vw,43px);
+  line-height:1.08;
+  letter-spacing:-.04em;
+  margin:0;
+}
+
+.manifesto-copy strong{
+  background:var(--acid);
+  color:var(--ink);
+  padding:0 5px;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.feature-card{
+  min-height:340px;
+  padding:28px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.feature-card.dark-card{
+  background:var(--ink);
+  color:var(--paper);
+  border-color:var(--darkline);
+}
+
+.feature-card.orange{
+  background:var(--orange);
+  color:var(--ink);
+  border-color:var(--ink);
+}
+
+.feature-card h3{
+  font-family:'Syne',sans-serif;
+  font-size:48px;
+  line-height:.9;
+  letter-spacing:-.055em;
+  margin:20px 0;
+}
+
+.feature-card p{
+  max-width:420px;
+  line-height:1.5;
+}
+
+.feature-mark{
+  font:500 10px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+.blog-grid{
+  margin-top:35px;
+}
+
+.blog-read-more{
+  display:inline-block;
+  margin-top:16px;
+  text-decoration:none;
+}
+
+.blog-read-more:hover{
+  text-decoration:none;
+}
+
+
+/* =========================================================
+   CONTACT / FOOTER
+========================================================= */
+
+.contact-strip{
+  max-width:none;
+  background:var(--orange);
+  border-top:2px solid var(--ink);
+  border-bottom:2px solid var(--ink);
+}
+
+.contact-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:70px 24px;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:end;
+}
+
+.contact-inner h2{
+  max-width:720px;
+}
+
+.contact-inner .btn{
+  background:var(--ink);
+  color:var(--paper);
+  border-color:var(--ink);
+}
+
+footer{
+  background:var(--ink);
+  color:var(--paper);
+  padding:45px 24px;
+}
+
+.footer-inner{
+  max-width:1180px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:start;
+}
+
+.footer-logo{
+  font:800 clamp(26px,9vw,42px) 'Syne',sans-serif;
+  letter-spacing:-.06em;
+}
+
+.footer-meta{
+  font-size:10px;
+  color:#aaa69d;
+  line-height:1.8;
+  text-align:right;
+}
+
+.footer-links{
+  margin-top:14px;
+  display:flex;
+  gap:16px;
+}
+
+.footer-links a{
+  font:500 11px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  text-decoration:none;
+  color:var(--paper);
+}
+
+.footer-links a:hover{
+  text-decoration:underline;
+}
+
+.mobile-menu{
+  display:none;
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  background:#000;
+  z-index:10000;
+  flex-direction:column;
+  overflow:hidden;
+  touch-action:pan-y;
+  overscroll-behavior:contain;
+}
+
+.lightbox.open{
+  display:flex;
+}
+
+.lightbox-topbar{
+  position:relative;
+  z-index:20;
+  flex:0 0 auto;
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 16px;
+  gap:10px;
+}
+
+.lightbox-close{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  font-size:30px;
+  line-height:1;
+  flex:0 0 auto;
+  position:relative;
+  z-index:21;
+}
+
+.lightbox-counter{
+  color:#fff;
+  font:12px 'DM Mono',monospace;
+  text-align:center;
+  flex:1;
+}
+
+.lightbox-spacer{
+  width:30px;
+  flex:0 0 auto;
+}
+
+.lightbox-content{
+  flex:1 1 auto;
+  display:flex;
+  width:100%;
+  min-height:0;
+}
+
+.lightbox-stage{
+  position:relative;
+  flex:1 1 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  min-height:0;
+}
+
+#lightbox-img,
+#shop-lightbox-img{
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+  touch-action:pinch-zoom;
+}
+
+.lightbox-close,
+.lightbox-arrow{
+  background:none;
+  border:0;
+  color:white;
+  cursor:pointer;
+}
+
+.lightbox-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:34px;
+  z-index:2;
+  padding:8px;
+}
+
+.lightbox-prev{
+  left:4px;
+}
+
+.lightbox-next{
+  right:4px;
+}
+
+.lightbox-thumbs{
+  display:none;
+}
+
+@media(min-width:851px){
+
+  .lightbox-thumbs{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    width:96px;
+    flex:0 0 96px;
+    overflow-y:auto;
+    padding:16px 14px;
+  }
+
+  .lightbox-thumbs img{
+    width:100%;
+    height:72px;
+    object-fit:cover;
+    border:2px solid transparent;
+    border-radius:2px;
+    cursor:pointer;
+    opacity:.5;
+    display:block;
+    transition:opacity .15s,border-color .15s;
+  }
+
+  .lightbox-thumbs img:hover{
+    opacity:.85;
+  }
+
+  .lightbox-thumbs img.active{
+    opacity:1;
+    border-color:#fff;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+  .deal-board,
+  .shop-grid,
+  .grid,
+  .guides-grid,
+  .prints-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:850px){
+  .home-directory-inner{grid-template-columns:repeat(3,1fr);}
+  .section-head-side{max-width:none;}
+
+  .nav{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:10px;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px 18px;
+    font-size:10px;
+  }
+
+  .nav-extra{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:58px;
+    min-height:auto;
+  }
+
+  .hero-ticket{
+    max-width:440px;
+    margin:10px 0 0 12px;
+  }
+
+  .deal-board{
+    grid-template-columns:1fr;
+  }
+
+  .deal-card,
+  .deal-card.featured{
+    min-height:330px;
+  }
+
+  .shop-grid,
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .shop-intro{
+    grid-column:span 2;
+  }
+
+  .guides-grid{
+    grid-template-columns:1fr;
+  }
+
+  .prints-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .manifesto{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-inner{
+    align-items:start;
+    flex-direction:column;
+  }
+
+  .lightbox-arrow{
+    display:none;
+  }
+
+}
+
+
+@media(max-width:560px){
+
+  .home-directory{padding-left:18px;padding-right:18px;}
+  .home-directory-inner{grid-template-columns:repeat(2,1fr);}
+  .nav{
+    padding:14px 18px;
+  }
+
+  .hero,
+  .section{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .hero h1{
+    font-size:clamp(58px,18vw,88px);
+  }
+
+  .hero-sub{
+    font-size:17px;
+  }
+
+  .section{
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .section-intro{
+    margin-top:20px;
+  }
+
+  .shop-grid,
+  .grid,
+  .prints-grid{
+    grid-template-columns:1fr;
+  }
+
+  .shop-intro{
+    grid-column:span 1;
+    display:block;
+  }
+
+  .guide-purchase-row{
+    display:block;
+  }
+
+  .guide-actions{
+    margin-top:15px;
+  }
+
+  .feature-card h3{
+    font-size:40px;
+  }
+
+  .contact-inner{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .footer-inner{
+    display:block;
+  }
+
+  .footer-meta{
+    text-align:left;
+    margin-top:20px;
+  }
+
+}
+.section-actions{margin-top:20px;display:flex;justify-content:flex-end}.section-view-all{font:500 10px 'DM Mono',monospace!important;font-weight:500!important;text-decoration:none!important;letter-spacing:.06em}.section-view-all:hover{transform:translateY(-2px)}.card-number{position:absolute;top:10px;right:10px;font:500 9px 'DM Mono',monospace;letter-spacing:.08em;opacity:.38;z-index:3}.card-title-link{text-decoration:none;color:inherit}.card h3{font-size:22px;line-height:1.05}.deal-card .card-number{color:currentColor}.deal-card h3{font-size:clamp(22px,2.6vw,34px);line-height:1.02}.deal-home-image-link{display:block;text-decoration:none}.deal-home-image-link:hover{opacity:.96}.blog-card h3{font-size:22px!important;line-height:1.05}
+
+
+/* =========================================================
+   SHIKADEAL PUBLIC STANDARDISATION
+   Shared public-page rules. Admin uses its own stylesheet.
+========================================================= */
+
+/* Shared site shell */
+header.site-header,
+header:not(.admin-header),
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(244,240,231,.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav,
+.site-header .nav-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:16px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+
+.logo{
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:25px;
+  line-height:1;
+  letter-spacing:-.2px;
+  text-decoration:none;
+  color:var(--ink);
+  flex:0 0 auto;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.nav-links a{
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  font-weight:500;
+  text-decoration:none;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--ink);
+}
+
+.nav-links a:hover{
+  text-decoration:underline;
+  text-underline-offset:5px;
+}
+
+.nav-cta{background:var(--ink);color:var(--paper);padding:9px 13px;border-radius:2px}
+
+/* Public catalogue cards use the 3D-print image height as the common visual baseline. */
+.card-image,
+.product-gallery,
+.product-gallery img,
+.guide-cover,
+.guide-cover-placeholder,
+.print-gallery,
+.print-gallery img,
+.print-image-placeholder,
+.card img:not(.logo),
+.bench-card-image,
+.card-image-link img{
+  height:280px;
+}
+
+.card-image,
+.card img:not(.logo),
+.card-image-link img,
+.guide-cover{
+  width:100%;
+  display:block;
+  object-fit:cover;
+}
+
+.card-image,
+.card-image-link img{
+  margin:0 0 18px;
+  background:var(--paper2);
+}
+
+.product-gallery{
+  margin:-18px -18px 18px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  display:flex;
+  background:var(--paper2);
+}
+
+.product-gallery img{min-width:100%;object-fit:cover;}
+
+.guide-cover-link{display:block;background:var(--paper2);overflow:hidden;text-decoration:none}
+.guide-cover{aspect-ratio:auto;object-fit:cover;transition:none}
+
+.print-gallery{background:var(--paper2);}
+.print-gallery img{object-fit:cover;}
+
+/* Listing pages: use the same card typography and spacing as the homepage. */
+main .card h3,
+main .guide-card h3,
+main .print-card h3{
+  font-family:'Syne',sans-serif;
+  font-size:24px;
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+
+main .card p,
+main .guide-card p,
+main .print-card p{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* Child catalogue pages use the homepage's light card language. */
+main .print-card{
+  background:#faf7f0;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+main .print-body{padding:18px}
+main .print-category{color:var(--muted)}
+main .print-card h3{color:var(--ink);margin-bottom:12px}
+main .print-card p{color:#5e5a52}
+main .print-details{color:var(--ink);}
+main .print-bottom{border-top:1px dashed var(--line)}
+main .print-price{color:var(--ink)}
+main .print-order{background:var(--ink);color:var(--paper)}
+
+/* Bench listing */
+main .card .card-image-link{display:block;margin:-18px -18px 18px}
+main .card .card-image-link img{width:100%;margin:0}
+main .card .date{font:500 9px 'DM Mono',monospace;color:var(--muted);text-transform:uppercase}
+main .card .read{font:500 10px 'DM Mono',monospace;text-decoration:none;text-transform:uppercase}
+
+/* Deal listing */
+.deal-card .deal-home-image,
+.deal-home-image{
+  height:280px;
+  width:calc(100% + 44px);
+  object-fit:cover;
+  background:var(--paper2);
+}
+
+/* Individual deal pages: every deal uses the same detail geometry. */
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:55px 24px 100px;
+}
+
+.wrap .hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);
+  gap:45px;
+  align-items:start;
+  margin-top:22px;
+  padding:0;
+  min-height:0;
+}
+
+.wrap .hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(34px,5vw,64px);
+  line-height:.94;
+  letter-spacing:-.055em;
+  margin:0;
+  max-width:720px;
+  overflow-wrap:anywhere;
+}
+
+.wrap .hero-image{
+  width:100%;
+  height:360px;
+  max-height:none;
+  object-fit:cover;
+  background:var(--paper2);
+  border:1px solid var(--line);
+  display:block;
+}
+
+.wrap .lede{font-size:18px;line-height:1.55;max-width:650px}
+.wrap .checked{font:500 10px 'DM Mono',monospace;text-transform:uppercase;color:var(--muted);margin-top:22px}
+.wrap .kicker{margin-top:35px}
+.wrap .kicker span{font:500 10px 'DM Mono',monospace;text-transform:uppercase;padding:6px 8px;border:1px solid var(--ink)}
+.wrap .section h2{font-family:'Syne',sans-serif;font-size:36px;line-height:1;letter-spacing:-.045em}
+.wrap .numbers{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.wrap .number{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:24px;
+  min-width:0;
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+}
+.wrap .number:nth-last-child(-n+2){border-bottom:0;}
+.wrap .label{font:500 10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
+.wrap .value{font:500 16px 'DM Mono',monospace;text-align:right;overflow-wrap:anywhere;}
+.wrap .catch{font-family:'Space Grotesk',sans-serif;font-size:17px}
+.wrap .action strong{font-family:'Syne',sans-serif;font-size:22px}
+
+/* The article page now uses the same light public system rather than the retired dark theme. */
+.article-wrap{
+  max-width:900px;
+  margin:0 auto;
+  padding:55px 24px 90px;
+}
+
+.article{
+  background:#faf7f0;
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-radius:0;
+  overflow:hidden;
+}
+
+.article-cover{
+  width:100%;
+  height:280px;
+  aspect-ratio:auto;
+  object-fit:cover;
+  display:block;
+  background:var(--paper2);
+}
+
+.article-content{padding:36px}
+.article .eyebrow{font:500 10px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.article-title{font:800 clamp(34px,5vw,58px)/.94 Syne,sans-serif;letter-spacing:-.055em;margin:0 0 12px;color:var(--ink)}
+.article-date{font:500 10px 'DM Mono',monospace;color:var(--muted);margin-bottom:30px}
+.article-body{font:400 15px/1.75 'Space Grotesk',sans-serif;color:#4f4b44}
+.article-body p{margin:0 0 22px}
+.article-body h2{font:700 32px/1 Syne,sans-serif;margin:38px 0 14px;color:var(--ink);letter-spacing:-.04em}
+.article-body h3{font:700 24px/1.05 Syne,sans-serif;margin:30px 0 12px;color:var(--ink)}
+.article-body img{max-width:100%;height:auto;display:block;margin:28px auto;border-radius:0}
+.article-body a{color:var(--orange)}
+.article-body strong{color:var(--ink)}
+.article-body blockquote{margin:28px 0;padding:6px 0 6px 20px;border-left:3px solid var(--orange);color:var(--muted);font-style:italic}
+.article-body hr{margin:40px 0;border:0;border-top:1px dashed var(--line)}
+.article-body code{padding:2px 6px;background:var(--paper2);border-radius:2px;font-size:.92em}
+.article-cta{margin-top:48px;padding-top:34px;border-top:1px solid var(--line);text-align:center}
+.article-cta-button{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;padding:13px 18px;border:1px solid var(--ink);border-radius:2px}
+.article-back-button{display:inline-block;margin-top:28px;color:var(--muted);font:500 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.message{max-width:600px;margin:100px auto;padding:30px 20px;text-align:center;background:#faf7f0;color:var(--ink);border:1px solid var(--line);border-radius:0}
+.message h1{font-family:'Syne',sans-serif;margin-top:0}
+.message p{color:var(--muted);font-size:13px;line-height:1.7}
+.message .btn{display:inline-block;background:var(--ink);color:var(--paper);font:500 11px 'DM Mono',monospace;text-decoration:none;text-transform:uppercase;padding:11px 18px;border-radius:2px;margin-top:10px}
+
+@media(max-width:850px){
+  .nav,.site-header .nav-inner{flex-direction:column;align-items:center;text-align:center;gap:10px}
+  .nav-links{justify-content:center;gap:14px 18px}
+  .wrap .hero{grid-template-columns:1fr}
+  .wrap .hero-image{order:-1;height:280px}
+  .article-wrap{padding:35px 18px 60px}
+}
+
+@media(max-width:560px){
+  .nav,.site-header .nav-inner{padding:14px 18px}
+  .nav-links{gap:10px 14px}
+  .card-image,.card img:not(.logo),.card-image-link img,.product-gallery,.product-gallery img,.guide-cover,.guide-cover-placeholder,.print-gallery,.print-gallery img,.print-image-placeholder,.bench-card-image{height:240px}
+  .deal-card .deal-home-image,.deal-home-image{height:240px}
+  .wrap{padding-left:18px;padding-right:18px}
+  .wrap .hero-image,.article-cover{height:240px}
+  .article-content{padding:24px 20px}
+  .article-title{font-size:34px}
+}
+
+/* =========================================================
+   LISTING COMPONENTS RESTORED / STANDARDIZED
+   These preserve the shared public CSS while keeping the
+   richer card behaviour on catalogue pages.
+========================================================= */
+
+/* Never underline an entire card. Individual CTA links may still be buttons. */
+.card,
+.deal-list-card,
+.card h3 a,
+.card h2 a,
+.card-title-link,
+.deal-list-card h3 a{
+  text-decoration:none;
+}
+
+.card:hover,
+.deal-list-card:hover{
+  transform:translateY(-4px);
+  box-shadow:7px 7px 0 var(--ink);
+}
+
+/* Deals catalogue */
+.deal-list-card{
+  border:1px solid var(--ink);
+  background:var(--paper2);
+  min-height:430px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.deal-list-card.featured{background:var(--ink);color:var(--paper);}
+.deal-list-image-link{display:block;margin:-20px -20px 20px;text-decoration:none;background:var(--paper2);}
+.deal-list-image{width:100%;height:280px;display:block;object-fit:cover;background:var(--paper2);}
+.deal-list-body{display:flex;flex-direction:column;flex:1;}
+.deal-list-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;font:500 10px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.06em;line-height:1.35;}
+.deal-list-meta span:first-child{min-width:0;}
+.deal-list-meta b{padding:0 4px;font-weight:500;}
+.deal-status{white-space:nowrap;padding-left:10px;border-left:1px solid currentColor;opacity:.8;}
+.deal-list-card h3{font:700 27px/.96 Syne,sans-serif;letter-spacing:-.045em;margin:20px 0 10px;}
+.deal-list-card h3 a{color:inherit;}
+.deal-list-card .price{font:500 21px 'DM Mono',monospace;margin-top:12px;}
+.deal-list-card .take{font-size:14px;line-height:1.45;color:#5e5a52;}
+.deal-list-card.featured .take{color:#bcb7ad;}
+.deal-list-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;padding-top:15px;border-top:1px dashed currentColor;}
+.meta-single{font:500 9px 'DM Mono',monospace;text-transform:uppercase;opacity:.78;}
+.deal-view-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:10px 12px;font:500 10px 'DM Mono',monospace;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:transform .15s ease;}
+.featured .deal-view-btn{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+.deal-view-btn:hover{transform:translateY(-2px);text-decoration:none;}
+
+/* Shop/product carousel */
+.product-card{min-height:430px;}
+.product-gallery{position:relative;height:280px;}
+.product-gallery img{height:280px;object-fit:cover;}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border:1px solid var(--ink);background:rgba(244,240,231,.9);color:var(--ink);font:700 22px/1 Arial,sans-serif;cursor:pointer;z-index:3;}
+.gallery-prev{left:9px;}.gallery-next{right:9px;}
+.gallery-count{position:absolute;right:9px;bottom:9px;background:rgba(17,17,15,.82);color:var(--paper);padding:5px 7px;font:500 9px 'DM Mono',monospace;z-index:3;}
+.product-card .whatsapp-btn{margin-top:auto;}
+.whatsapp-btn{transition:transform .15s ease,opacity .15s ease;}
+.whatsapp-btn:hover{transform:translateY(-2px);opacity:.92;text-decoration:none;}
+
+/* Guides */
+.guide{min-height:430px;}
+.guide-cover-link{margin:0;}
+.guide .guide-cover{height:280px;}
+.guide .guide-actions-row{margin-top:auto;padding-top:18px;border-top:1px dashed var(--line);display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
+.guide .guide-price{font:700 19px 'DM Mono',monospace;white-space:nowrap;}
+.guide .guide-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
+.guide .guide-preview-btn,.guide .guide-buy-btn{font:500 9px 'DM Mono',monospace;padding:10px 11px;}
+
+/* Prints */
+.print{min-height:430px;}
+.print > .card-image{height:280px;object-fit:cover;margin:-18px -18px 18px;width:calc(100% + 36px);}
+.print-card-footer{margin-top:auto;padding-top:17px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.print-card-footer .print-price{font:700 19px 'DM Mono',monospace;}
+.print-card-footer .whatsapp-btn{margin:0;}
+
+/* Bench */
+.bench-card{min-height:430px;}
+.bench-card-image{width:100%;height:280px;object-fit:cover;display:block;}
+.bench-card .card-image-link{display:block;margin:-18px -18px 18px;}
+.bench-card .date{display:block;font:500 9px 'DM Mono',monospace;color:var(--muted);text-transform:uppercase;}
+.bench-card h2{font:700 25px/1.02 Syne,sans-serif;letter-spacing:-.04em;margin:14px 0 10px;max-width:none;}
+.bench-card h2 a{color:inherit;}
+.bench-card p{margin-bottom:18px;}
+.read-btn{display:inline-flex;width:max-content;margin-top:auto;padding:10px 12px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font:500 10px 'DM Mono',monospace;text-transform:uppercase;text-decoration:none;transition:transform .15s ease;}
+.read-btn:hover{transform:translateY(-2px);text-decoration:none;}
+
+/* Homepage Bench cards should occupy the same visual weight as the other featured cards. */
+.blog-card{min-height:430px;}
+.blog-card img{height:280px!important;aspect-ratio:auto!important;object-fit:cover!important;border-radius:0!important;margin:0 0 18px!important;}
+.blog-card h3{font-size:24px!important;line-height:1.04!important;}
+
+/* Individual deal */
+.wrap .deal-detail-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);gap:45px;align-items:start;margin-top:22px;}
+.wrap .deal-detail-hero h1{font-family:'Syne',sans-serif;font-size:clamp(34px,4.5vw,58px);line-height:.95;letter-spacing:-.055em;margin:0;max-width:680px;overflow-wrap:anywhere;}
+.wrap .deal-detail-image{width:100%;height:360px;object-fit:cover;background:var(--paper2);border:1px solid var(--line);display:block;}
+
+/* Individual article: deliberately restrained title size. */
+.article-title{font-size:clamp(28px,3.2vw,40px)!important;line-height:1.04!important;max-width:760px;}
+.article-content{padding:32px 36px;}
+.article-body{max-width:760px;}
+.article-cta-button{display:inline-flex;align-items:center;justify-content:center;}
+
+@media(max-width:850px){
+  .deal-list-image,.product-gallery,.product-gallery img,.guide .guide-cover,.print > .card-image,.bench-card-image,.blog-card img{height:240px!important;}
+  .wrap .deal-detail-hero{grid-template-columns:1fr;}
+  .wrap .deal-detail-image{order:-1;height:280px;}
+  .deal-list-card,.product-card,.guide,.print,.bench-card,.blog-card{min-height:0;}
+}
+
+@media(max-width:560px){
+  .deal-list-image,.product-gallery,.product-gallery img,.guide .guide-cover,.print > .card-image,.bench-card-image,.blog-card img{height:240px!important;}
+  .deal-list-footer,.guide .guide-actions-row,.print-card-footer{align-items:flex-start;flex-direction:column;}
+  .deal-list-footer .deal-view-btn,.print-card-footer .whatsapp-btn{width:100%;}
+  .guide .guide-actions{justify-content:flex-start;}
+  .article-title{font-size:30px!important;}
+}
+
+
+/* =========================================================
+   OCT 6 STATUS / CTA / CHILD-PAGE POLISH
+========================================================= */
+
+/* Keep catalogue content away from the viewport edges. */
+main:not(.hero), .wrap, .article-wrap { padding-left:24px; padding-right:24px; }
+main:not(.hero) { max-width:1180px; margin-left:auto; margin-right:auto; }
+
+/* Standard footer for all public child pages. */
+.footer-tagline{text-align:left!important;margin-top:8px;}
+.footer-right{text-align:right;}
+.footer-year{display:inline;}
+
+/* Deal status badges */
+.deal-status-badge{display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;border-radius:2px;font:700 9px 'DM Mono',monospace;letter-spacing:.06em;white-space:nowrap;}
+.deal-status-badge.status-active{background:#4d8f55;color:#fff;}
+.deal-status-badge.status-expired{background:#b84b4b;color:#fff;}
+.deal-list-meta .deal-status-badge{border:0;opacity:1;}
+.deal-ended{background:#24231f!important;color:var(--paper)!important;}
+.deal-ended .deal-list-image-link{background:#e8e1d4;opacity:.72;}
+.deal-ended .take{color:#bcb7ad!important;}
+.deal-view-btn.disabled,.status-action.disabled,.disabled-action{cursor:not-allowed!important;pointer-events:none!important;opacity:.58;text-decoration:none!important;}
+.deal-view-btn.disabled{background:#77736a!important;color:#f4f0e7!important;border-color:#77736a!important;}
+
+/* Product status badges and disabled purchase buttons */
+.status-badge{display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;border-radius:2px;font:700 9px 'DM Mono',monospace;letter-spacing:.06em;white-space:nowrap;}
+.status-available{background:#4d8f55;color:#fff;}
+.status-unavailable{background:#b84b4b;color:#fff;}
+.status-action{display:inline-flex;align-items:center;justify-content:center;background:#b84b4b!important;color:#fff!important;border-color:#b84b4b!important;text-decoration:none!important;}
+.product-card .meta{align-items:center;}
+
+/* The richer individual-deal action cards from the previous version, using current fonts. */
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px;}
+.action{border:1px solid var(--ink);padding:20px;text-decoration:none;background:#faf7f0;transition:transform .15s ease,box-shadow .15s ease;}
+.action:hover{transform:translateY(-3px);box-shadow:5px 5px 0 var(--ink);text-decoration:none;}
+.action strong{display:block;font:700 22px 'Syne',sans-serif;line-height:1.05;margin-bottom:8px;}
+.action p{font:400 13px/1.45 'Space Grotesk',sans-serif;margin:0;color:#555149;}
+.action.primary{background:var(--acid);}
+.action.secondary{background:var(--blue);}
+.action.source{background:var(--orange);}
+.action.disabled-action{background:var(--paper2);color:var(--muted);border-color:var(--line);box-shadow:none;transform:none;}
+.expired{padding:20px;background:#e0dbd1;border:1px solid var(--ink);margin-top:28px;line-height:1.5;}
+
+/* Deal-detail spacing and typography */
+.wrap .deal-detail-hero{gap:34px;margin-top:18px;}
+.wrap .deal-detail-hero h1{font-size:clamp(30px,3.8vw,48px);line-height:.98;max-width:620px;}
+.wrap .deal-detail-image{height:330px;object-fit:contain;padding:10px;background:var(--paper2);}
+.wrap .kicker{margin-top:26px;}
+.wrap .numbers{margin-top:28px;}
+.wrap .section{margin-top:32px;}
+
+/* Shop desktop arrows use the actual image offset, not gallery width. */
+.product-gallery{scroll-behavior:smooth;scroll-snap-type:x mandatory;}
+.product-gallery img{flex:0 0 100%;scroll-snap-align:start;}
+
+/* Alerts are real buttons, not text links. */
+.alerts .btn{display:inline-flex;text-decoration:none;}
+
+@media(max-width:850px){
+  main:not(.hero), .wrap, .article-wrap{padding-left:18px;padding-right:18px;}
+  .actions{grid-template-columns:1fr;}
+  .footer-right{text-align:left;}
+}
+
+@media(max-width:560px){
+  main:not(.hero), .wrap, .article-wrap{padding-left:18px;padding-right:18px;}
+  .deal-list-footer,.guide .guide-actions-row,.print-card-footer{align-items:stretch;}
+  .deal-list-footer .deal-view-btn,.print-card-footer .whatsapp-btn,.product-card .whatsapp-btn,.guide .guide-actions,.guide .guide-actions a,.read-btn,.alerts .btn{width:100%;}
+  .guide .guide-actions{display:flex;flex-direction:column;gap:8px;}
+  .guide .guide-actions a{text-align:center;}
+  .deal-list-footer{flex-direction:column;}
+  .print-card-footer{flex-direction:column;}
+  .product-card .whatsapp-btn{justify-content:center;text-align:center;}
+  .read-btn{justify-content:center;text-align:center;}
+  .actions{gap:8px;}
+  .action{width:100%;}
+  .wrap .deal-detail-image{height:240px;}
+  .wrap .deal-detail-hero h1{font-size:32px;}
+  .article-title{font-size:32px!important;}
+  .footer-inner{gap:24px;}
+}
+
+/* Active deals stay light; ended deals become the visually secondary dark cards. */
+.deal-list-card.featured{background:#faf7f0;color:var(--ink);}
+.deal-list-card.featured .take{color:#5e5a52;}
+.deal-list-card.featured .deal-view-btn{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.deal-list-card.deal-ended .deal-view-btn.disabled{background:#77736a!important;color:var(--paper)!important;}
+
+
+/* OCT 6 MOBILE / SHOP IMAGE STATUS FIX */
+.product-card > .tag-corner{z-index:20;}
+.product-card .meta{position:relative;z-index:20;}
+.product-card .product-gallery{position:relative;z-index:1;}
+.shop-page .product-gallery{margin:-18px -18px 18px;}
+.product-card .meta + .product-gallery{margin-top:0;}
+@media(max-width:560px){
+  .shop-page .product-gallery{margin-top:0;margin-left:-18px;margin-right:-18px;margin-bottom:18px;}
+.product-card .meta + .product-gallery{margin-top:0;}
+  .lightbox-topbar{padding-top:max(10px,env(safe-area-inset-top));padding-left:12px;padding-right:12px;}
+  .lightbox-close{background:#11110f;color:#f4f0e7;border:1px solid rgba(244,240,231,.35);border-radius:50%;} 
+}
+
+
+@media(max-width:850px){
+  .wrap .numbers{grid-template-columns:1fr;}
+  .wrap .number{padding:12px 14px;}
+  .wrap .number:nth-last-child(-n+2){border-bottom:1px solid var(--line);}
+  .wrap .number:last-child{border-bottom:0;}
+}
+
+@media(max-width:560px){
+  .wrap .number{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:10px;}
+  .wrap .value{text-align:right;font-size:14px;}
+}
+
+
+/* =========================================================
+   OCT 6 CARD METADATA STANDARD
+   Universal rule: image -> metadata/status -> title/content -> CTA.
+========================================================= */
+.card > .meta,
+.deal-card .deal-meta,
+.print-body .print-topline{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:0 0 12px;
+  min-height:22px;
+  z-index:2;
+}
+.card > .meta{padding:0;}
+.card > .meta .condition,
+.deal-card .deal-meta > span:first-child,
+.print-category{
+  font:500 9px 'DM Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+.card > .meta .status-badge,
+.deal-card .deal-meta .deal-status-badge,
+.print-body .print-topline .status-badge{
+  position:static!important;
+  flex:0 0 auto;
+}
+.card > .meta .condition{order:1;}
+.card > .meta .status-badge{order:2;margin-left:auto;}
+.product-card > .product-gallery + .meta{margin-top:0;}
+.product-card > .product-gallery + .meta + h3{margin-top:0;}
+.print > .card-image + .meta{margin-top:0;}
+.print > .card-image + .meta + h3{margin-top:0;}
+.deal-card .deal-home-image-link + .deal-meta{margin-top:0;}
+.deal-card .deal-meta{margin-bottom:12px;}
+
+/* Never place catalogue status badges on top of product imagery. */
+.product-card > .tag-corner{position:static;}
+
+/* Individual deal: tighter editorial rhythm and no oversized gaps between sections. */
+.wrap .numbers{margin-bottom:0;}
+.wrap .section{margin-top:18px!important;padding:18px 0!important;}
+.wrap .section h2{font-size:28px;line-height:1.05;margin:0 0 8px;}
+.wrap .section p.copy{margin:0;line-height:1.5;}
+.wrap .checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:0;}
+.wrap .check{padding:9px 11px;border:1px solid var(--line);font:500 10px/1.35 'DM Mono',monospace;text-transform:uppercase;}
+.wrap .catch{margin:0;padding:12px 14px;line-height:1.5;border-left:3px solid var(--orange);background:rgba(0,0,0,.035);}
+.wrap .actions{margin-top:14px;}
+
+@media(max-width:850px){
+  .wrap .checks{grid-template-columns:1fr;}
+}
+@media(max-width:560px){
+  .card > .meta,
+  .deal-card .deal-meta,
+  .print-body .print-topline{align-items:flex-start;}
+}
+
+/* Individual deal: repeated Deal Desk navigation after the acquisition section. */
+.wrap .deal-back-bottom{display:inline-flex;margin-top:18px;}
+
+
+/* =========================================================
+   OCT 6 HOMEPAGE CTA STANDARD
+   All homepage card CTAs use the same geometry:
+   full card width, side padding preserved, stacked, centered.
+========================================================= */
+
+/* Deal cards: keep the bottom information/actions in one full-width column. */
+.deal-card > div:last-child{
+  width:100%;
+}
+.deal-card .score{
+  width:100%;
+  box-sizing:border-box;
+}
+.deal-home-actions{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:8px;
+}
+.deal-home-actions a{
+  width:100%;
+  box-sizing:border-box;
+  justify-content:center;
+  text-align:center;
+}
+.deal-home-actions a.text-link{
+  padding-left:11px;
+}
+
+/* Homepage shop: one consistent full-width CTA. */
+.product-card .whatsapp-btn{
+  width:100%;
+  box-sizing:border-box;
+  justify-content:center;
+  text-align:center;
+  margin-top:14px;
+}
+
+/* Homepage guides: price first, then full-width stacked CTAs. */
+.guide-purchase-row{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:10px;
+}
+.guide-purchase-row > div:first-child{
+  width:100%;
+}
+.guide-actions{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:8px;
+  margin-top:0;
+}
+.guide-actions a,
+.guide-actions .guide-preview-unavailable{
+  width:100%;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* Homepage prints: price first, then the order/status action full width. */
+.print-bottom{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:10px;
+}
+.print-bottom .print-price{
+  width:100%;
+}
+.print-bottom .print-order,
+.print-bottom .print-sold{
+  width:100%;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* Homepage Bench: article CTA fills the card's content width. */
+.blog-card .read-btn,
+.blog-card .blog-read-more{
+  width:100%;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  margin-top:auto;
+}
+
+/* Contact buttons use the same stacked/full-width rule on mobile. */
+@media(max-width:560px){
+  .contact-inner > div:last-child{
+    width:100%;
+  }
+  .contact-inner > div:last-child .btn{
+    width:100%;
+    box-sizing:border-box;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    margin:0 0 8px;
+  }
+  .contact-inner > div:last-child .btn:last-child{
+    margin-bottom:0;
+  }
+
+  /* All homepage card actions remain full width on small screens. */
+  .deal-home-actions a,
+  .product-card .whatsapp-btn,
+  .guide-actions a,
+  .guide-actions .guide-preview-unavailable,
+  .print-bottom .print-order,
+  .print-bottom .print-sold,
+  .blog-card .read-btn,
+  .blog-card .blog-read-more{
+    width:100%;
+    justify-content:center;
+    text-align:center;
+  }
+}
+
+/* Deal Desk page: leave breathing room before the footer after the alert CTA. */
+@media(max-width:560px){
+  .alerts{
+    margin-bottom:24px;
+  }
+}
+
