@@ -12,7 +12,7 @@
     "condition": "Used",
     "seller": "preownedtech · 99.6% positive",
     "returns": "30 CALENDAR_DAY returns accepted",
-    "lastChecked": "2026-10-10T23:01:17.688Z",
+    "lastChecked": "2026-10-11T00:01:44.798Z",
     "expiresAt": "2026-10-11T00:30:00.000Z",
     "sourceUrl": "https://www.ebay.com/itm/800755658315",
     "assistanceUrl": "https://www.shikadeal.com/",
@@ -36,8 +36,8 @@
       "quantity": 1,
       "buyingOptions": "AUCTION",
       "priceType": "CURRENT BID",
-      "lastChecked": "2026-10-10T23:01:17.688Z",
-      "nextCheckAt": "2026-10-10T23:31:17.189Z",
+      "lastChecked": "2026-10-11T00:01:44.798Z",
+      "nextCheckAt": "2026-10-11T00:31:44.297Z",
       "currentPrice": 880,
       "previousPrice": null,
       "priceChanged": false,
@@ -50,7 +50,7 @@
       "status": "ACTIVE"
     },
     "priceType": "CURRENT BID",
-    "updatedAt": "2026-10-10T23:01:17.688Z",
+    "updatedAt": "2026-10-11T00:01:44.798Z",
     "availability": "UNKNOWN",
     "quantity": 1
   },
